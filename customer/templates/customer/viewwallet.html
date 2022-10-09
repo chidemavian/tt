@@ -1,0 +1,58 @@
+<script type="text/javascript" src='/static/mato/JS/jquery-1.5.js'></script>
+
+{% extends 'customer/walletbase.html' %}
+{% block content %}
+
+
+
+<div style="text-align:center">Wallets Menu </div>
+
+   <table style="margin-top:0%;margin-bottom:01%;font-size:0.9em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center">
+        <td  >
+          <a href="/customer/customers/createwallet/" style="color:red">Create Wallet</a>
+        </td>
+
+        <td >
+          <a href="/customer/customers/editwallet/" style="color:red">Edit Wallet</a>
+        </td>
+
+        <td style="background:blue">
+          <a href="/customer/customers/viewwallet/" style="color:white">View Wallet</a>
+        </td>
+
+        <td >
+          <a href="/customer/customers/customer_list/" style="color:red">Wallet list</a>
+        </td>
+    </tr>
+</table>
+
+<div style="color:red">{{msg}}</div>
+<tr >
+
+       <form action="" method="POST">
+          <table width="100%" class="table  table-bordered table-hover" id="dataTables-example">
+           <tr >
+               <td >{{ form.wallet.label_tag}}:</td><td> {{ form.wallet }}</td>
+             </tr>   
+       </table>
+       <td ><input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="View Wallet"></td>
+       </form>
+
+</tr>
+
+
+   <script type="text/javascript">
+        $(document).ready(function() {
+
+            $("#id_wallet").focus();
+
+
+        });
+    </script>
+
+{% endblock %}
+
+
+

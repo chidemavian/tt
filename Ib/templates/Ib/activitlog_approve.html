@@ -1,0 +1,139 @@
+
+
+
+
+{% extends 'Ib/activitlogbase.html' %}
+{% block content %}
+
+
+<div style="text-align:center">Activities Log</div>
+   <table style="margin-top:0%;margin-bottom:01%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+<div>{{msg}}</div>
+
+
+    <tr style="text-align:center;">
+      <td >
+          <a href="/vts/thrift/log/"  style="color:red">Live</a>
+      </td>
+
+      <td  style="background:blue">
+          <a href="/vts/thrift/log/approvals/"  style="color:white">Replay</a>
+      </td>
+
+    </tr>
+</table>
+
+
+  <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+       
+
+
+           <tr >
+               <td >{{ form.status.label_tag}}:</td><td> {{ form.status }}</td>
+             </tr> 
+           <tr >
+             <td >{{ form.date.label_tag}}:</td><td> {{ form.date }}</td>
+           </tr>   
+    </table>
+    
+
+
+<table style="margin-top:0.1%;margin-bottom:0.2%" width="100%" class="table  table-bordered" id="dataTables-example">
+           <tr >
+                <div class="activitylogbox"></div>
+           </tr>
+</table>
+
+
+
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function() {
+            var pickerOpts = {
+                // appendText: "yy/mm/dd",
+                showOtherMonths: true,
+                changeMonth: true,
+                changeYear: true,
+                dateFormat:"dd/mm/yy"
+            };
+            $("#id_date").datepicker(pickerOpts);
+            //alert("welcome");
+            $("#id_merchant").focus();
+            getmerchant();
+        });
+    </script>
+
+
+   <script type="text/javascript" >
+        $(document).ready(function() {
+
+            $("#id_merchant").change(function () {
+                autopostlog();
+            });
+
+            $("#id_date").change(function () {
+                autopostlog();
+            });
+
+        });
+    </script>
+
+    <script type="text/javascript" language="javascript">
+        function getmerchant(){
+            var state = $("#id_merchant").val() +':'+"{{user}}";
+            // alert(state);
+            var url = "/vts/thrift/log/approvals/merchant_ajax/";
+            var i = 0;
+            var data='userid='+state;
+            $("#id_merchant").val('');   
+            $("#id_merchant").html('');
+            if (state != undefined){
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data:data,
+                    success: function(data){
+                        var options = '';
+                        for (i=0; i<data.length; i++){
+                            options += '<option value="' + data[i] +'">' + data[i] + '</option>'
+                        }
+                        $("#id_merchant").append(options);
+                        autopostlog();
+
+                    }
+                })
+            }
+        }
+
+    </script>
+
+
+
+
+    <script type="text/javascript" language="javascript">
+        function autopostlog(){
+          var state = $("#id_merchant").val() + ':'+ $("#id_date").val()+':'+"{{user}}";
+            // alert(state)
+            var url = "/vts/thrift/log/approvals/autopostlog/";
+            var i = 0;
+            var data='userid='+state;
+            $.ajax({
+                type:"POST",
+                url:url,
+                data:data,
+                success:function(html) {
+                    $(".activitylogbox").hide();
+                    $(".activitylogbox").show();
+                    $(".activitylogbox").html(html);
+
+                }
+            });
+            return false;
+        }
+    </script>
+
+
+{% endblock %}
+
+
+

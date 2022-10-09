@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+
+
+
+
+{% load humanize %}
+
+<body>
+
+<div style="margin-top:0%;margin-bottom:0%;font-size:0.7em"> Do you really want to decline <br>  <span style='color:red'>{{hhh.staff.surname}},  {{hhh.staff.firstname}} {{hhh.staff.othername}}'s </span>  <br >savings request?</div>
+
+
+<form 
+action="/IIIb/threeb/staff/request_loan/decline/yes/"
+method="POST">
+
+
+
+<input type='hidden' name="month123"   value ={{month}}>
+<input type='hidden' name="pack123"  value ={{package}}>
+<input type='hidden' name="state123"  value ={{state}}>
+         
+     <table style="margin-top:0%;margin-bottom:0%;font-size:0.7em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+      <tr>
+          <td >
+          <input class="btn btn-lg btn-success btn-block" name="submit" type= "submit"value="yes">
+        </td>
+        
+        <!-- <td>  -->
+<!--           <a href="/IIIb/threeb/staff/request_loan/decline/{{month}}/{{package}}/{{state}}/no/" class="btn btn-lg btn-success btn-block">No
+          </a> -->
+<!--                     <a href="/IIIb/threeb/loans/approve/" class="btn btn-lg btn-success btn-block">No
+          </a>
+        </td> -->
+
+
+      </tr>
+
+    </table>
+    
+</form>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+module name: Corporators
+purpose: manages corporators
+
+
+						LIST OF TABLES
+
+						tblIIIbcoop
+						tblIIIIbstaffbsavings_pack
+						tblIIIbclientsubscription
+						tblIIIbfieldagent
+						tblIIIbapprovals
+						tblstandardloanIIIB
+						tblstandardsavingIIIB 
+						tblIIIb_bankdetail
+						tblIIIbloandapplications
+						tblmaxloanIIIB
+						tblIIIbloantransaction
+						tblIIIbsavingsaccount
+
+
+1018575442
+
+
+essentially, it provides the interface that enables you  manage members of the coorperatives
+
+
+wth this module, the coop manager can perform third party;
+1.  loan application
+2. commodities request
+3. savings request
+4. deductions
+5. wallet balances
+	

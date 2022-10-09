@@ -1,0 +1,76 @@
+
+{% load humanize %}
+
+   
+
+
+       <form action="" method="POST"  enctype="multipart/form-data" >
+    
+    <section class="content">
+      <div class="container-fluid">
+            
+            <!-- general form elements -->
+            <div class="card card-primary">
+
+                <div class="card-body">
+                <div class="form-grup">
+                  <label>Number Of Days</label>
+                  <div class="input-group">
+
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-calendar">{{p}}</i></span>
+                    </div>
+
+                    <input type="tel" 
+                    class="form-control" 
+                    name="withdrr" 
+                    required
+                    autofocus
+                    placeholder ='Enter number of days'
+                    data-inputmask='"mask": "099 "' data-mask>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+
+      </section>
+      </form>
+     
+
+   <table style="margin-top:0.5%;margin-bottom:0.2%;font-size:0.7em" width="100%" class="table  table-bordered" id="dataTables-example">
+    <thead>
+        <tr style="text-align:center;font-weight:bold">
+           <td >S/N</td>
+           <td >Month</td>
+           <td >Thrift</td>
+           <td >Count</td>  
+           <td >Amount<del style='color:gray;text-decoration-style:double'>(N)</del></td>
+        </tr>
+    </thead>
+    {% for k in thriftrec %}                      
+    <tr style="font-weight:bod;text-align:center">
+          <td >{{ forloop.counter }}.</td>
+          <td >{{ monthname }}</td>
+           <td >{{ k.thrift|intcomma }}</td>
+          <td >{{ k.num}}</td>
+          <td >{{k.amount|intcomma}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+     <table style="margin-top:0%;margin-bottom:0.2%" width="100%" class="table  table-bordered" id="dataTables-example">
+            <td>
+              <input style="font-size:0.8em"  class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Withdraw Funds">
+            </td>
+ </table>
+
+<input type="hidden" name="wallet" readonly="readonly" value="{{ wallet }}">
+
+<input type="hidden" name="month" readonly="readonly" value="{{month}}">
+
+<input type="hidden" name="account"  readonly="readonly" value="{{account_type}}" >
+
+
+
+

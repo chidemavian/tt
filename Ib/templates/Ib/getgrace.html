@@ -1,0 +1,44 @@
+
+
+
+
+ <table style="margin-top:09%;margin-bottom:0%;font-size:1.28em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+
+<div class="card card-primary card-outline">
+{% if msg.plan = 'daily' %}
+
+		{% if msg.grace > 1 %}
+		  <div class="card-header" style="text-align:center">
+		  	<div style ='color:gray'>The grace period for {{msg.plan}}  repayment plan is <span style='color:green'>{{ msg.grace}} days.</span> Click <a href="">here</a> to change this value</div> 
+		      <!-- <a href="/thrift/thrift/admin/home/" class="btn btn-primary" style="display:inline">Read Guide</a> -->
+		  </div>
+
+		{% else %}
+		  <div class="card-header" style="text-align:center">
+		  	<div style ='color:gray'>The grace period for {{msg.plan}}  repayment plan is <span style='color:green'>{{ msg.grace}} day.</span> Click <a href="">here</a> to change this value</div> 
+		      <!-- <a href="/thrift/thrift/admin/home/" class="btn btn-primary" style="display:inline">Read Guide</a> -->
+		  </div>
+		{% endif %}
+
+{% elif msg.plan = 'weekly' %}
+
+		{% if msg.grace > 1 %}
+		  <div class="card-header" style="text-align:center">
+		  	<div style ='color:gray'>The grace period for {{msg.plan}}  repayment plan is <span style='color:green'>{{ msg.grace}} weeks.</span> Click <a href="">here</a> to change this value</div> 
+		      <!-- <a href="/thrift/thrift/admin/home/" class="btn btn-primary" style="display:inline">Read Guide</a> -->
+		  </div>
+
+		{% else %}
+		  <div class="card-header" style="text-align:center">
+		  	<div style ='color:gray'>The grace period for {{msg.plan}}  repayment plan is <span style='color:green'>{{ msg.grace}} week.</span> Click <a href="">here</a> to change this value</div> 
+		      <!-- <a href="/thrift/thrift/admin/home/" class="btn btn-primary" style="display:inline">Read Guide</a> -->
+		  </div>
+		{% endif %}
+
+
+{% endif %}
+</div>
+
+
+</table>

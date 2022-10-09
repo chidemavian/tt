@@ -1,0 +1,71 @@
+
+
+
+{% extends 'Ib/adminloansbase.html' %}
+
+{% block content %}
+
+
+{% load humanize %}
+<div style="text-align:center;font-weight:bold">Customer Loan Booking Request</div>
+
+<table style="margin-top:0.5%;margin-bottom:0.6%;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<tr>
+
+      <td ><a href="/vts/threeb/staff/repay_loan/" >Repay</a></td>
+
+    <td  style="background:blue" >
+          <a href="/vts/threeb/staff/request_loan/performance/" style='color:white'>Perfromance</a>
+      </td>
+
+
+<td ><a href="/vts/threeb/loans/approve/log/">Log</a></td>
+
+</tr>
+</table>
+
+
+{% if list %}
+          
+   <table style="margin-top:0%;margin-bottom:0.4%;font-size:0.7em" width="100%" class="table  table-bordered" id="dataTables-example">    
+          
+           <tr style='text-align:center;font-weight:bold'>
+               <td >S/N</td>               
+               <td>Amount</td>
+               <td>Date</td>
+             </tr>
+             {% for k in list %}
+          <tr style='text-align:center'>
+            <td >{{forloop.counter}}</td>
+            <td> {{k.thrift}} </td>
+            <td> {{k.start_date}}</td>
+
+          </tr>
+          {% endfor %}
+
+
+{% else %}
+<div>no details found </div>
+{% endif %}
+ </table>
+
+   <table style="margin-top:0%;margin-bottom:02%;font-size:0.7em" width="100%" class="table  table-bordered" id="dataTables-example">
+  <tr style='text-align:center'>
+
+<td> Total </td>
+<td>Repaid</td>
+<td>Balance</td>
+ </tr>
+  <tr style='text-align:center'>
+
+<td>  N {{total|intcomma}}</td>
+<td>N {{repaid|intcomma}}</td>
+<td>N {{balance|intcomma}}</td>
+ </tr>
+
+</table>
+{% endblock %}
+
+
+

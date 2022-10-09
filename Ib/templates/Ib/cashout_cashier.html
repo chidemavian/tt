@@ -1,0 +1,80 @@
+
+
+
+{% extends 'Ib/cashierbase.html' %}
+{% block content %}
+
+
+<div style="text-align:center">Payments Menu</div>
+   <table style="margin-top:0%;margin-bottom:01%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+      <td  >
+          <a href="/vts/thrift/payrequest/" style="color:red">Deposit Request</a>
+      </td>
+
+       <td  style="background:blue">
+        <a href="/vts/thrift/cashout/" style="color:white">Withdrawal Request</a></td>
+      <td>
+        <a href="/vts/thrift/user/report/" style="color:red">Log</a>
+      </td>
+    </tr>
+</table>
+
+
+<div>{{msg}}</div>
+
+
+ <form action="/vts/thrift/cashout/" method="POST">
+
+    <section class="content">
+      <div class="container-fluid">
+            
+            <!-- general form elements -->
+            <div class="card card-primary">
+
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="surname">A/C No</label>
+                    <input type="number" autofocus name="wallet" class="form-control" id="surname" placeholder="Account Number" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="firstname">Amount</label>
+                    <input type="number" name="amount" class="form-control" id="firstname" placeholder="Amount" required>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="firstname">Service Charge</label>
+                    <input type="number" name="charge" class="form-control" placeholder="Service Charge" required>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </section>
+
+
+
+
+         <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+          <tr>
+       <td ><input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Process Withdawal"></td>
+     </tr>
+   </table>
+       </form>
+
+
+
+   <script type="text/javascript" >
+        $(document).ready(function() {
+
+            $("#id_wallet").focus();
+  
+        });
+    </script>
+
+{% endblock %}
+
+
+

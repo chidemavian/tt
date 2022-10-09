@@ -1,0 +1,121 @@
+
+
+
+
+{% extends 'IIIb/adminloansbase.html' %}
+
+{% block content %}
+{% load humanize %}
+
+<div style="text-align:center;font-weight:bold">Loan Repayment Schedule</div>
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+<div>{{msg}}</div>
+
+
+
+    <tr style="text-align:center;">
+
+      <td  >
+          <a href="/IIIb/threeb/staff/request_loan/" style="color:red">Staff</a>
+      </td>
+        <td>
+          <a href="/IIIb/threeb/staff/request_loan/performance/" style="color:red">Bulk</a>
+      </td>
+    </tr>
+</table>
+
+   <table style="margin-top:0%;margin-bottom:0%;font-size:1em" width="100%" class="table  table-bordered" id="dataTables-example">
+          
+           <tr >
+               <td style='font-weight:bold'>E-Mail:</td>
+               <td>{{email}}</td>
+             </tr>
+
+          <tr>
+            <td style='font-weight:bold'>Staff Name:</td>
+            <td> {{name}}</td>
+          </tr>
+           
+       </table>
+
+
+{% if p %}
+          
+   <table style="margin-top:01%;margin-bottom:02%;font-size:1em" width="100%" class="table  table-bordered" id="dataTables-example">    
+          
+           <tr style='text-align:center'>
+               <td style='font-weight:bold'>S/N</td>               
+               <td style='font-weight:bold'>Month</td>
+               <td>Amount</td>
+               <td>Status</td>
+             </tr>
+             {% for k in p %}
+          <tr style='text-align:center'>
+            <td style='font-weight:bold'>{{forloop.counter}}</td>
+            <td> {{k.month}} ,  {{k.year }} </td>
+            <td style='font-weight:bold'>{{k.amount}}</td>
+            {% if k.status = 'CR' %}
+            <td style= 'color:grey'> Repaid</td>
+            {% else %}
+            <td style= 'color:red'><a href="#" style="color:blue" onClick= "approve({{ k.id  }})" title="repay  N{{ k.amount|intcomma}} ">Repay</a> </td>
+            {% endif %}
+          </tr>
+          {% endfor %}
+      
+
+{% else %}
+<div>no details found </div>
+{% endif %}
+ </table>
+
+
+
+
+<div id="repay"></div>
+
+
+<script type="text/javascript" language="javascript">
+    function approve(vid){
+        var state = vid + ":" + "{{ email }}";
+        // alert(state);
+        var url = "/IIIb/threeb/loans/repayment/";
+        var i = 0;
+        var data='userid='+state;
+        $.ajax({
+            type:"POST",
+            url:url,
+            data:data,
+            success:function(html) {
+                $("#repay").html(html);
+                getdial();
+            }
+        });
+        return false;
+    }
+
+</script>
+<script type="text/javascript" language="javascript">
+    function getdial(){
+        var diaOpts = {
+            autoOpen:true,
+            // appendTo:"body1",
+            // modal:true,
+            // position: ["center", "middle"],
+            height:'auto',
+            width:'auto',
+            title:' Touch this box to close' ,
+            closeOnEscape:true,
+            show: true,
+            hide: true,
+            bgiframe: true
+        };
+        $("#repay").dialog(diaOpts);
+    }
+
+</script>
+
+
+{% endblock %}
+
+
+

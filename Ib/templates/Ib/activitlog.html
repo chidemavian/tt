@@ -1,0 +1,85 @@
+
+
+
+
+{% extends 'Ib/activitlogbase.html' %}
+{% block content %}
+
+
+
+<div style="text-align:center">Activities Log</div>
+   <table style="margin-top:0%;margin-bottom:01%;font-size:0.7em" width="100%" class="table  table-bordered" id="dataTables-example">
+<div>{{msg}}</div>
+
+
+    <tr style="text-align:center;">
+      <td style="background:blue">
+          <a href="/vts/thrift/log/"  style="color:white">Live</a>
+      </td>
+
+      <td  >
+          <a href="/vts/thrift/log/approvals/"  style="color:red">Replay</a>
+      </td>
+
+    </tr>
+</table>
+
+
+  <table style="margin-top:0%;margin-bottom:0%;font-size:0.7em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+          <tr >
+               <td >{{ form.status.label_tag}}:</td><td> {{ form.status }}</td>
+          </tr> 
+    </table>
+    
+
+
+<table style="margin-top:0.1%;margin-bottom:0.2%" width="100%" class="table  table-bordered" id="dataTables-example">
+           <tr >
+                <div class="activitylogbox"></div>
+           </tr>
+</table>
+
+
+   <script type="text/javascript" >
+        $(document).ready(function() {
+
+            $("#id_status").change(function () {
+                autopostlog();
+            });
+
+            $("#id_status").focus();
+
+            autopostlog()
+
+        });
+    </script>
+
+
+    <script type="text/javascript" language="javascript">
+        function autopostlog(){
+          var state = $("#id_status").val()+':'+"{{user}}";
+            // alert(state)
+            var url = "/vts/thrift/log/autopostlog/";
+            var i = 0;
+            var data='userid='+state;
+            $.ajax({
+                type:"POST",
+                url:url,
+                data:data,
+                success:function(html) {
+                    $(".activitylogbox").hide();
+                    $(".activitylogbox").show();
+                    $(".activitylogbox").html(html);
+
+                }
+            });
+            return false;
+        }
+    </script>
+
+
+{% endblock %}
+
+
+

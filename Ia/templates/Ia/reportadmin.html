@@ -1,0 +1,104 @@
+
+
+{% extends 'Ia/reportsbase.html' %}
+{% block content %}
+
+{% load humanize %}
+   <table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+       <td   >
+        <a href="/fts/thrift/reports/sales/cashier/" style="color:red">End Of Day</a></td>
+
+                <td >
+            <a href="/fts/thrift/reports/sales/merchant/" style="color:red">Vault</a>
+        </td>
+
+    <td style="background:blue;font-size:0.9em">
+        <a href="/fts/thrift/reports/sales/admn/" style="color:white">Profit</a></td>
+    
+    </tr>
+</table>
+
+
+
+<form action ="" method = 'POST'>
+
+<table style="font-size:0.7em;margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<tr>
+
+  <td >{{ form.month.label_tag}}</td>
+<td> {{ form.month }} </td>
+</tr>
+</table>
+
+
+</form>
+
+
+
+</table>
+     <table width="100%" class="table  table-bordered" id="dataTables-example">
+        <tr>
+            <td >
+                <div class="boxadmin"></div>
+            </td>
+        </tr>
+</table>
+
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function() {
+            var pickerOpts = {
+                // appendText: "dd/mm/yy",
+                showOtherMonths: true,
+                changeMonth: true,
+                changeYear: true,
+                dateFormat:"dd/mm/yy"
+            };
+            $("#id_from_date").datepicker(pickerOpts);
+            $("#id_to_date").datepicker(pickerOpts);
+            autofillcash();
+        });
+    </script>
+
+   <script type="text/javascript" >
+        $(document).ready(function() {
+
+            $("#id_month").change(function () {
+                autofillcash();
+            });
+        });
+    </script>
+
+
+
+
+  <script type="text/javascript" language="javascript">
+        function autofillcash(){
+            var state =   "{{user}}" + ':' + $("#id_month").val();;
+            // alert(state)
+            var url = "/fts/thrift/reports/getprofit/";
+            var i = 0;
+            var data='userid='+state;
+            $.ajax({
+                type:"POST",
+                url:url,
+                data:data,
+                success:function(html) {
+                    $(".boxadmin").show();
+                    $(".boxadmin").html(html);
+
+                }
+            });
+            return false;
+        }
+    </script>
+
+
+
+{% endblock %}
+
+
+
+    

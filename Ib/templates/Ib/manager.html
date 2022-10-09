@@ -1,0 +1,28 @@
+
+{% extends 'Ib/adminloansbase.html' %}
+
+{% block content %}
+    <div style = "font-size:0.9em">welcome to loan app<hr>
+     These are a few of the major steps you should follow, if you want to use this app effectively as the manager of   {{company.company.name}}<hr>
+
+    <div>1. You can make a loan request, using the <a href="/vts/threeb/staff/request_loan/">Request loan</a>  link, and complete the quick form</div>
+
+    <hr>
+    <div>2. Approve all loan requests with the <a href="/vts/threeb/loans/approve/">Approve</a> link.</div>
+    	<hr>
+
+    <div>3. For loan repayments, the <a href="/vts/threeb/staff/repay_loan/">loan repay <a> link is handy </a></div>
+    <hr>
+
+<div>4. At any time, you might want to see how a loan is performing. Use the <a href="/vts/threeb/staff/request_loan/performance/">loan Performance</a> link</div>
+    <hr>
+<div>5. It is mandatory to set up the types of loan packages for your firm. Do ths with the  <a href="/vts/threeb/loans/settings/">Loan Settings </a> link before you commence </div>
+    <hr>
+    <div>6. Set up a <a href="/vts/threeb/staff/repay_loan/">loan repayment plan <a> for your branch</a></div>
+    <hr>
+
+<div>7. The <a href="/vts/threeb/loans/report/">Loan Report </a>  link provides a way to see at a glance, the position of all running loan applicantions </div>
+    <hr>
+
+</div>
+{% endblock %}

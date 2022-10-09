@@ -1,0 +1,58 @@
+
+
+{% extends 'staff/staffbase.html' %}
+{% block content %}
+
+
+
+<div style="text-align:center">Manage Staff Menu</div>
+   <table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+<div>{{msg}}</div>
+
+   <table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+<div>{{msg}}</div>
+    <tr style="text-align:center;font-size:0.7em">
+               <td >
+            <a href="/staff/staff/activate/" style="color:red">Activate</a>
+        </td>
+        <td >
+            <a href="/staff/staff/deactivate/" style="color:red">Deactivate</a>
+        </td>
+
+       <td  ><a href="/staff/staff/delete/" style="color:red">Delete </a></td>
+        <td style="background:blue">
+            <a href="/staff/staff/reset/" style="color:white">Reset password</a>
+        </td>
+
+
+    </tr>
+</table>
+</table>
+
+<tr >
+       <form action="" method="POST">
+          <table width="100%" class="table  table-bordered table-hover" id="dataTables-example">
+           <tr >
+               <td >{{ form.email.label_tag}}:</td><td> {{ form.email }}</td>
+             </tr>   
+       </table>
+       <td ><input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Reset"></td>
+       </form>
+
+</tr>
+
+
+
+   <script type="text/javascript" >
+        $(document).ready(function() {
+
+            $("#id_email").focus();
+
+        });
+    </script>
+
+
+{% endblock %}
+
+
+

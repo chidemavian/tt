@@ -1,0 +1,68 @@
+
+{% load humanize %}
+
+
+<table style="margin-top:0.5%;margin-bottom:0.6%;text-align:center;font-size:0.6em" width="100%" class="table  table-bordered" id="dataTables-example">
+      
+    <tr style='font-size:0.9em'>
+        <td tyle='font-weight:bold;'>Customer</td>
+        <td > {{ income.customer.customer.surname.upper }}, {{ income.customer.customer.firstname.upper }} {{ income.customer.customer.othername.upper }} </td>
+    </tr>
+    <tr>
+        <td tyle='font-weight:bold;font-size:0.5em'>Date:</td>
+         <td >  {{date1}} </td>
+    </tr>
+
+    <tr>
+        <td tyle='font-weight:bold;font-size:0.9em'>Amount</td>
+         <td >  {{ income.amount|intcomma}} </td>
+    </tr>
+    </table>
+
+<form action ='/vts/thrift/aprrovals/approvalsingletrans/' method = 'POST'>
+
+
+       <input type="hidden" name="merchant"  readonly="readonly" value="{{ income.merchant.id }}">
+
+       <input type="hidden" name="mmm" readonly="readonly" value="{{ income.amount }}" >
+
+       <input type="hidden" name="date"  readonly="readonly" value="{{ date }}" >
+
+        <input type="hidden" name="date1" readonly="readonly" value="{{ date1 }}">
+
+        <input type="hidden" name="trans"  readonly="readonly" value="{{income.id}}">
+         
+     <table style="margin-top:0%;margin-bottom:0.9%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+        <tr> 
+    <td class="form-group" > 
+        
+                 <input type="number" autofocus name="cash" class="form-control" id="cash" placeholder="Enter cash here">
+          
+      </td>
+  </tr>
+</table>
+     <table style="margin-top:0%;margin-bottom:0.9%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+       <tr style="margin-top:01%;margin-bottom:0%">
+      <td style="font-size:0.6em">
+      <input class="btn btn-lg btn-success btn-block" name="submit" type= "submit"value="Approve ">
+    </td>
+  </tr>   
+</table>
+
+</form>
+
+
+<!-- 
+    <script language="javascript" type="text/javascript">
+        function disable(f)
+        {
+            var button = f.elements['submit'];
+            button.value = 'Processing';
+            button.disabled = 'true';
+            return true;
+        }
+    </script> -->
+
+    

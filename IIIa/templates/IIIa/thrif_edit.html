@@ -1,0 +1,56 @@
+
+{% load humanize %}
+
+<table width="100%" class="table  table-bordered " id="dataTables-example">
+
+    <tr >
+        <td  style="background-color:#d3d3d3;font-size:0.5em;color:blue;font-weight:bold;text-align:center" >Change thrift dialog </td>
+    </tr>
+</table>
+
+<table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style='font-size:0.6em'>
+        <td style='font-weight:bold'>Wallet</td>
+         <td >  {{wallet}} </td>
+    </tr>
+    <tr style='font-size:0.6em'>
+        <td style='font-weight:bold'>Name</td>
+        <td > {{ income.customer.surname.upper }}, {{ income.customer.firstname.upper }} {{ income.customer.othername.upper }} </td>
+    </tr>
+
+    <tr style='font-size:0.6em'>
+        <td style='font-weight:bold'>Old thrift</td>
+         <td >  {{thrift|intcomma}} </td>
+    </tr>
+    </table>
+
+<form action ='/thrift/thrift/changethrift/edit/ererer/' method = 'POST'>
+
+       <input type="hidden" name="wallet" id="wallet"  readonly="readonly" value="{{ wallet }}" class ="loginTxtbox">
+
+       <input type="hidden" name="month" id="month"  readonly="readonly" value="{{ month }}" class ="loginTxtbox">
+
+     <input type="hidden" name="thrift" id="thrift"  readonly="readonly" value="{{ thrift }}" class ="loginTxtbox">
+         
+<table style="margin-top:0.8%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+        <tr style='font-size:0.6em'> 
+          <td style='font-weight:bold'>New Thrift:</td>
+    <td> 
+        <div class="form-group">
+                 <input type="number" required autofocus name="new thrift" class="form-control" id="cash" placeholder="Enter new thrift">
+            </div>
+      </td>
+  </tr>
+</table>
+
+<table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+     <tr>
+        <td >
+        <input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Save ">  </td>
+ </tr> 
+</table>
+
+</form>

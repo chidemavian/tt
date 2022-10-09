@@ -1,0 +1,75 @@
+
+
+
+{% extends 'partner/basepartner.html' %}
+{% block content %}
+
+
+<table style="margin-top:0%;margin-bottom:01%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+
+
+
+</table>
+
+<div style="text-align:center">Back Office Registration</div>
+   <table style="margin-top:0%;margin-bottom:01%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+        <td  ><a href="/partner/partner/business/reg/" style="color:red">Business </a></td>
+        <td ><a href="/partner/partner/business/branch/" style="color:red">Address</a></td>
+        <td style="background:blue"><a href="/partner/partner/business/ceo/" style="color:white">Owner</a></td>
+       <td><a href="/partner/partner/business/app/" style="color:red;font-size:0.9em">Services</a></td>
+      </tr>
+</table>
+
+{% for comp in comp %}
+<tr >
+
+       <form action="/partner/partner/business/address/" method="POST"  enctype="multipart/form-data" >
+    
+    <section class="content">
+      <div class="container-fluid">          
+          <div class="card card-primary">
+              <div class="card-body">
+                <table style="margin-top:0%;margin-bottom:04%" width="100%" class="table  table-bordered table-hover" id="dataTables-example">
+            <div  style="font-weight:bold;text-align:center; font-size:2em">{{comp.name}}</div>
+          <div  style="font-weight:bold;text-align:center">{{comp.address}}</div>
+              <div style="text-align:center; font-weight:bold">Business ID: {{comp.id}}</div>
+              <div style="text-align:center; font-weight:bold">Business owner: {{comp.owner.staffrec.surname.upper}}   {{comp.owner.staffrec.firstname.upper}}  {{comp.owner.staffrec.othername.upper}}</div> 
+             </div>   
+           </table>
+          </div>
+        </div>
+      </div>
+                <!-- /.card-body -->
+           <div class="card-footer"> </div>
+
+
+      </section>
+    
+  </form>
+            </div>
+            <!-- /.card -->
+</div>
+</section>
+
+
+</tr>
+
+{% endfor %}
+<script type="text/javascript" language="javascript">
+
+
+//window.history.pushState(null, "", window.location.href);
+//window.onpopstate = function () {
+//    window.history.pushState(null, "", window.location.href);
+//};
+
+//
+</script>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,96 @@
+
+
+
+
+
+
+
+
+<form action = '/sms/thrift/sms/register/customer/' method= 'POST'>
+<table style="margin-top:0%;margin-bottom:0.5%  " width="100%" class="table  table-bordered" id="dataTables-example">
+<div style='text-align:center'> Choose Alert Type</div>
+<tr>
+
+<td>
+  <label for="id_deposit" ><input  type="radio" name="schedule" id="id_deposit" value='Deposit' onclick="ShowHideDiv1()"  >Deposit Alert </>
+  </label>
+</td>
+
+<td>
+  <label for="id_withdrawal" style='color:grey'>
+  <input type="radio" disabled name="schedule" id="id_withdrawal" onclick="ShowHideDiv2()" value='Withdraw'>Withdrawal Alert </>
+  </label>
+</td>
+<td>
+  <label for="id_both">
+    <input type="radio" name="schedule" id="id_both" value='Both' onclick="ShowHideDiv3()" >Both  </>
+  </label>
+</td>
+  </tr>
+
+</table> 
+
+
+<div style='color:grey'>{{msg}}</div>
+
+<div id="dvPassport" style="display: none">
+  <table width="100%" class="table  table-bordered" id="dataTables-example">
+    <tr>
+       <td ><input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Process Request" id="txtPassportNumber"></td>
+      </tr>
+</table>
+</div>
+
+<input type="hidden" name="wallet" id="wallet"  readonly="readonly" value="{{ wallet }}" class ="loginTxtbox">
+
+<input type="hidden" name="app" id="app"  readonly="readonly" value="{{ app }}" class ="loginTxtbox">
+
+</form>
+
+
+
+<script type="text/javascript">
+    function ShowHideDiv1() {
+        var chkYes = document.getElementById("chkYes");
+        var dvPassport = document.getElementById("dvPassport");
+        dvPassport.style.display = id_deposit.checked ? "block" : "none";
+    }
+</script>
+
+
+<script type="text/javascript">
+    function ShowHideDiv2() {
+        var chkYes = document.getElementById("chkYes");
+        var dvPassport = document.getElementById("dvPassport");
+        dvPassport.style.display = id_withdrawal.checked ? "block" : "none";
+    }
+</script>
+
+<script type="text/javascript">
+    function ShowHideDiv3() {
+        var chkYes = document.getElementById("chkYes");
+        var dvPassport = document.getElementById("dvPassport");
+        dvPassport.style.display = id_both.checked ? "block" : "none";
+    }
+</script>
+
+
+ <table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<tr >
+<td>
+
+  
+  <a href="/sms/daily_contribution/sms/">Subscribe SMS</a>
+  
+  </td>
+        <td >
+          <a href="/sms/daily_contribution/balance/" >Purchase SMS</a>
+      </td>
+  <td>
+    <a href="/thrift/thrift/home/" >Read guide</a>
+  
+  </td>
+</tr>
+</table> 
+

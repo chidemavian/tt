@@ -1,0 +1,110 @@
+
+
+
+
+{% extends 'Ia/thriftbaseIa.html' %}
+{% block content %}
+
+
+{% load humanize %}
+
+<div style="text-align:center">Thrift Menu</div>
+   <table style="margin-top:0%;margin-bottom:0.3%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+        <td  >
+            <a href="/fts/thrift/addthrift/" style="color:red">Add</a>
+        </td>
+        
+        <td >
+            <a href="/fts/thrift/viewthrift/" style="color:red">View</a>
+        </td>
+       <td  ><a href="/fts/thrift/changethrift/" style="color:red">Change</a></td>
+        <td>
+            <a href="/fts/thrift/rolloverthrift/" style="color:red;font-size:0.9em">Rollover</a>
+        </td>
+        <td style="background:blue;font-size:0.9em">
+            <a href="/fts/thrift/thriftreport/" style="color:white">Log</a>
+        </td>
+    </tr>
+</table>
+     
+<!-- 
+<form action="" method="POST">
+
+<table style="margin-top:0.2%;margin-bottom:0.2%;font-size:0.9em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+
+  <tr>
+            <td style='font-weight:bold'>Account Type</td>
+            <td>
+                <select name="account_type" id="id_account_type">
+                 <option value="-----">-----</option>
+                 <option value="Main account">Main account</option>
+                 <option value="Sub account">Sub account</option>
+                 </select>
+             </td>
+</tr>
+</table>
+
+</form> -->
+
+
+   <table style="margin-top:0%;margin-bottom:0%"width="100%" class="table  table-bordered table-hover" id="dataTables-example">
+     <thead >
+
+      <div style="margin-top:2%;margin-bottom:0%;text-align:center"> Thrift Report for {{month}}  <span style='color:blue'>[{{account_type}}]</span></div>
+        <tr style="text-align:center;font-weight:bold">
+           <td >S/N</td>
+           <td >Customer</td>
+           <td > Thrift</td>
+        </tr>
+
+    </thead> 
+
+
+    {% for student in thriftrec %}
+        <tr style="font-weight:bod;text-align:center">
+          <td >{{ forloop.counter }}.</td>
+          <td >{{ student.wallet }}</td>
+          <td > <span style="text-decoration: line-through">N</span>{{ student.thrift|intcomma }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<table style="margin-top:0.5%;margin-bottom:0.6%;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<tr >
+<td>
+  <a href="/fts/thrift/payrequest/">Payment</a>
+  
+  </td>
+<td>
+  <a href="/fts/thrift/history/">Balances</a>
+  
+  </td>
+<td>
+  <a href="/fts/thrift/home/" >Read guide</a>
+  
+  </td>
+</tr>
+</table>
+
+
+
+    <script language="javascript" type="text/javascript">
+        function disable(f)
+        {
+            var button = f.elements['submit'];
+            button.value = 'Processing';
+            button.disabled = 'true';
+            return true;
+        }
+    </script>
+
+
+
+{% endblock %}
+
+
+

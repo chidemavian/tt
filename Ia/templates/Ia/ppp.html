@@ -1,0 +1,258 @@
+
+
+
+{% extends 'Ia/adminbase.html' %}
+
+
+{% block content %}
+
+{% load humanize %}
+
+
+
+
+
+<div style="text-align:center">Approvals Menu</div>
+  
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.6em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+        <td  style="background:blue">
+            <a href="/fts/thrift/approvals/" style="color:white">Approval</a>
+        </td>
+        <td>
+            <a href="/fts/thrift/payouts/" style="color:red">Payouts</a>
+        </td>  
+       <td  >
+        <a href="/fts/thrift/approvals/approvereport/" style="color:red">Log</a></td>
+    </tr>
+</table>
+
+
+
+<div style="margin-top:03%;text-align:center;font-size:76%"> Transaction Summary for <span style='color:blue'>Unapproved</span> cash</div>
+
+ <table style="margin-top:0%;margin-bottom:0%;font-size:0.76em"  width="100%" class="table  table-bordered" id="dataTables-example">
+     
+    <tr>
+    <td style="font-weight:bold"> Merchant ID:</td>
+    <td>{{merchant.id}}</td>
+    </tr>
+
+    <tr>
+      <td style="font-weight:bold">Merchant Name: </td>
+      <td>{{merchant.staff.surname}}  {{merchant.staff.firstname}}  {{merchant.staff.othername}}</td>
+    </tr>
+
+    <tr>
+      <td style="font-weight:bold">Transaction Date: </td>
+      <td>{{dates}}</td>
+  </tr>
+
+  </table>
+
+<table style="margin-top:0.5%;margin-bottom:0%;font-size:0.5em"  width="100%" class="table  table-bordered" id="dataTables-example">
+        <thead >
+    <tr style="text-align:center">
+           <td >S/N</td>
+           <td >Customer</td>
+           <td >Month</td>
+           <td >Amount (N)</td>
+           <td >Approve</td>
+           <td >Decline</td>
+      </tr>
+    </thead>                          
+                            
+    {% for student in thriftrec %}
+        <tr style="font-weight:bod;text-align:center">
+          <td >{{ forloop.counter }}.</td>
+          <td >{{ student.customer.customer.surname }}, {{ student.customer.customer.firstname }}  {{ student.customer.customer.othername }}</td>
+          <td >{{ student.month }}</td>
+          <td >{{ student.amount|intcomma }}</td>
+
+          <td  >
+            <a href="#" style="color:green" onClick= "rreem({{ student.id  }})" title="Approve {{ student.amount|intcomma}} ">Approve  #{{ student.amount|intcomma}}
+            </a>
+          </td>
+
+
+          <td  >
+            <a href="#" style="color:red" onClick= "delle({{ student.id  }})" title="delete {{ student.amount|intcomma}} ">Decline  #{{ student.amount|intcomma}}
+            </a>
+          </td>
+
+
+        </tr>
+
+
+    {% endfor %}
+
+</table>
+
+<table style="margin-top:0.5%;margin-bottom:0%;font-size:0.7em"  width="100%" class="table  table-bordered" id="dataTables-example">
+    <tr style="font-weight:bold;text-align:center">
+
+
+      <td style="color:blue"> Total Sales:</td> 
+
+      <td style="color:blue"> #{{total|intcomma}}</td>
+       </tr>
+</table>
+
+   
+  </table> 
+
+
+
+ <table  style="margin-top:0%;margin-bottom:02%;font-size:0.7em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <td style="font-size:1em" class="btn btn-lg btn-success btn-block">
+        <a href="#" style="color:white" onClick= "rreemy({{ merchant.id }})" title="Approve all funds">Approve #{{total|intcomma}}</a>
+
+    </td>
+</table>
+
+
+<input type="hidden" name="date" id="date" readonly="readonly" value="{{ cdate}}" >
+<input type="hidden" name="merchant" id="merchant"  readonly="readonly" value="{{ merchant.id }}" class ="loginTxtbox">
+
+<input type="hidden" name="dates" id="dates"  readonly="readonly" value="{{ dates }}" >
+
+
+<div id="psy"></div>
+<div id="ind"></div>
+ <div id="delle"></div>
+ 
+<script type="text/javascript" language="javascript">
+    function rreem(vid){
+        
+        var state = vid + ":" + $("#date").val();
+        // alert(state)
+        var url = "/fts/thrift/seedit/";
+        var i = 0;
+        var data='userid='+state;
+        $.ajax({
+            type:"POST",
+            url:url,
+            data:data,
+            success:function(html) {
+                $("#ind").html(html);
+                getdind();
+            }
+        });
+        return false;
+    }
+
+</script>
+
+<script type="text/javascript" language="javascript">
+    function getdind(){
+        var diaOpts = {
+            autoOpen:true,
+            // appendTo:"body1",
+            // modal:true,
+            // position: ["center", "middle"],
+            height:'auto',
+            width:'auto',
+            title:'Touch the box to close' ,
+            closeOnEscape:true,
+            show: true,
+            hide: true,
+            bgiframe: true
+        };
+        $("#ind").dialog(diaOpts);
+    }
+
+</script>
+
+<script type="text/javascript" language="javascript">
+    function rreemy(vid){
+        var state = $("#merchant").val() + ":" + $("#date").val();
+        // alert(state);
+        var url = "/fts/thrift/reedit/";
+        var i = 0;
+        var data='userid='+state;
+        $.ajax({
+            type:"POST",
+            url:url,
+            data:data,
+            success:function(html) {
+                $("#psy").html(html);
+                getdial();
+            }
+        });
+        return false;
+    }
+</script>
+<script type="text/javascript" language="javascript">
+    function getdial(){
+        var diaOpts = {
+            autoOpen:true,
+            // appendTo:"body1",
+            // modal:true,
+            // position: ["center", "middle"],
+            height:'auto',
+            width:'auto',
+            title:'Touch the box to close' ,
+            closeOnEscape:true,
+            show: true,
+            hide: true,
+            bgiframe: true
+        };
+        $("#psy").dialog(diaOpts);
+    }
+
+</script>
+
+
+
+<script type="text/javascript" language="javascript">
+    function delle(vid){
+        
+        var state = vid + ":" + $("#date").val()+ ":" + $("#merchant").val();
+        // alert(state)
+        var url = "/fts/thrift/requests/adminpayfund/canceloptions/";
+        var i = 0;
+        var data='userid='+state;
+        $.ajax({
+            type:"POST",
+            url:url,
+            data:data,
+            success:function(html) {
+                $("#delle").html(html);
+                getdel();
+            }
+        });
+        return false;
+    }
+
+</script>
+
+
+
+<script type="text/javascript" language="javascript">
+    function getdel(){
+        var diaOpts = {
+            autoOpen:true,
+            // appendTo:"body1",
+            // modal:true,
+            // position: ["center", "middle"],
+            height:'auto',
+            width:'auto',
+            title:'If no, touch the box' ,
+            closeOnEscape:true,
+            show: true,
+            hide: true,
+            bgiframe: true
+        };
+        $("#delle").dialog(diaOpts);
+    }
+
+</script>
+
+
+
+{% endblock %}
+
+
+

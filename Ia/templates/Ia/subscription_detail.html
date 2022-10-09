@@ -1,0 +1,41 @@
+
+
+
+{% extends 'Ia/subscription_base.html' %}
+{% block content %}
+
+
+<div style="text-align:center">Back Office Subscription Package</div>
+   <table style="margin-top:0%;margin-bottom:01%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+         <td style="background:blue"><a href="/sysadmin/sysadmin/sysadmin/guide/" style="color:white">History</a></td>
+         <td ><a href="/sysadmin/sysadmin/sysadmin/renew/" style="color:red">Renew</a></td>
+
+    </tr>
+</table>
+
+
+{% if history %}
+
+<table style="margin-top:01%;margin-bottom:2%;text-align:center;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+    <tr style="font-weight:bold">
+      <td >S/N</td>
+        <td> Subscription</td>
+        <td> Validity</td>
+        <td> Status</td>
+    </tr>
+
+{% for k in history %}
+    <tr >
+      <td >{{forloop.counter}}.</td>
+        <td> {{k.package.package}}</td>
+        <td> {{k.end}}</td>
+        <td> {{k.status}}</td>
+    </tr>
+{% endfor %}
+</table>
+{% endif %}
+
+
+{% endblock %}

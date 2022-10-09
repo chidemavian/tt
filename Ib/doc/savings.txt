@@ -1,0 +1,15 @@
+
+
+
+
+investment Banking
+
+direct savings
+
+
+monies gotten from clients are double saved in two tables
+1. tblIbmerchantbank and tblibsavings_trans
+
+
+
+if loan is applied, account freezes done!!!

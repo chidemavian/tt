@@ -1,0 +1,70 @@
+<!-- <script type="text/javascript" src='/static/mato/JS/jquery-1.5.js'></script> -->
+{% extends 'thrift/creditofficerbase.html' %}
+{% block content %}
+
+
+<div style="text-align:center;font-weight:bold">Thrift Menu</div>
+   <table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+        <td  style="background:blue;font-size:0.9em">
+            <a href="/thrift/thrift/addthrift/" style="color:white">Add</a>
+        </td>
+        
+        <td>
+            <a href="/thrift/thrift/viewthrift/" style="color:red;font-size:0.9em">View</a>
+        </td>
+       <td  ><a href="/thrift/thrift/changethrift/" style="color:red">Change</a></td>
+        <td>
+            <a href="/thrift/thrift/rolloverthrift/" style="color:red;font-size:0.9em">Rollover</a>
+        </td>
+        <td >
+            <a href="/thrift/thrift/thriftreport/" style="color:red">Report</a>
+        </td>
+    </tr>
+</table>
+
+<div style="margin-top:01.5%;margin-bottom:0.1%;text-align:center">Thrift already added for {{month}}</div>
+<table style="margin-top:0%;margin-bottom:0.2%" width="100%" class="table  table-bordered" id="dataTables-example">
+    
+            <tr >
+              <td style="font-weight:bold">Wallet Address:</td>
+              <td> {{ wallet }}</td>
+            </tr>
+
+            <tr>
+               <td style="font-weight:bold">Thrift:</td>
+               <td><del style='color:gray;text-decoration-style:double'>N</del>  {{ thriftrec.thrift }}</td>
+            </tr>  
+            
+            <tr >
+               <td style="font-weight:bold">Month:</td><td> {{month }}</td>
+            </tr>
+            <tr >
+               <td style="font-weight:bold">Year:</td><td> {{ thriftrec.year }}</td>
+            </tr>
+        </table>
+
+
+<table style="margin-top:0.5%;margin-bottom:0.6%;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<tr >
+<td>
+  <a href="/thrift/thrift/payrequest/">Payment</a>
+  
+  </td>
+<td>
+  <a href="/thrift/thrift/history/">Balances</a>
+  
+  </td>
+<td>
+  <a href="/thrift/thrift/home/" >Read guide</a>
+  
+  </td>
+</tr>
+</table>
+ 
+{% endblock %}
+
+
+

@@ -1,0 +1,60 @@
+
+{% extends 'Ib/adminloansbase.html' %}
+
+{% block content %}
+
+
+{% load humanize %}
+
+
+<table style="margin-top:0.5%;margin-bottom:0.6%;text-align:center;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<tr>
+
+ <td>
+      <a href="/vts/threeb/staff/request_loan/" style="color:red">Apply</a>
+  </td>
+    <td  style="background:blue"><a href="/vts/threeb/loans/approve/" style='color:white'>Approve</a></td>
+
+      <td >
+          <a href="/vts/threeb/staff/request_loan/history/" style="color:red">Log</a>
+      </td>
+
+</tr>
+</table>
+
+
+<div class="card card-primary card-outline">
+  <div class="card-header">
+    <h5 class="m-0" style='text-align:center'> OPERATION SUCCESSFUL!!</h5>
+    </div>
+      <div class="card-body">
+      <h6 class="card-title" >  Loan APPROVED SUCCESSFULLY</h6>
+  </div>
+</div>
+
+
+<table style="margin-top:0.5%;margin-bottom:0.6%;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<tr >
+    <td ><a href="/vts/threeb/staff/repay_loan/">Repayment</a></td>
+<!-- 
+<td ><a href="/vts/thrift/approvals/">Approvals</a></td>
+<td><a href="/vts/thrift/payouts/">Payments</a></td>
+
+  <td><a href="/vts/thrift/home/" >Read guide</a></td> -->
+</tr>
+</table>
+
+
+
+<script type="text/javascript" language="javascript">
+
+window.history.pushState(null, "", window.location.href);
+window.onpopstate = function () {
+    window.history.pushState(null, "", window.location.href);
+};
+
+</script>
+
+{% endblock %}

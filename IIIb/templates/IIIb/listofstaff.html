@@ -1,0 +1,73 @@
+
+
+{% extends 'IIIb/cooperators_base.html' %}
+
+
+{% block content %}
+
+
+
+
+
+ <table width="100%" class="table  table-bordered table-hover" id="dataTables-example">
+  
+  <div id="psychomotor" title="Enter Psychomotor"></div>
+    <thead>
+<div style='text-align:center'> Staff List</div>
+
+
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+<div>{{msg}}</div>
+    <tr style="text-align:center;">
+      <td  style="background:blue">
+          <a href="/IIIb/threeb/staff_list/" style="color:white">List</a>
+      </td>
+        <td>
+          <a href="#" style="color:red">Manage</a>
+      </td>
+    </tr>
+</table>
+
+
+<form action="/thrift/thrift/approvalsmenu/approvefund/" method="POST">
+
+
+{% if list %}    
+   <table width="100%" class="table  table-bordered table-hover" id="dataTables-example">
+    <thead>
+
+        <tr style="text-align:center;font-weight:bold">
+           <td >S/N</td>
+           <td >Name </td>
+           <td >E-Mail</td>
+           <td >Status</td>
+        </tr>
+    </thead>
+    {% for k in list %}                      
+    <tr style="font-weight:bod;text-align:center">
+          <td >{{ forloop.counter }}.</td>
+          <td > {{ k.surname }},  {{ k.firstname }}    {{ k.othername }}({{  k.id}})</td>
+          <td> {{ k.email }}</td>
+          <td> {{ k.status }}</td>
+
+    </tr>
+    {% endfor %}
+  </table>
+</form>
+    
+    {% endif %}
+
+
+</table>
+
+
+<script type="text/javascript" >
+    $(document).ready(function() {
+        $("#psychomotor").hide();
+    });
+</script>
+
+
+
+{% endblock %}
+

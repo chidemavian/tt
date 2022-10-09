@@ -1,0 +1,45 @@
+
+{% extends 'Ia/contributionIabase.html' %}
+
+{% block content %}
+
+
+{% load humanize %}
+
+<div class="card card-primary card-outline">
+  <div class="card-header">
+    <h5 class="m-0" style='text-align:center'>Operation Successfull!!!</h5>
+    </div>
+      <div class="card-body">
+      <h6 class="card-title" >  <span style="color:blue"> {{customer.customer.surname}} {{customer.customer.firstname}} {{customer.customer.othername}}  </span>'s  walllet credited successfully with {{amount|intcomma}} </h6>
+  </div>
+</div>
+
+
+<table style="margin-top:0.5%;margin-bottom:0.6%;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<tr >
+<!--     <td >
+    	<a href="/fts/thrift/remittals/">Remittals</a>
+    	<a href="#">Remittals</a>
+    </td> -->
+
+<td ><a href="/fts/thrift/payrequest/">Contribution</a></td>
+<td ><a href="/fts/thrift/approvals/">Approvals</a></td>
+<td><a href="/fts/thrift/payouts/">Payments</a></td>
+
+  <td><a href="/fts/thrift/home/" >Read guide</a></td>
+</tr>
+</table>
+
+
+<script type="text/javascript" language="javascript">
+
+window.history.pushState(null, "", window.location.href);
+window.onpopstate = function () {
+    window.history.pushState(null, "", window.location.href);
+};
+
+</script>
+
+{% endblock %}

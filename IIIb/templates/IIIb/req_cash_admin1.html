@@ -1,0 +1,80 @@
+
+
+
+{% extends 'IIIb/myloanbase.html' %}
+
+{% block content %}
+
+
+<div style="text-align:center;font-weight:bold">Loan Request Form</div>
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+
+
+
+    <tr style="text-align:center;">
+      <td  style="background:blue">
+          <a href="/IIIb/threeb/staff/request_loan/" style="color:white">Apply</a>
+      </td>
+        <td>
+          <a href="/IIIb/threeb/staff/request_loan/performance/" style="color:red">Performance</a>
+      </td>
+
+      <td >
+          <a href="/IIIb/threeb/staff/request_loan/history/" style="color:red">Log</a>
+      </td>
+    </tr>
+</table>
+
+
+
+   <table style="margin-top:0%;margin-bottom:02%;font-size:1em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+     
+          
+           <tr >
+               <td style='font-weight:bold'>My E-Mail</td>
+               <td>{{user}}</td>
+             </tr>
+
+          <tr>
+            <td style='font-weight:bold'>My Name</td>
+            <td> {{name}}</td>
+          </tr>
+           
+
+
+          <tr >
+              <td style='font-weight:bold'>Eligibility</td>
+              <td> Sorry, but you are not eligibible for a fresh loan at this time </td>
+          </tr>
+
+          <tr >
+              <td style='font-weight:bold'> Reason</td>
+              <td> {{  msg}}</td>
+          </tr>
+
+
+       </table>
+
+
+
+
+
+
+
+
+
+
+   <script type="text/javascript" >
+        $(document).ready(function() {
+
+            $("#id_amrount").focus();
+  
+        });
+    </script>
+
+{% endblock %}
+
+
+

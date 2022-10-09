@@ -1,0 +1,68 @@
+
+{% extends 'Ib/customerbaseIb_co.html' %}
+
+{% block content %}
+
+
+<div style="text-align:center">Account Details </div>
+
+
+
+   <table style="margin-top:0%;margin-bottom:01% ;font-size:0.9em;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+        <td  style="background:blue">
+          <a href="/vts/thrift/newsub/" style="color:white"> Subscribe</a>
+        </td>
+        <td>
+          <a href="#" style="color:red;font-size:0.9em">Mass</a>
+        </td>
+        <td >
+          <a href="/vts/customer1b/list/" style="color:red"> My Customers</a>
+        </td>
+    </tr>
+</table>
+
+<div style="color:red;text-align:center">{{msg}}</div>
+
+
+
+<form action ="/vts/thrift/newsub/subscribe/" method="POST">
+
+<table style="margin-top:0%;margin-bottom:01% ;font-size:0.9em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+           <tr >
+            <td style='font-weight:bold' >Name: </td><td>{{ details.surname}}  {{ details.firstname}}   {{ details.othername}}</td>
+           </tr>
+           <tr >
+            <td style='font-weight:bold' >Customer ID: </td><td>{{ details.id}} </td>
+           </tr>
+            <tr>
+              <td style='font-weight:bold'>Account No:</td> <td>{{ details.wallet }}</td>
+            </tr>
+
+       </table>
+
+    
+      
+</tr>
+
+<input type="hidden" name="customer"  readonly="readonly" value="{{ details.id }}" class ="loginTxtbox">
+ 
+<table style="margin-top:0%;margin-bottom:01%" width="100%" class="table  table-bordered" id="dataTables-example">
+<tr>
+            <td >
+              <input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Subscribe">
+            </td>
+
+    <td ><a class="btn btn-lg btn-success btn-block" href="/vts/thrift/newsub/" style="color:white">Cancel</a></td>
+
+       
+</tr>
+</table>
+</form>
+
+{% endblock %}
+
+
+

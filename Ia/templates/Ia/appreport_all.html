@@ -1,0 +1,81 @@
+
+
+{% extends 'Ia/adminbase.html' %}
+{% block content %}
+
+
+{% load humanize %}
+
+
+
+
+<div style="text-align:center">Approvals Menu</div>
+  
+   <table style="margin-top:0%;margin-bottom:0.9%;font-size:0.9em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+        <td  >
+            <a href="/fts/thrift/approvals/" style="color:red">Approval</a>
+        </td>
+        <td>
+            <a href="/fts/thrift/payouts/" style="color:red">Payouts</a>
+        </td>  
+       <td style="background:blue">
+        <a href="/fts/thrift/approvals/approvereport/" style="color:white">Log</a></td>
+    </tr>
+</table>
+
+
+
+  
+
+      <div style="text-align:center;margin-top:02%">   Summary of <span style='color:blue'>{{status}}</span> Transactions for   {{date}},  {{date2}}</div>
+
+
+          {% if thriftrec %}
+   
+
+   <table style="margin-top:0%;margin-bottom:02%;font-size:0.9em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+        <tr style="text-align:center;font-weight:bold">
+            <td > S/N </td>
+            <td > Merchant  </td>
+            <td > Amount (N)</td>
+            <td > Status</td>
+
+        </tr>
+      
+        {% for j in thriftrec %}
+              <tr style="text-align:center;">
+
+                  <td > {{ forloop.counter}}</td>
+                  <td >{{ j.merchant.staff.surname}},   {{ j.merchant.staff.firstname}}   {{ j.merchant.staff.othername}}</td>
+                  <td >{{ j.total|intcomma}}</td>
+                  <td > {{ j.status}}</td>                 
+              </tr>
+           {% endfor %}
+
+
+    <tr style="text-align:center;font-weight:bold">
+      <td></td>
+      <td>Total</td>
+      <td>N{{tot|intcomma}}</td>
+    </tr>           
+ 
+
+
+            {% endif %}
+
+
+
+
+</table>
+
+
+
+
+
+{% endblock %}
+
+
+

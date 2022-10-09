@@ -1,0 +1,190 @@
+
+{% extends 'Ib/adminbase.html' %}
+{% block content %}
+
+{% load humanize %}
+
+<div style="text-align:center">Pay Out Menu</div>
+   <table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;font-size:0.7em">
+        <td  style="background:blue">
+            <a href="/vts/thrift/payouts/" style="color:white">Pay Out</a>
+        </td>        
+       <td  >
+        <a href="/vts/thrift/payoutreport/" style="color:red">Report</a></td>
+    </tr>
+</table>
+
+
+{% if thriftrec %}
+
+
+
+<table style="margin-top:0.5%;margin-bottom:0%;font-size:0.8em"  width="100%" class="table  table-bordered" id="dataTables-example">
+
+  <tr>
+    <td style="font-weight:bold"> Merchant:</td>
+    <td>{{merchant.id}}</td>
+</tr>
+
+    <tr>
+      <td style="font-weight:bold">Merchant Name: </td>
+      <td>{{merchant.staff.surname}}  {{merchant.staff.firstname}}  {{merchant.staff.othername}}</td>
+    </tr>
+
+  <tr>
+    <td style="font-weight:bold">Transaction Date: </td>
+    <td>{{date}}</td>
+  </tr>
+</table>
+
+
+  <input type="hidden" name="date" id="date"  readonly="readonly" value="{{ date }}" class ="loginTxtbox">
+
+    <input type="hidden" name="merchant" id="merchant"  readonly="readonly" value="{{ merchant.id }}" class ="loginTxtbox">
+<input type="hidden" name="mydate" id="mydate"  readonly="readonly" value="{{ mydate }}" class ="loginTxtbox">
+
+
+
+<table style="margin-top:0.5%;margin-bottom:0.5%;font-size:0.8em;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+    <thead>
+        <tr style="font-weight:bold">
+           <td >S/N</td>
+            <td >Name</td>
+           <td >Amount</td>
+           <td >Revert</td>
+           <td >Payout</td>
+        </tr>
+    </thead>
+    {% for k in thriftrec %}
+
+    <tr style="">
+          <td >{{ forloop.counter }}.</td>
+          <td >{{ k.customer.surname.upper }},    {{ k.customer.firstname.upper }}   {{ k.customer.othername.upper }}</td>
+          <td >{{ k.sum|intcomma}}</td>
+
+
+<td ><a href="#" style="color:red" onClick= "cancel({{ k.customer.id  }})" title="revrt  N{{ k.sum|intcomma}} from record">Revert</a>
+</td>
+
+  <td><a href="#" style="color:whikte" onClick= "withdraw({{ k.customer.id  }})" title="withdraw  N{{ k.sum|intcomma}} ">Pay</a>
+  </td>
+
+</tr>
+    {% endfor %}
+</table>
+
+    {% for k in total %}
+<table style="margin-top:0.5%;margin-bottom:1%;font-size:0.8em;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+    <tr style="font-weight:bold;text-align:center;color:grey">
+      <!-- <td></td> -->
+    <td></td><td>Total Payouts</td><td>{{k.total|intcomma}}</td>
+</tr>
+</table>
+{% endfor %}
+
+
+<table style="margin-top:0%;margin-bottom:0.9%" width="100%" class="table  table-bordered" id="dataTables-example">
+ <tr>
+  <a href="/vts/thrift/payouts/" class="btn btn-lg btn-success btn-block" style="font-size:0.9em;width:100%">Continue</a>
+ </tr>
+</table>
+
+{% else %}
+
+<div>no records found</div>
+
+{% endif %}
+
+
+<div id="cancel"></div>
+<div id="pay"></div>
+ 
+<script type="text/javascript" language="javascript">
+    function cancel(vid){        
+        var state = vid + ":" + $("#date").val();
+        // alert(state)
+        var url = "/vts/thrift/requests/adminpayfund/canceloptions/";
+        var i = 0;
+        var data='userid='+state;
+        $.ajax({
+            type:"POST",
+            url:url,
+            data:data,
+            success:function(html) {
+                $("#cancel").html(html);
+                getcancel();
+            }
+        });
+        return false;
+    }
+
+</script>
+
+<script type="text/javascript" language="javascript">
+    function getcancel(){
+        var diaOpts = {
+            autoOpen:true,
+            // appendTo:"body1",
+            // modal:true,
+            // position: ["center", "middle"],
+            height:'auto',
+            width:'auto',
+            title:' Touch this box to close' ,
+            closeOnEscape:true,
+            show: true,
+            hide: true,
+            bgiframe: true
+        };
+        $("#cancel").dialog(diaOpts);
+    }
+
+</script>
+
+
+<script type="text/javascript" language="javascript">
+    function withdraw(vid){
+        var state = vid + ":" + $("#date").val();
+        // alert(state);
+        var url = "/vts/thrift/requests/adminpayfund/withdraw/";
+        var i = 0;
+        var data='userid='+state;
+        $.ajax({
+            type:"POST",
+            url:url,
+            data:data,
+            success:function(html) {
+                $("#pay").html(html);
+                getdial();
+            }
+        });
+        return false;
+    }
+
+</script>
+<script type="text/javascript" language="javascript">
+    function getdial(){
+        var diaOpts = {
+            autoOpen:true,
+            // appendTo:"body1",
+            // modal:true,
+            // position: ["center", "middle"],
+            height:'auto',
+            width:'auto',
+            title:' Touch this box to close' ,
+            closeOnEscape:true,
+            show: true,
+            hide: true,
+            bgiframe: true
+        };
+        $("#pay").dialog(diaOpts);
+    }
+
+</script>
+</body1>
+
+{% endblock %}
+
+
+

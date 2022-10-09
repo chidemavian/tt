@@ -1,0 +1,73 @@
+
+
+
+{% extends 'partner/basepartner.html' %}
+{% block content %}
+
+
+<div style="text-align:center">Back Office Subscription Package</div>
+   <table style="margin-top:0%;margin-bottom:01%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+         <td style="background:blue"><a href="/partner/partner/business/subscription/" style="color:white">Subscription</a></td>
+         <td ><a href="/partner/partner/business/renew/" style="color:red">Renewal</a></td>
+
+    </tr>
+</table>
+
+<tr >
+  
+    <section class="content">
+      <div class="container-fluid">        
+
+          <div class="card card-primary">
+
+              <div class="card-body">
+                <table style="margin-top:0%;margin-bottom:04%" width="100%" class="table  table-bordered table-hover" id="dataTables-example">
+
+            <div  style="font-weight:bold;text-align:center; font-size:2em">{{comp.company.name.upper}}</div>
+
+               <div style="font-weight:bold;text-align:center">{{comp.Address.upper}}</div>
+
+              <div style="text-align:center; font-weight:bold">Business ID:{{comp.id}}</div>
+
+              </table>
+             </div>  
+
+           
+
+          </div>
+        </div>      
+                <!-- /.card-body -->
+           <div class="card-footer"> </div>
+      </section>
+    
+
+</tr>
+
+
+{% if history %}
+
+<table style="margin-top:01%;margin-bottom:2%;text-align:center;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+    <tr style="font-weight:bold">
+      <td >S/N</td>
+        <td> Subscription</td>
+        <td> Validity</td>
+        <td> Status</td>
+    </tr>
+
+{% for k in history %}
+    <tr >
+      <td >{{forloop.counter}}.</td>
+        <td> {{k.package.package}}</td>
+        <td> {{k.end}}</td>
+        <td> {{k.status}}</td>
+    </tr>
+{% endfor %}
+</table>
+{% endif %}
+
+
+
+
+{% endblock %}

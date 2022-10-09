@@ -1,0 +1,42 @@
+
+{% extends 'Ib/reportsbase.html' %}
+
+{% block content %}
+
+     <div style = "font-size:0.9em">welcome to ThriftPlus
+     <hr>
+     These are the major steps you should follow, if you want to make the most of the report section<hr>
+
+    <div>1. The <a href="/vts/thrift/reports/sales/merchant/">Vaults </a> menu gives you the total current deposits at any particular time </div>
+
+    <hr>
+        <div>2. Use the <a href="/vts/thrift/reports/sales/cashier/">Performance </a> menu to verify the accrued amount, in terms of sales for each credit officers. </div>
+
+    <hr>
+        <div>3. If you wish to know your profit level at any time, use the <a href="/vts/thrift/reports/sales/admn/">Profit </a> link </div>
+
+    <hr>
+        <div>4. Sometimes, there may be incomplete transactions. To view what these might be, use the <a href="/vts/thrift/reports/sales/unapproved/">Unapprovals </a> link</div>
+
+    <hr>
+    <div>5. To know the total amount taken out at a particular period, the <a href="/vts/thrift/reports/sales/withdrawwa/">withdrawals</a> link will be handy</div>
+      <hr>
+<!--     <div>3. And finally use the <a href="/vts/thrift/payrequest/">PAYMENT REQUESTS</a> ,menu to keep record of all cash transaction with customers</div> -->
+    <hr>
+
+    <hr>
+</div>
+
+
+
+
+
+
+<script type="text/javascript" language="javascript">
+window.history.pushState(null, "", window.location.href);
+window.onpopstate = function () {
+    window.history.pushState(null, "", window.location.href);
+};
+
+</script>
+{% endblock %}

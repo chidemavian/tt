@@ -1,0 +1,51 @@
+
+{% extends 'Ib/adminbase.html' %}
+
+{% block content %}
+
+{% load humanize %}
+<div class="card card-primary card-outline">
+	<div class="card-header">
+		<h5 class="m-0" style='text-align:center'>CONGRATULATIONS!!!</h5>
+		</div>
+			<div class="card-body">
+			<h6 class="card-title" >PAY THE SUM OF<del style='color:gray;text-decoration-style:double'> N</del> {{tot|intcomma}}  TO {{customer.customer.surname}}    {{customer.customer.firstname}}</h6>
+	</div>
+</div>
+
+
+<table style="margin-top:0.5%;margin-bottom:0.6%;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<tr >
+<td>
+  <a href="/vts/thrift/payrequest/">Deposit</a>
+  
+  </td>
+ 	<td >
+		<a href="/vts/thrift/cashout/">Withdrawals</a>
+	</td>
+<td>
+  <a href="/vts/thrift/history/">Balances</a>
+  
+  </td>
+<td>
+  <a href="/vts/thrift/home/" >Read guide</a>
+  
+  </td>
+</tr>
+</table>
+
+
+
+
+<!-- cant refresh page -->
+<script type="text/javascript" language="javascript">
+window.history.pushState(null, "", window.location.href);
+window.onpopstate = function () {
+    window.history.pushState(null, "", window.location.href);
+};
+
+</script>
+
+
+{% endblock %}

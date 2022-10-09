@@ -1,0 +1,101 @@
+
+
+
+{% extends 'IIIb/adminsavingsbase_o.html' %}
+
+{% block content %}
+
+
+
+
+<div style="text-align:center">Cash Deposit Form</div>
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+
+    <tr style="text-align:center">
+      <td>
+          <a href="/IIIb/threeb/savings/deposit/" style="color:red">Deposit</a>
+      </td>
+      <td style="background:blue">
+          <a href="/IIIb/threeb/savings/save_packages/" style="color:white">Savings Scheme</a>
+      </td>
+      <td ><a href="/IIIb/threeb/savings/deposit/view_transactions/" style="color:red">Log</a></td>
+    </tr>
+</table>
+
+
+   <table style="margin-top:0.2%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+    <tr> 
+      <td style="font-weight:bold">My E-mail</td>
+      <td>{{msg.staff.email}}</td>
+    </tr>
+    <tr> 
+      <td style="font-weight:bold">My Name</td>
+    <td>{{msg.staff.surname}}, {{msg.staff.firstname}}   {{msg.staff.othername}} </td>
+  </tr>
+
+   </table>
+
+
+
+<form action="" method="POST">
+
+  <table style="margin-top:0.2%;margin-bottom:0.9%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+      <tr> 
+        <td style="font-weight:bold">Packages</td>
+        <td>{{form.savepack}}</td>
+        </tr>
+  </table>
+
+
+ <table width="100%" class="table  table-bordered" id="dataTables-example">
+
+           <tr>
+                <div class="applybox"></div>
+           </tr>
+</table>
+
+</form>
+
+
+   <script type="text/javascript" >
+        $(document).ready(function() {            
+            $("#id_savepack").change(function () {
+                autopostloan();
+            });
+            $("#id_safepack").focus();
+
+            autopostloan();
+        });
+    </script>
+
+
+
+  <script type="text/javascript" language="javascript">
+        function autopostloan(){
+            var state = "{{user}}"+ ':'+$("#id_savepack").val();
+            // alert(state)
+            var url = "/IIIb/threeb/staff/deposit/apply/";
+            var i = 0;
+            var data='userid='+state;
+            $.ajax({
+                type:"POST",
+                url:url,
+                data:data,
+                success:function(html) {
+                    $(".applybox").show();
+                    $(".applybox").html(html);
+
+                }
+            });
+            return false;
+        }
+    </script>
+
+
+
+{% endblock %}
+
+
+

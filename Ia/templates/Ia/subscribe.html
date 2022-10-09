@@ -1,0 +1,61 @@
+
+
+{% extends 'Ia/customerbaseIa.html' %}
+{% block content %}
+
+
+
+<div style="text-align:center">Customers' Wallets Menu </div>
+   <table style="margin-top:0%;margin-bottom:01%;font-size:0.9em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center">
+        <td  style="background:blue"><a href="/fts/thrift/newsub/" style="color:white"> Subscribe</a></td>
+        <td><a href="#" style="color:red">Mass</a></td>
+        <td><a href="/fts/customeria/list/" style="color:red;font-size:0.9em">My Customers</a></td>
+    </tr>
+</table>
+
+{{msg}}
+<tr >
+
+       <form action="" method="POST"  enctype="multipart/form-data" >
+
+    <section class="content">
+      <div class="container-fluid">
+
+            <!-- general form elements -->
+            <div class="card card-primary">
+
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="acno">Wallete Address</label>
+                    <input type="number" autofocus name="acno" class="form-control" id="acno" placeholder="Wallet address" required>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+                <!-- /.card-body -->
+           <div class="card-footer">
+            <td >
+              <input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="View Details">
+            </td>
+          </div>
+      </section>
+      </form>
+
+            </div>
+            <!-- /.card -->
+</div>
+</section>
+
+
+</tr>
+<!--
+<script src="/static/mato/plugins/moment/moment.min.js"></script>
+<script src="/static/mato/plugins/inputmask/jquery.inputmask.min.js"></script> -->
+
+{% endblock %}
+
+
+

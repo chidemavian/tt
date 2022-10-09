@@ -1,0 +1,48 @@
+
+
+
+
+
+
+          <table width="100%"  style="color:redf;font-size:0.7em" class="table  table-bordered" id="dataTables-example">
+           <tr >
+              <td style='font-weight:bold' >Name: </td>
+              <td>{{ details.surname}}  {{ details.firstname}}   {{ details.othername}}</td>
+           </tr>
+
+
+           <tr >
+              <td style='font-weight:bold' >Customer ID: </td>
+              <td>{{ details.id}} </td>
+           </tr>
+            <tr>
+              <td style='font-weight:bold'>Account No:</td> <td>{{ details.wallet }}</td>
+            </tr>
+              <tr>
+                <td style='font-weight:bold'>Email:</td><td >{{ details.email}}</td></tr>
+
+          <tr>
+            <td style='font-weight:bold'>Can log in :</td><td>{{ details.UX}}</td>
+          </tr>
+            <tr><td style='font-weight:bold'>Active:</td><td>{{details.status}}</td></tr>
+               <tr>
+                <td style='font-weight:bold'>Sms Alert:</td><td>{{details.sms}}</td></tr>
+               <tr>
+                <td style='font-weight:bold'>Email Notification:</td><td>{{details.get_email}}</td>
+              </tr>
+              <tr>
+            <td style='font-weight:bold'>C / O:</td> <td> {{ details.merchant.staff.surname}}  {{ details.merchant.staff.firstname}}   {{ details.merchant.staff.othername}}  </td></tr>
+            <tr>
+            <td style='font-weight:bold'>C/O ID:</td><td> {{ details.merchant.id}}</td>
+          </tr>
+
+       </table>
+
+    
+        <td ><a class="btn btn-lg btn-success btn-block" href="/dashboard/" style="color:white">Continue</a></td>
+
+
+       
+
+
+

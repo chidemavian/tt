@@ -1,0 +1,70 @@
+
+
+
+
+<form style="margin-top:0.5%;margin-bottom:0.6%;text-align:center;font-size:0.6eml" action ='/vts/staff/merchant/changestatus/' method = 'POST'>
+
+
+<table style="margin-top:0.5%;margin-bottom:0.6%;text-align:center;font-size:0.6em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+  {% if status = True %}
+   <div style="text-align:center;font-size:0.6em"> This C/O is Active</div>
+   {%else%}
+   <div style="text-align:center;font-size:0.6em"> This C/O is Inactive</div>
+   {% endif %}
+      
+    <tr>
+        <td tyle='font-weight:bold;'>C/O </td>
+        <td > {{ income.staff.surname.upper }}, {{ income.staff.firstname.upper }} {{ income.staff.othername.upper }} </td>
+    </tr>
+
+    <tr >
+        <td tyle='font-weight:bold;'>Status </td>
+
+        {% if status = True %}
+
+           <td >  <input type="checkbox" checked name="status" }}> </td>
+
+        {% else %}
+
+                <td >  <input type="checkbox" name="status" }}> </td>
+
+          {% endif %}
+    </tr>
+    </table>
+
+
+
+  {% if status = True %}
+   <div style="text-align:center;font-size:0.6em"> Touch the blue box to deactivate </div>
+   {%else%}
+   <div style="text-align:center;font-size:0.6em"> Touch the box to activate</div>
+   {% endif %}
+
+     <input type="hidden" name="CO"   value="{{income.id}}" class ="loginTxtbox">
+         
+     <table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+  <tr>
+    <td >
+      <input style="text-align:center;font-size:0.6em" class="btn btn-lg btn-success btn-block" name="submit" type= "submit"value="Update Satus ">
+    </td>
+  </tr>  
+
+</table>
+
+</form>
+
+
+
+    <script language="javascript" type="text/javascript">
+        function disable(f)
+        {
+            var button = f.elements['submit'];
+            button.value = 'Processing';
+            button.disabled = 'true';
+            return true;
+        }
+    </script>
+
+    

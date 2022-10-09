@@ -1,0 +1,63 @@
+
+{% load humanize %}
+
+     
+<form action="/vts/thrift/approvals/approvebulk/" method="POST">
+
+<table style="margin-top:0%;margin-bottom:0%;font-size:0.6em"  width="100%" class="table  table-bordered table-hover" id="dataTables-example">
+
+    <tr>
+    <td> Merchant ID:</td>
+    <td>{{merchant.id}}</td>
+  </tr>
+    <tr>
+    <td> Name:</td>
+    <td>{{merchant.staff.surname}},  {{merchant.staff.firstname}}  {{merchant.staff.othername}}</td>
+  </tr>
+    <tr>
+      <td>Transaction Date: </td>
+     <td>{{date}}   </td>
+  </tr>
+  </table>
+
+<table style="margin-top:01%;margin-bottom:0%;font-size:0.6em"  width="100%" class="table  table-bordered" id="dataTables-example">
+        <thead >
+
+    <tr style="text-align:center;font-weight:bold">
+           <td >Expected</td> 
+           <td >Cash Depost</td>
+        </tr>
+    </thead>                          
+                            
+    {% for student in thriftrec %}
+        <tr style="font-weight:bod;text-align:center">
+          <td >{{ student.amount|intcomma }}</td>
+          <td class="form-group" > 
+
+             <input type="text" autofocus required name="cash" class="form-control" id="cash" placeholder="Enter amount here">
+          
+          </td>
+        </tr>
+       
+       <input type="hidden" name="amount"  readonly="readonly" value="{{ student.amount }}" class ="loginTxtbox">
+  
+           <input type="hidden" name="dates"  readonly="readonly" value="{{ dates }}" class ="loginTxtbox">
+           <input type="hidden" name="merchant" readonly="readonly" value="{{ merchant.id }}" class ="loginTxtbox">
+           <input type="hidden" name="date" readonly="readonly" value="{{ date}}" class ="loginTxtbox">
+    {% endfor %}
+    </table>
+
+ <table style="margin-top:01%;margin-bottom:0%;font-size:0.6em" width="100%" class="table  table-bordered" id="dataTables-example">
+  <td >
+    <input class="btn btn-lg btn-success btn-block" name="submit" type= "submit"value="Approve">
+
+  </td>    
+</table>
+ </form>
+
+   <script type="text/javascript" >
+        $(document).ready(function() {
+
+            $("#id_amount").focus();
+        });
+    </script>

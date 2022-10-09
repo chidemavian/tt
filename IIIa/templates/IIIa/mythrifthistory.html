@@ -1,0 +1,108 @@
+{% extends 'thrift/creditofficerbase.html' %}
+{% block content %}
+
+
+<div style="text-align:center;font-weight:bold">Thrift Menu</div>
+   <table style="margin-top:0%;margin-bottom:5%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+        <td  >
+            <a href="/thrift/thrift/addthrift/" style="color:red">Add</a>
+        </td>
+        
+        <td style="background:blue;font-size:0.9em">
+            <a href="/thrift/thrift/viewthrift/" style="color:white">View</a>
+        </td>
+       <td  ><a href="/thrift/thrift/changethrift/" style="color:red">Change</a></td>
+        <td>
+            <a href="/thrift/thrift/rolloverthrift/" style="color:red;font-size:0.9em">Rollover</a>
+        </td>
+        <td >
+            <a href="/thrift/thrift/thriftreport/" style="color:red">Report</a>
+        </td>
+    </tr>
+</table>
+
+       
+<div style="text-align:center;font-weight:bold">Custmer Details</div>
+    <table style="margin-top:0%;margin-bottom:0%"width="100%" class="table  table-bordered" id="dataTables-example">
+
+      <tr>
+      <td style="font-weight:bold">Name : </td>
+        <td>
+          {{details.surname}}  {{details.firstname }}  {{details.othername }}
+        </td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold">Wallet:</td>
+        <td>{{wallet}}</td>
+      </tr>
+
+</table>
+
+{% if hist %}
+   <table style="margin-top:0.5%;margin-bottom:0%"width="100%" class="table  table-bordered" id="dataTables-example">
+
+
+     <thead >
+        <tr style="text-align:center;font-weight:bold">
+           <td >S/N</td>
+           <td >Type</td>
+           <td >Month</td>
+           <td > Thrift</td>
+        </tr>
+    </thead>                            
+    {% for student in hist %}
+        <tr style="font-weight:bod;text-align:center">
+          <td >{{ forloop.counter }}.</td>
+          <td >{{ student.type }}</td>
+          <td >{{ student.month }}</td>
+          <td > <del style='color:gray;text-decoration-style:double'>N</del>  {{ student.thrift }}.</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<table style="margin-top:0.5%;margin-bottom:0.6%;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<tr >
+  <td >
+    <a href="/thrift/thrift/createwallet/" >Wallet</a>
+</td>
+<td>
+  <a href="/thrift/thrift/payrequest/">Payment</a>
+  
+  </td>
+
+<td>
+  <a href="/thrift/thrift/home/" >Read guide</a>
+  
+  </td>
+</tr>
+</table>
+
+{% else %}
+<table style="margin-top:0.5%;margin-bottom:0.6%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+  <div style="color:grey;margin-top:0.5%;margin-bottom:0.6%;text-align:center">Thrift record not found </div>
+</table>
+
+{% endif %}
+    <script language="javascript" type="text/javascript">
+        function disable(f)
+        {
+            var button = f.elements['submit'];
+            button.value = 'Processing';
+            button.disabled = 'true';
+            return true;
+        }
+    </script>
+
+
+
+
+
+
+{% endblock %}
+
+
+

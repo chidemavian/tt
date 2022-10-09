@@ -1,0 +1,110 @@
+<!-- <script type="text/javascript" src='/static/mato/JS/jquery-1.5.js'></script> -->
+{% extends 'thrift/creditofficerbase.html' %}
+{% block content %}
+
+
+<div style="text-align:center">Thrift Menu</div>
+   <table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+        <td  >
+            <a href="/thrift/thrift/addthrift/" style="color:red">Add</a>
+        </td>
+        
+        <td >
+            <a href="/thrift/thrift/viewthrift/" style="color:red;font-size:0.9em">View</a>
+        </td>
+       <td  style="background:blue;font-size:0.9em"><a href="/thrift/thrift/changethrift/" style="color:white">Change</a></td>
+        <td>
+            <a href="/thrift/thrift/rolloverthrift/" style="color:red;font-size:0.9em">Rollover</a>
+        </td>
+        <td >
+            <a href="/thrift/thrift/thriftreport/" style="color:red">Report</a>
+        </td>
+    </tr>
+</table>
+
+
+
+
+
+<!-- <form action="/thrift/thrift/addthrift/putthrift/" method="POST"> -->
+<form action ='/thrift/thrift/changethrift/edit/ererer/' method = 'POST'>
+<table style="margin-top:01%;margin-bottom:0.2%" width="100%" class="table  table-bordered" id="dataTables-example">
+            <tr >
+              <td >{{ form.wallet.label_tag}}:</td>
+                <td> {{ customer.wallet }}</td>
+
+            </tr>
+            <tr >
+              <td style='font-weight:bold'>Name: </td>
+                <td> {{ customer.surname.upper }} {{ customer.firstname.upper }} {{ customer.othername.upper }}</td>
+
+            </tr>
+
+       <tr >
+        <td >{{ form.month.label_tag}}:</td><td> {{ form.month }}</td>
+       </tr> 
+
+
+
+            <tr>
+            <td style='font-weight:bold'>Account Type</td>
+            <td>
+                <select name="account_type" id="id_account_type">
+                 <option value="-----">-----</option>
+                 <option value="Main account">Main account</option>
+                 <option value="Sub account">Sub account</option>
+                 </select>
+             </td>
+</tr>
+</table>
+
+<table  width="100%" class="table  table-bordered" id="dataTables-example">
+
+           <tr >
+                <div class="boxchange"></div>
+           </tr>
+</table>
+ 
+<input type="hidden" name="wallet" id="wallet"  readonly="readonly" value="{{ wallet }}" class ="loginTxtbox">
+
+</form>
+
+
+  <script type="text/javascript" >
+        $(document).ready(function() {            
+            $("#id_account_type").change(function () {
+                autopostacc();
+            });
+
+            $("#id_month").change(function () {
+                autopostacc();
+            });                         
+            autopostacc();
+        });
+    </script>
+
+
+    <script type="text/javascript" language="javascript">
+        function autopostacc(){
+            var state = $("#id_account_type").val() + ":" + "{{wallet}}" + ":" + $("#id_month").val()+ ":" + "{{user}}";
+            // alert(state)
+            var url = "/thrift/thrift/addthrift/account_change/";
+            var i = 0;
+            var data='userid='+state;
+            $.ajax({
+                type:"POST",
+                url:url,
+                data:data,
+                success:function(html) {
+                    $(".boxchange").show();
+                    $(".boxchange").html(html);
+
+                }
+            });
+            return false;
+        }
+    </script>
+
+{% endblock %}

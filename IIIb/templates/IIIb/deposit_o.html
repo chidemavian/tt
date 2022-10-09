@@ -1,0 +1,94 @@
+
+
+
+{% extends 'IIIb/adminsavingsbase_o.html' %}
+
+{% block content %}
+
+{% load humanize %}
+
+<div style="text-align:center">Cash Deposit Form</div>
+
+
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+
+    <tr style="text-align:center;">
+      <td  style="background:blue">
+          <a href="/IIIb/threeb/savings/deposit/" style="color:white">Deposit</a>
+      </td>
+      <td>
+          <a href="/IIIb/threeb/savings/save_packages/" style="color:red">Savings Scheme</a>
+      </td>
+      <td ><a href="/IIIb/threeb/savings/deposit/view_transactions/" style="color:red">Log</a></td>
+    </tr>
+</table>
+
+
+
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr> 
+      <td style="font-weight:bold">My E-mail</td>
+      <td>{{msg.staff.email}}</td>
+    </tr>
+
+    <tr> 
+      <td style="font-weight:bold">My Name</td>
+    <td>{{msg.staff.surname}}, {{msg.staff.firstname}}   {{msg.staff.othername}} </td>
+    </tr>
+
+   </table>
+
+
+  <form action="/IIIb/threeb/savings/deposit/save/" method="POST">
+
+   <table style="margin-top:0.2%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+     
+
+        <tr> 
+          <td style="font-weight:bold">Month</td>
+          <td>{{month}}, {{year}}</td>
+        </tr>
+
+        <tr> 
+          <td style="font-weight:bold">Amount</td>
+          <td>{{amount|intcomma}} [{{fig}} ]Naira Only</td>
+        </tr>  
+    
+    </table>
+
+
+
+       <table style="margin-top:0.2%;margin-bottom:02%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+          <tr>
+          <td ><input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Issue Mandate">
+            </td >
+            <td ><a class="btn btn-lg btn-success btn-block" href="/IIIb/threeb/savings/deposit/">Cancel</a></td>
+
+
+          </tr>
+   </table>
+
+
+
+<input type="hidden" name="month" readonly="readonly" value="{{ month}}" >
+
+<input type="hidden" name="amount" readonly="readonly" value="{{ amount }}">
+
+  </form>
+
+
+   <script type="text/javascript" >
+        $(document).ready(function() {
+
+            $("#id_email").focus();
+  
+        });
+    </script>
+
+{% endblock %}
+
+
+

@@ -1,0 +1,54 @@
+
+{% load humanize %}
+
+
+<table style="margin-top:0.5%;margin-bottom:0.6%;text-align:center;font-size:0.6em" width="100%" class="table  table-bordered" id="dataTables-example">
+      
+    <tr style='font-size:0.9em'>
+        <td tyle='font-weight:bold;'>Customer</td>
+        <td > {{ income.customer.customer.surname.upper }}, {{ income.customer.customer.firstname.upper }} {{ income.customer.customer.othername.upper }} </td>
+    </tr>
+    <tr>
+        <td tyle='font-weight:bold;font-size:0.5em'>Date:</td>
+         <td >  {{income.recdate}} </td>
+    </tr>
+
+    <tr>
+        <td tyle='font-weight:bold;font-size:0.9em'>Amount</td>
+         <td >  {{ income.amount|intcomma}} </td>
+    </tr>
+    </table>
+
+<form action ='/fts/thrift/aprrovals/approvalsingletrans/' method = 'POST'>
+
+
+       <input type="hidden" name="merchant" id="merchant"  readonly="readonly" value="{{ income.merchant.id }}" class ="loginTxtbox">
+
+       <input type="hidden" name="mmm" id="mmm"  readonly="readonly" value="{{ income.amount }}" class ="loginTxtbox">
+
+       <input type="hidden" name="dates" id="dates"  readonly="readonly" value="{{ income.recdate }}" class ="loginTxtbox">
+
+        <input type="hidden" name="date1" id="date1"  readonly="readonly" value="{{ date1 }}" class ="loginTxtbox">
+
+        <input type="hidden" name="trans" id="trans"  readonly="readonly" value="{{income.id}}" class ="loginTxtbox">
+         
+     <table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+        <tr> 
+    <td> 
+        <div class="form-group" >
+                 <input style="font-size:0.8em" type="number" autofocus name="cash" class="form-control" id="cash" placeholder="Enter cash here">
+            </div>
+      </td>
+  </tr>
+
+
+       <tr>
+      <td >
+      <input style="font-size:0.7em" class="btn btn-lg btn-success btn-block" name="submit" type= "submit"value="Approve ">
+    </td>
+  </tr>   
+</table>
+
+</form>
+

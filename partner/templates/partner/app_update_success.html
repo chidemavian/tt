@@ -1,0 +1,69 @@
+
+
+{% extends 'partner/basepartner.html' %}
+{% block content %}
+
+
+
+<table style="margin-top:0%;margin-bottom:01%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+
+
+
+</table>
+<div style="text-align:center">Back Office Registration</div>
+
+
+
+<div class="card card-primary card-outline">
+	<div class="card-header">
+		<h5 class="m-0" style= 'text-align:center' >CONGRATULATIONS!!!</h5>
+	</div>
+
+	<div class="card-body">
+			<h6 class="card-title" >CHANGES MADE SUCCESSFULLY</h6>
+			<p class="card-text"></p>
+
+			<h6 class="card-title" >Business  Name: {{comp.company.name}}</h6>
+			<p class="card-text"></p>
+			<h6 class="card-title" >Office Address: {{comp.Address}}</h6>
+			<p class="card-text">Business Code: {{comp.company.id}}</p>
+			
+			<h6 class="card-title" >You subscribed for : {{sub}}</h6>
+			<p class="card-text"></p>
+			<h6 class="card-title" >You Unsubscribed from : {{unsub}}</h6>
+
+
+
+<table style="margin-top:0.5%;margin-bottom:0.6%;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<tr >
+<td>
+  <a href="/partner/partner/business/reg/">Registration</a>
+  
+  </td>
+ 	<td >
+		<a href="/partner/partner/business/app/">Apps</a>
+	</td>
+<td>
+  <a href="/partner/partners/partner/" >Read guide</a>
+  
+  </td>
+</tr>
+</table>
+
+			
+	</div>
+</div>
+
+
+
+<script type="text/javascript" language="javascript">
+window.history.pushState(null, "", window.location.href);
+window.onpopstate = function () {
+    window.history.pushState(null, "", window.location.href);
+};
+
+</script>
+
+{% endblock %}

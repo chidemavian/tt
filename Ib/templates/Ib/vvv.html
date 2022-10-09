@@ -1,0 +1,46 @@
+
+
+
+
+<table style="margin-top:0%;margin-bottom:0.2%" width="100%" class="table  table-bordered" id="dataTables-example">
+    
+
+            <tr>
+               <td style="font-weight:bold">Thrift:</td>
+               {% if acccode = 'Sub account' %}
+               <td style='color:gray;'><del style='text-decoration-style:double'>N</del>  {{ thriftrec.thrift }} </td>
+               {% else %}
+               <td style='color:blue;'><del style='text-decoration-style:double'>N</del>  {{ thriftrec.thrift }} </td>               
+               {% endif %}
+            </tr> 
+            <tr >
+               <td style="font-weight:bold">Year:</td><td> {{ thriftrec.year }}</td>
+            </tr>
+        </table>
+
+
+<table style="margin-top:0.5%;margin-bottom:0.6%;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<tr >
+      <td >
+    <a href="/vts/thrift/createwallet/">Wallets</a>
+  </td>
+
+<td>
+  <a href="/vts/thrift/payrequest/">Payments</a>
+  
+  </td>
+<td>
+  <a href="/vts/thrift/history/">Balances</a>
+  
+  </td>
+<td>
+  <a href="/vts/thrift/home/" >Read guide</a>
+  
+  </td>
+</tr>
+</table>
+
+
+
+

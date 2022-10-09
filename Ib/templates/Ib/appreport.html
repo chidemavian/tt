@@ -1,0 +1,225 @@
+
+
+
+
+{% extends 'Ib/approvalsbaseIb.html' %}
+
+{% block content %}
+
+
+{% load humanize %}
+
+
+
+<div style="text-align:center">Approvals Menu</div>
+ <table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+        <td  >
+            <a href="/vts/thrift/approvalsmenu/" style="color:red">Approval</a>
+        </td>
+        
+        <td >
+            <a href="/vts/thrift/payouts/" style="color:red">Pay Out</a>
+        </td>
+       <td style="background:blue;font-size:0.9em" >
+        <a href="/vts/thrift/approvals/approvereport/" style="color:white">Log</a></td>
+    </tr>
+</table>
+
+{% if thriftrec %}
+             
+   <table style="margin-top:0%;margin-bottom:0%"  width="100%" class="table  table-bordered table-hover" id="dataTables-example">
+     
+
+    <div style="text-align:center"> Transaction Summary for {{status}} cash</div>
+
+  </table>
+
+<div style="text-align:center"><span style="font-weight:bold"> Date:</span>   {{date}}</div>
+  <table style="margin-top:01%;margin-bottom:0%"  width="100%" class="table  table-bordered" id="dataTables-example">
+    <thead>
+    <tr style="text-align:center;font-weight:bold">
+           <td >S/N</td>
+           <td >Credit Officers</td>
+           <td >Total</td>
+        </tr>
+    </thead>                          
+                            
+    {% for student in thriftrec %}
+        <tr style="font-weight:bod;text-align:center">
+          <td >{{ forloop.counter }}.</td>
+          <!-- <td >{{ student.my_merchant.id}} </td> -->
+        <td >{{ student.my_merchant.staff.surname}}  {{ student.my_merchant.staff.firstname }} {{ student.my_merchant.staff.othername }} ({{ student.my_merchant.id}})[{{student.status}}]</td>
+
+
+          <td ><a href="#" onClick= "sales({{student.my_merchant.id}}{{student.status}})">{{ student.amount|intcomma }}</a>
+
+          </td>
+
+
+        </tr>
+
+    {% endfor %}
+    <tr style="font-weight:bold;text-align:center">
+      <td></td>
+      <td>Total {{status}} Cash</td>
+      <td>{{total|intcomma}}</td>
+    </tr>
+
+<table style="margin-top:0.5%;margin-bottom:0.6%;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+
+        <tr >
+        <td>
+          <a href="/vts/thrift/payrequest/">Payments</a>          
+          </td>
+          <td >
+            <a href="/vts/thrift/approvalsmenu/">Approvals</a>
+          </td>
+        <td>
+          <a href="/vts/thrift/history/">Balances</a>
+          
+          </td>
+        <td>
+          <a href="/vts/thrift/admin/user/" >Read guide</a>
+          
+          </td>
+        </tr>
+</table>
+</table>
+
+  {% else %}
+  <div style='color:blue'>No transction record found, you MAY have not approved funds for {{date}}</div>
+  
+
+  <table style="margin-top:0.5%;margin-bottom:0.6%;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<tr >
+<td>
+  <a href="/vts/thrift/approvals/approvereport/">Continue</a>
+  
+  </td>
+</tr>
+</table>
+
+{% endif %}
+
+
+<div id="myDialog" title="Enter Affective Skill">
+</div>
+<div id="psychomotor" title="Enter Psychomotor">
+</div>
+<div id="comment" title="Enter Comment">
+</div>
+<div id="academic" title="Student Academic Record">
+</div>
+
+<script type="text/javascript" >
+    $(document).ready(function() {
+        $("#myDialog").hide();
+        $("#psychomotor").hide();
+        $("#comment").hide();
+        $("#academic").hide();
+    });
+</script>
+
+
+<script type="text/javascript" language="javascript">
+    function sales(vid){
+        
+        var state = vid + ':'+ "{{user}}";
+        alert(state);
+        var url = "/vts/thrift//";
+        var i = 0;
+        var data='userid='+state;
+        $.ajax({
+            type:"POST",
+            url:url,
+            data:data,
+            success:function(html) {
+                //$("#myDialog").show();
+                $("#psychomotor").html(html);
+                getdialogpsyco();
+            }
+        });
+        return false;
+    }
+
+</script>
+<script type="text/javascript" language="javascript">
+    function getdialogpsyco(){
+        var dialogOpts = {
+            autoOpen:true,
+            modal:true,
+            position: ["center", "middle"],
+            height:'auto',
+            width:'auto',
+            closeOnEscape:true,
+            show: true,
+            hide: true,
+            bgiframe: true
+        };
+        $("#psychomotor").dialog(dialogOpts);
+    }
+
+</script>
+
+
+<script type="text/javascript" language="javascript">
+    function remitances(vid){
+        //alert(vid);
+        var state = vid;
+        var url = "/reportsheet/getpsyco/";
+        var i = 0;
+        var data='userid='+state;
+        $.ajax({
+            type:"POST",
+            url:url,
+            data:data,
+            success:function(html) {
+                //$("#myDialog").show();
+                $("#psychomotor").html(html);
+                getdialogpsyco();
+            }
+        });
+        return false;
+    }
+
+</script>
+<script type="text/javascript" language="javascript">
+    function getdialogpsyco(){
+        var dialogOpts = {
+            autoOpen:true,
+            modal:true,
+            position: ["center", "middle"],
+            height:'auto',
+            width:'auto',
+            title:'<a>SchApp 8.0 Psychomotor Skill Test</a>' ,
+            closeOnEscape:true,
+            show: true,
+            hide: true,
+            bgiframe: true
+        };
+        $("#psychomotor").dialog(dialogOpts);
+    }
+
+</script>
+
+<script language="javascript" type="text/javascript">
+    function disable(f)
+    {
+        var button = f.elements['submit'];
+        button.value = 'Processing';
+        button.disabled = 'true';
+        return true;
+    }
+</script>
+
+
+
+
+
+{% endblock %}
+
+
+

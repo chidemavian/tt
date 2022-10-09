@@ -1,0 +1,89 @@
+
+
+
+{% extends 'IIIb/settings_base.html' %}
+{% block content %}
+
+
+<div style="text-align:center">Standard Loans Set Up </div>
+   <table style="margin-top:0%;margin-bottom:0.92%;font-size:0.9em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+        <td style="background:blue" ><a href="#" style="color:white">Set Up</a></td>
+        <td ><a href="/IIIb/threeb/manage/settings/" style="color:red">Manage Set Up</a></td>
+    </tr>
+</table>
+
+   <table style="margin-top:0%;margin-bottom:01%;font-size:0.9em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+         <td style="background:blue"><a href="/IIIb/threeb/loans/settings/" style="color:white">Loans</a></td>
+      <td  ><a href="/IIIb/threeb/savings/settings/" style="color:red">Savings</a></td>
+        <td><a href="#" style="color:red">Items</a></td>
+        <td><a href="#" style="color:red">Log</a></td>
+    </tr>
+</table>
+
+<table style="margin-top:0%;margin-bottom:03%;font-size:0.9em" width="100%" class="table table-bordered" id="dataTables-example">
+            <thead style=";text-align:center;font-weight:bold">
+            <tr >
+                <td >S/N</td>
+                <td >Max. Loan</td>
+
+            </tr>
+            </thead>
+            <tbody style=";text-align:center">
+            {% for student in loans %}
+                <tr>
+                    <td >{{ forloop.counter }}.</td>
+                    <td><a href="#" style="color:blue" onClick= "approve({{ student.id  }})" title="Change Max loan Value {{ student.value }} ">{{ student.value }}%</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+{% endblock %}
+
+
+<div id="repay"></div>
+
+
+<script type="text/javascript" language="javascript">
+    function approve(vid){
+        var state = vid + ":" + "{{ user }}";
+        alert(state);
+        var url = "/IIIb/threeb/loans/repayment/";
+        var i = 0;
+        var data='userid='+state;
+        $.ajax({
+            type:"POST",
+            url:url,
+            data:data,
+            success:function(html) {
+                $("#repay").html(html);
+                getdial();
+            }
+        });
+        return false;
+    }
+
+</script>
+<script type="text/javascript" language="javascript">
+    function getdial(){
+        var diaOpts = {
+            autoOpen:true,
+            // appendTo:"body1",
+            // modal:true,
+            // position: ["center", "middle"],
+            height:'auto',
+            width:'auto',
+            title:' Touch this box to close' ,
+            closeOnEscape:true,
+            show: true,
+            hide: true,
+            bgiframe: true
+        };
+        $("#repay").dialog(diaOpts);
+    }
+
+</script>

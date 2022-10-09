@@ -1,0 +1,167 @@
+
+
+
+{% extends 'IIIb/myloanbase_o.html' %}
+
+{% block content %}
+{% load humanize %}
+
+<div style="text-align:center;font-weight:bold">Loan Request Form</div>
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+      <td  style="background:blue">
+          <a href="/IIIb/threeb/staff/request_loan/" style="color:white">Apply</a>
+      </td>
+        <td>
+          <a href="/IIIb/threeb/staff/request_loan/performance/" style="color:red">Performance</a>
+      </td>
+
+      <td >
+          <a href="/IIIb/threeb/staff/request_loan/history/" style="color:red">Log</a>
+      </td>
+    </tr>
+</table>
+
+
+
+<!-- <form action="/IIIb/threeb/staff/request_loan/apply/" method='POST'> -->
+
+  <form action="/IIIb/threeb/staff/request_loan/" method='POST'>
+
+  
+   <table style="margin-top:0%;margin-bottom:0%;font-size:1em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+     
+          
+           <tr >
+               <td style='font-weight:bold'>My E-Mail:</td>
+               <td>{{user}}</td>
+             </tr>
+
+          <tr>
+            <td style='font-weight:bold'>My Name:</td>
+            <td> {{name}}</td>
+          </tr>
+           
+
+
+          <tr >
+              <td style='font-weight:bold'>Eligibility</td>
+              <td> Eligible</td>
+          </tr>
+
+          <tr >
+              <td style='font-weight:bold'>Wallet</td>
+              <td> {{ amount|intcomma}}</td>
+          </tr>
+          <tr >
+              <td style='font-weight:bold' >Max. Loan</td>
+              <td> {{ max|intcomma }}</td>
+          </tr>
+          <tr >
+              <td >{{ form.amount.label_tag}}</td>
+              <td> {{ form.amount }}</td>
+          </tr>
+          
+           <tr >
+               <td >{{ form.loans.label_tag}}</td>
+               <td> {{ form.loans }}</td>
+
+             </tr>
+
+       </table>
+
+
+ <table width="100%" class="table  table-bordered" id="dataTables-example">
+
+           <tr>
+                <div class="boxloan"></div>
+           </tr>
+</table>
+       </form>
+
+
+   <script type="text/javascript" >
+        $(document).ready(function() {            
+            $("#id_loans").change(function () {
+                autopostloan();
+            });
+
+            $("#id_amount").change(function () {
+                autopostloan();
+            });
+
+            $("#id_amount").focus();
+
+            loan_packages();
+        });
+    </script>
+
+
+
+
+   <script type="text/javascript" language="javascript">
+        function loan_packages(){
+            var state = "{{user}}";
+            // alert(state);
+            var url = "/IIIb/threeb/staff/request_loan/loan_packages/";
+            var i = 0;
+            var data='userid='+state;
+            $("#id_loans").val('');   
+            $("#id_loans").html('');
+            if (state != undefined){
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data:data,
+                    success: function(data){
+                        var options = '';
+                        for (i=0; i<data.length; i++){
+                            options += '<option value="' + data[i] +'">' + data[i] + '</option>'
+                        }
+                        $("#id_loans").append(options);
+                        autopostloan();
+
+                    }
+                })
+            }
+        }
+
+    </script>
+
+
+  <script type="text/javascript" language="javascript">
+        function autopostloan(){
+            var state = "{{user}}"+ ':'+$("#id_loans").val()+ ':'+$("#id_amount").val();
+            // alert(state)
+            var url = "/IIIb/threeb/staff/request_loan/individual/";
+            var i = 0;
+            var data='userid='+state;
+            $.ajax({
+                type:"POST",
+                url:url,
+                data:data,
+                success:function(html) {
+                    $(".boxloan").show();
+                    $(".boxloan").html(html);
+
+                }
+            });
+            return false;
+        }
+    </script>
+
+
+   <script type="text/javascript" >
+        $(document).ready(function() {
+
+            $("#id_amrount").focus();
+  
+        });
+    </script>
+
+{% endblock %}
+
+
+

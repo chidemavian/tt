@@ -1,0 +1,208 @@
+
+
+{% extends 'IIIb/applicationbase.html' %}
+{% block content %}
+
+
+<div style="text-align:center;font-weight:bold">Staff Statutory Deductions</div>
+
+   <table style="margin-top:0%;margin-bottom:01%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+      <td  style="background:blue">
+          <a href="/IIIb/threeb/loans/approve/"  style="color:white">Savings</a>
+      </td>
+      <td>
+          <a href="/IIIb/threeb/loans/lr/"  style="color:red">Loans</a>
+      </td>
+      <td>
+          <a href="/IIIb/threeb/loans/purchases/"  style="color:red">Commodities</a>
+      </td>
+      <td>
+          <a href="/IIIb/threeb/loans/log/"  style="color:red">Log</a>
+      </td>
+    </tr>
+</table>
+
+
+
+
+
+
+{% load humanize %}
+
+{% if msg %}
+
+
+
+
+
+<table style="margin-top:0%;margin-bottom:02%;font-size:0.8em" width="100%" class="table table-bordered" id="dataTables-example">
+
+  <tr>
+        <td style='font-weight:bold'>Description</td>
+        <td>    {{ pack }}   </td>
+</tr>
+        <tr >
+            <td style='font-weight:bold' >month</td><td> {{ month }}</td>
+        </tr> 
+</table>
+
+<div style="text-align:center;font-weight:bold;margin-top:0%;margin-bottom:0%;">List of saving Requests {{status}}  for {{ month}}</div>
+   <table style="margin-top:0%;margin-bottom:0%;font-size:1em" width="100%" class="table  table-bordered" id="dataTables-example">      
+          
+           <tr style='text-align:center;font-weight:bold'>
+               <td >S/N</td>               
+               <td >Name</td>
+               <td>Amount</td>
+               <td>Decline</td>
+             </tr>
+             {% for k in msg %}
+
+          <tr style='text-align:center'>
+            <td style='font-weight:bold'>{{forloop.counter}}</td>
+            <td> {{k.staff.staff.surname}}   {{k.staff.staff.firstname}}   {{k.staff.staff.othername}}</td>
+            <td >{{k.amount|intcomma}}</td>
+
+            <td >
+              <a href="#" style="color:red" onClick= "decline({{ k.id  }})" title="Decline  N{{ k.volume|intcomma}} loan request">Decline</a>
+            </td>
+
+          </tr>
+          {% endfor %}
+         <tr style='text-align:center;font-weight:bold'>
+            <td style="border:0px solid black"></td>
+           <td>Total</td> 
+           <td>{{total|intcomma}}</td> 
+           <td></td>
+         </tr>
+          
+</table>
+
+
+ <table style="margin-top:0.5%;margin-bottom:01%;font-size:1em" width="100%" class="table  table-bordered"> 
+      <tr>
+
+        <td style="color:blue;text-align:center">
+            <a href="#" style="color:blue;text-align:center" onClick= "approve()" title="Approve  N{{ k.volume|intcomma}} loan request">Approve</a>
+        </td>
+</tr>
+
+
+       </table>
+     
+
+
+
+
+
+
+{% else %}
+
+<div style="color:blue;text-align:center">no records found </div>
+
+
+
+
+
+{% endif %}
+
+
+
+
+    <div id="cancel"></div>
+<div id="pay"></div>
+
+
+
+
+
+<script type="text/javascript" language="javascript">
+    function decline(vid){
+        var state = vid +  ":" +'{{month_index}}' +  ":" + '{{pack}}';
+        alert(state);
+        var url = "/IIIb/threeb/loans/decline/";
+        var i = 0;
+        var data='userid='+state;
+        $.ajax({
+            type:"POST",
+            url:url,
+            data:data,
+            success:function(html) {
+                $("#pay").html(html);
+                getdial();
+            }
+        });
+        return false;
+    }
+
+</script>
+<script type="text/javascript" language="javascript">
+    function getdial(){
+        var diaOpts = {
+            autoOpen:true,
+            // appendTo:"body1",
+            // modal:true,
+            // position: ["center", "middle"],
+            height:'auto',
+            width:'auto',
+            title:' Touch this box to close' ,
+            closeOnEscape:true,
+            show: true,
+            hide: true,
+            bgiframe: true
+        };
+        $("#pay").dialog(diaOpts);
+    }
+
+</script>
+
+
+
+<script type="text/javascript" language="javascript">
+    function approve(){        
+        var state = '{{month_index}}' +  ":" + '{{pack}}';
+        // alert(state)
+        var url = "/IIIb/threeb/loans/approve/all/";
+        var i = 0;
+        var data='userid='+state;
+        $.ajax({
+            type:"POST",
+            url:url,
+            data:data,
+            success:function(html) {
+                $("#cancel").html(html);
+                getcancel();
+            }
+        });
+        return false;
+    }
+
+</script>
+
+<script type="text/javascript" language="javascript">
+    function getcancel(){
+        var diaOpts = {
+            autoOpen:true,
+            // appendTo:"body1",
+            // modal:true,
+            // position: ["center", "middle"],
+            height:'auto',
+            width:'auto',
+            title:' Touch this box to close' ,
+            closeOnEscape:true,
+            show: true,
+            hide: true,
+            bgiframe: true
+        };
+        $("#cancel").dialog(diaOpts);
+    }
+
+</script>
+
+
+
+{% endblock %}
+
+
+

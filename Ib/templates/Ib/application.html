@@ -1,0 +1,54 @@
+
+
+{% load humanize %}
+
+{% if msg %}
+
+
+
+
+
+<!--    <table style="margin-top:0%;margin-bottom:0%;font-size:1em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+   </table> -->
+<form action="/IIIb/threeb/staff/request_loan/apply/" method='POST'>
+
+
+<div style="text-align:center;font-weight:bold;margin-top:0%;margin-bottom:0%;">List of  {{status}} Loan requests for {{ month}}</div>
+   <table style="margin-top:0%;margin-bottom:0%;font-size:1em" width="100%" class="table  table-bordered" id="dataTables-example">   	
+          
+           <tr style='text-align:center'>
+               <td style='font-weight:bold'>S/N</td>               
+               <td style='font-weight:bold'>Name</td>
+               <td>Amount</td>
+               <td>Status</td>
+             </tr>
+             {% for k in msg %}
+          <tr style='text-align:center'>
+            <td style='font-weight:bold'>{{forloop.counter}}</td>
+            <td> {{k.staffrec.surname}}   {{k.staffrec.firstname}}   {{k.staffrec.othername}}</td>
+            <td style='font-weight:bold'>{{k.volume|intcomma}}</td>
+            <td> {{k.status}}</td>
+
+          </tr>
+          {% endfor %}
+       </table>
+     
+
+
+<input type='hidden' name="thrift" value ={{thrift}}>
+<input type='hidden' name="amount"  value ={{amount}}>
+<input type='hidden'  name="package" value ={{loan}}>
+
+
+</form>
+
+{% else %}
+
+<div>no loan requests found </div>
+
+
+
+
+
+{% endif %}

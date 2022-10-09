@@ -1,0 +1,66 @@
+
+{% extends 'customer/walletbase.html' %}
+
+{% block content %}
+
+
+<div style="text-align:center">Wallets Menu </div>
+
+   <table style="margin-top:0%;margin-bottom:01%;font-size:0.9em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center">
+        <td  >
+          <a href="/customer/customers/createwallet/" style="color:red">Create Wallet</a>
+        </td>
+
+        <td >
+          <a href="/customer/customers/editwallet/" style="color:red">Edit Wallet</a>
+        </td>
+
+        <td style="background:blue">
+          <a href="/customer/customers/viewwallet/" style="color:white">View Wallet</a>
+        </td>
+
+        <td >
+          <a href="/customer/customers/customer_list/" style="color:red">Wallet list</a>
+        </td>
+    </tr>
+</table>
+
+<tr >
+
+
+          <table width="100%" class="table  table-bordered" id="dataTables-example">
+           <tr >
+            <td style='font-weight:bold' >Name: </td><td>{{ details.surname}}  {{ details.firstname}}   {{ details.othername}}</td>
+           </tr>
+           <tr >
+            <td style='font-weight:bold' >Customer ID: </td><td>{{ details.id}} </td>
+           </tr>
+            <tr>
+              <td style='font-weight:bold'>Account No:</td> <td>{{ details.wallet }}</td>
+            </tr>
+
+             <tr>
+              <td style='font-weight:bold'>Email:</td><td >{{ details.email}}</td>
+            </tr>
+             <tr>
+              <td style='font-weight:bold'>Address:</td><td >{{ details.Address}}</td>
+            </tr>
+
+
+            <tr><td style='font-weight:bold'>Active:</td><td>{{details.status}}</td></tr>
+
+       </table>
+
+    
+        <td ><a class="btn btn-lg btn-success btn-block" href="/customer/customers/viewwallet/" style="color:white">Continue</a></td>
+
+
+       
+</tr>
+
+{% endblock %}
+
+
+

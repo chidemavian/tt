@@ -1,0 +1,135 @@
+
+{% extends 'Ib/adminbase.html' %}
+{% block content %}
+
+{% load humanize %}
+
+
+<div style="text-align:center">Payments Menu</div>
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+    <tr style="text-align:center;">
+      <td  >
+          <a href="/vts/thrift/payrequest/" style="color:red">Deposit</a>
+      </td>
+      <td   style="background:blue"><a href="/vts/thrift/cashout/" style="color:white">Withdrawal</a></td>
+      <td>
+        <a href="/vts/thrift/unremmitted/" style="color:red">Report</a>
+      </td>
+    </tr>
+</table>
+
+
+
+
+<table style="margin-top:0%;margin-bottom:0.3%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+           <tr >
+                <div class="boxcashabc"></div>
+           </tr>
+</table>
+ 
+<input type="hidden" name="wallet" id="wallet"  readonly="readonly" value="{{ wallet }}" class ="loginTxtbox">
+
+
+
+
+<div style='text-align:right'> Openig balance: <span style='color:green'>NGN {{bal|intcomma}}</span></div>
+
+
+<form action="/vts/thrift/requests/payout_request/" method="POST">
+  
+<table style="margin-top:01%;margin-bottom:0.2%" width="100%" class="table  table-bordered" id="dataTables-example">
+            <tr >
+              <td style='font-weight:bold'>A/C No:</td>
+                <td> {{ customer.customer.wallet }}</td>
+
+            </tr>
+            <tr >
+              <td style='font-weight:bold'>Name: </td>
+                <td> {{ customer.customer.surname }} {{ customer.customer.firstname }} {{ customer.customer.othername }}</td>
+
+            </tr>
+
+            <tr >
+              <td style='font-weight:bold'>Withdrawal Amount: </td>
+                <td> NGN {{ amount|intcomma }}   ({{ wrd }}  Naira Only)</td>
+
+            </tr>
+            <tr >
+              <td style='font-weight:bold'>Service Charge: </td>
+                <td> NGN {{ charge |intcomma}}  ({{ chg }}  Naira Only)</td>
+
+            </tr>
+            <tr >
+              <td style='font-weight:bold'>Closing balance: </td>
+                <td> NGN {{ left|intcomma }}  </td>
+
+            </tr>
+</table>
+
+
+
+         <table style="margin-top:0%;margin-bottom:02%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+          <tr>
+       <td ><input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Withdraw Cash"></td>
+
+       <td>       
+           <button formaction="/vts/thrift/home/" class="btn btn-lg btn-success btn-block" >Cancel </button>
+        </td>
+     </tr>
+   </table>
+
+
+<input type="hidden" name="customer"  readonly="readonly" value="{{ customer.id }}" class ="loginTxtbox">
+
+<input type="hidden" name="wallet" readonly="readonly" value="{{ wallet }}" class ="loginTxtbox">
+
+<input type="hidden" name="amount"  readonly="readonly" value="{{ amount }}" class ="loginTxtbox">
+
+<input type="hidden" name="branch" readonly="readonly" value="{{ branch }}" class ="loginTxtbox">
+<input type="hidden" name="charge" readonly="readonly" value="{{ charge }}" class ="loginTxtbox">
+</form>
+
+
+
+
+  <script type="text/javascript" >
+        $(document).ready(function() {            
+            $("#id_account_type").change(function () {
+                autopostacc123e();
+            });
+
+            $("#id_month").change(function () {
+                autopostacc123e();
+            });                         
+            autopostacc123e();
+        });
+    </script>
+
+
+    <script type="text/javascript" language="javascript">
+        function autopostacc123e(){
+            var state = $("#id_account_type").val() + ":" + "{{wallet}}" + ":" + $("#id_month").val()+ ":" + "{{user}}";
+            // alert(state)
+            var url = "/vts/thrift/withdraw/account_withdraw/";
+            var i = 0;
+            var data='userid='+state;
+            $.ajax({
+                type:"POST",
+                url:url,
+                data:data,
+                success:function(html) {
+                    $(".boxcashabc").show();
+                    $(".boxcashabc").html(html);
+
+                }
+            });
+            return false;
+        }
+    </script>
+
+
+{% endblock %}
+
+
+

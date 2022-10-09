@@ -1,0 +1,79 @@
+
+
+{% extends 'Ia/thriftbaseIa.html' %}
+{% block content %}
+
+
+<div style="text-align:center">Thrift Menu</div>
+
+<table style="margin-top:0%;margin-bottom:0%;font-size:0.9em" width="100%" class="table  table-bordered" >
+
+    <tr style="text-align:center;">
+        <td  >
+            <a href="/fts/thrift/addthrift/" style="color:red">Add</a>
+        </td>
+        
+        <td>
+            <a href="/fts/thrift/viewthrift/" style="color:red">View</a>
+        </td>
+       <td  ><a href="/fts/thrift/changethrift/" style="color:red">Change</a></td>
+        <td>
+            <a href="/fts/thrift/rolloverthrift/" style="color:red">Rollover</a>
+        </td>
+        <td style="background:blue">
+            <a href="/fts/thrift/thriftreport/" style="color:white">Log</a>
+        </td>
+    </tr>
+</table>
+
+<div>{{msg}}</div>
+
+
+
+
+ <form action="" method="POST">
+
+<table style="margin-top:0.2%;margin-bottom:0.2%;font-size:0.9em" width="100%" class="table  table-bordered" id="dataTables-example">
+           <tr >
+               <td >{{ form.month.label_tag}}</td><td> {{ form.month }}</td>
+             </tr>   
+
+  <tr>
+            <td style='font-weight:bold'>Account Type</td>
+            <td>
+                <select name="account_type" id="id_account_type">
+                 <option value="-----">-----</option>
+                 <option value="Main account">Main account</option>
+                 <option value="Sub account">Sub account</option>
+                 </select>
+             </td>
+</tr>
+</table>
+
+<table width="100%" class="table  table-bordered" id="dataTables-example">
+
+   <td ><input style="font-size:1em"  class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="View Thrift History"></td>
+
+
+ </table>
+
+  </form>
+
+
+   <script type="text/javascript" >
+        $(document).ready(function() {
+
+            $("#id_wallet").focus();
+
+            $("#id_klass").change(function () {
+                 getsubject();
+            });
+
+        });
+    </script>
+
+
+{% endblock %}
+
+
+

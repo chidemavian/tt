@@ -1,0 +1,57 @@
+
+
+{% load humanize %}
+
+
+
+   <table style="margin-top:0.2%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+   	
+          
+           <tr >
+               <td style='font-weight:bold'>Monthly Deduction:</td>
+               <td>N {{thrift|intcomma}}</td>
+             </tr>
+
+          <tr>
+            <td style='font-weight:bold'>Duration:</td>
+            <td> {{duration}}  Months</td>
+          </tr>
+       </table>
+  
+
+     <table style="margin-top:0.2%;margin-bottom:0%;font-size:0.7em" width="100%" class="table  table-bordered" id="dataTables-example">
+       <tr>
+         <td style='font-weight:bold;color:teal'>If your request is granted this month, when will you like to commece repayment</td>
+         <td>
+             <select name="repay" id="repay">
+             <option value="-----">-----</option>
+              <option value="30">30 Days</option>
+              <option value="60">60 Days</option>
+             </select>
+         </td>
+       </tr>
+
+
+       </table>   
+
+   <table style="margin-top:0.2%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+          <tr>
+       		<td >
+            <input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Apply">
+       	    </td >
+
+            <td >
+              <a href="/IIIb/threeb/staff/request_loan/" class="btn btn-lg btn-success btn-block">Cancel</a>
+            </td>
+          </tr>
+   </table>
+
+
+
+<input type='hidden' name="thrift" value ={{thrift}}>
+<input type='hidden' name="amount"  value ={{amount}}>
+<input type='hidden'  name="package" value ={{loan}}>
+
+
+</form>

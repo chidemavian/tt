@@ -1,0 +1,93 @@
+
+
+
+
+<table style="margin-top:0%;margin-bottom:0.2%" width="100%" class="table  table-bordered" id="dataTables-example">
+            <tr>
+               <td style="font-weight:bold">Thrift:</td>
+               {% if acccode = 'Sub account' %}
+               <td style='color:gray;'><del style='text-decoration-style:double'>N</del>  {{ thriftrec.thrift }} </td>
+               {% else %}
+               <td style='color:blue;'><del style='text-decoration-style:double'>N</del>  {{ thriftrec.thrift }} </td>               
+               {% endif %}
+               {% if count < 1  %}
+
+               <td style='font-size:0.8em'><a href="#" style="color:red" onClick= "changethrift()" title="Click here to change  thrift value">Change</a>
+               </td>
+               {% endif %}
+            </tr> 
+            <tr >
+               <td style="font-weight:bold">Year:</td><td> {{ thriftrec.year }}</td>
+            </tr>
+        </table>
+
+<div style='color:grey'>{{msg}}</div>
+
+<table style="margin-top:0.5%;margin-bottom:0.6%;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<tr >
+      <td >
+    <a href="/thrift/thrift/createwallet/">Wallets</a>
+  </td>
+
+<td>
+  <a href="/thrift/thrift/payrequest/">Payments</a>
+  
+  </td>
+<td>
+  <a href="/thrift/thrift/history/">Balances</a>
+  
+  </td>
+<td>
+  <a href="/thrift/thrift/home/" >Read guide</a>
+  
+  </td>
+</tr>
+</table>
+ 
+
+
+<div id="thriftchange"></div>
+ 
+<script type="text/javascript" language="javascript">
+    function changethrift(){
+        
+        var state = "{{wallet}}" + ":" + "{{month}}" +
+          ":" + "{{acccode}}"+ ":" + "{{user}}";
+        // alert(state)
+        var url = "/thrift/thrift/edit/thrift/";
+        var i = 0;
+        var data='userid='+state;
+        $.ajax({
+            type:"POST",
+            url:url,
+            data:data,
+            success:function(html) {
+                $("#thriftchange").html(html);
+                getchan();
+            }
+        });
+        return false;
+    }
+
+</script>
+
+<script type="text/javascript" language="javascript">
+    function getchan(){
+        var diachange = {
+            autoOpen:true,
+            // appendTo:"body1",
+            // modal:true,
+            // position: ["center", "middle"],
+            height:'auto',
+            width:'auto',
+            title:'Touch this box to close --->' ,
+            closeOnEscape:true,
+            show: true,
+            // hide: true,
+            bgiframe: true
+        };
+        $("#thriftchange").dialog(diachange);
+    }
+
+</script>

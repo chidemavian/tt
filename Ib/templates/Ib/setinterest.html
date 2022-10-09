@@ -1,0 +1,90 @@
+
+
+
+{% extends 'Ib/interestratebase.html' %}
+{% block content %}
+
+
+
+<div style="text-align:center">Interest Rates</div>
+  
+   <table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+        <td  style="background:blue;font-size:0.9em">
+            <a href="/vts/thrift/setup/interest/" style="color:white">New</a>
+        </td>
+        
+        <td >
+            <a href="/vts/thrift/interest/edit/" style="color:red">Edit</a>
+        </td>
+
+
+    </tr>
+</table>
+
+    <div  style="color:gray;font-size:0.8em;text-align:center" >{{msg}}</div>
+  <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+       <form action=" " method="POST">
+
+           <tr >
+               <td >{{ form.interest.label_tag}}:</td><td> {{ form.interest }}</td>
+             </tr> 
+           <tr >
+             <td >{{ form.duration.label_tag}}:</td><td> {{ form.duration }}</td>
+           </tr>   
+       </table>
+                 <table width="100%" class="table  table-bordered" id="dataTables-example">
+       <td >
+        <input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Set">
+      </td>
+       </form>
+     </table>
+
+</tr>
+
+ <table style="margin-top:0%;margin-bottom:02%;font-size:0.8em;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+
+      <thead>
+
+          <tr style="font-weight:bold">
+             <td >S/N</td>
+              <td >Interest Rate</td>
+             <td >Duration</td>
+             <td >Code</td>
+             <td >Status</td>
+
+          </tr>
+      </thead>
+      <tr>
+                     <td >1.</td>
+              <td >{{interest.interest}}%</td>
+             <td >{{interest.duration}}</td>
+             <td >{{interest.code}}</td>
+             {% if interest.status = True%}
+             <td >Active</td>
+             {% else %}
+             <td >Inactive</td>
+             {% endif %}
+      </tr>
+
+</table>
+
+
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function() {
+            var pickerOpts = {
+                // appendText: "yy/mm/dd",
+                showOtherMonths: true,
+                changeMonth: true,
+                changeYear: true,
+                dateFormat:"dd/mm/yy"
+            };
+            $("#id_interest").focus();
+        });
+    </script>
+{% endblock %}
+
+
+

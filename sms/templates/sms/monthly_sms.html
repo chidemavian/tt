@@ -1,0 +1,77 @@
+
+
+
+
+<form action = '/sms/daily_contribution/monthlysms/' method = 'post'>
+
+<table style="margin-top:0%;margin-bottom:0.5%  " width="100%" class="table  table-bordered" id="dataTables-example">
+<div style='text-align:center'>Select Date of Delivery</div>
+
+
+
+<tr>
+
+
+<td>
+  <label for="id_start"><input type="radio" name="dateofdel" id="id_start" value='start' onclick="ShowHideDiv1()" >Start Of Month</>
+  </label>
+</td>
+
+<td>
+  <label for="id_mid">
+  <input type="radio" name="dateofdel" id="id_mid" value='mid' onclick="ShowHideDiv2()">Mid Month </>
+  </label>
+</td>
+
+
+<td>
+  <label for="id_end">
+    <input type="radio" name="dateofdel" id="id_end" value='end' onclick="ShowHideDiv3()">End Of Month </>
+  </label>
+</td>
+  </tr> 
+</table> 
+
+<div style='color:grey'>{{msg}}</div>
+
+
+<div id="dvPassport" style="display: none">
+  <table width="100%" class="table  table-bordered" id="dataTables-example">
+    <tr>
+       <td ><input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Process Request" id="txtPassportNumber"></td>
+      </tr>
+</table>
+</div>
+
+
+<input type="hidden" name="wallet" id="wallet"  readonly="readonly" value="{{ wallet }}" class ="loginTxtbox">
+
+<input type="hidden" name="app" id="app"  readonly="readonly" value="{{ app }}" class ="loginTxtbox">
+
+</form>
+
+<script type="text/javascript">
+    function ShowHideDiv1() {
+        var chkYes = document.getElementById("chkYes");
+        var dvPassport = document.getElementById("dvPassport");
+        dvPassport.style.display = id_start.checked ? "block" : "none";
+    }
+</script>
+
+
+<script type="text/javascript">
+    function ShowHideDiv2() {
+        var chkYes = document.getElementById("chkYes");
+        var dvPassport = document.getElementById("dvPassport");
+        dvPassport.style.display = id_mid.checked ? "block" : "none";
+    }
+</script>
+
+<script type="text/javascript">
+    function ShowHideDiv3() {
+        var chkYes = document.getElementById("chkYes");
+        var dvPassport = document.getElementById("dvPassport");
+        dvPassport.style.display = id_end.checked ? "block" : "none";
+    }
+</script>
+

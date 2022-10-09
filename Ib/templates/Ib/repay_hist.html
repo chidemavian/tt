@@ -1,0 +1,104 @@
+
+
+
+
+{% extends 'Ib/adminloansbase.html' %}
+
+{% block content %}
+{% load humanize %}
+
+<div style="text-align:center">Loan Repayment Menu</div>
+
+
+
+<table style="margin-top:0.5%;margin-bottom:0.6%;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<tr>
+
+      <td  style="background:blue"><a href="/vts/threeb/staff/repay_loan/" style='color:white'>Repay</a></td>
+
+    <td >
+          <a href="/vts/threeb/staff/request_loan/performance/" >Perfromance</a>
+      </td>
+
+
+<td ><a href="/vts/threeb/loans/approve/log/">Log</a></td>
+
+</tr>
+</table>
+
+
+<table style="margin-top:0%;margin-bottom:0%;font-size:1em" width="100%" class="table  table-bordered" id="dataTables-example">
+          
+           <tr >
+               <td style='font-weight:bold'>Account No:</td>
+               <td>{{wallet}}</td>
+             </tr>
+
+          <tr>
+            <td style='font-weight:bold'>Customer Name:</td>
+            <td> {{name.customer.surname}},   {{name.customer.firstname}}  {{name.customer.othername}}</td>
+          </tr>
+           
+</table>
+
+<table style="margin-top:0.8%;margin-bottom:0%;font-size:1em" width="100%" class="table  table-bordered" id="dataTables-example">
+<tr>
+<td style='font-weight:bold'> Total:</td>
+<td>N {{ total|intcomma}}</td>
+</tr>
+<tr>
+<td style='font-weight:bold'>Repaid:</td>
+<td> N {{repaid|intcomma}}</td>
+</tr>
+<tr>
+<td style='font-weight:bold'> Balance:</td>
+<td>N {{ balance|intcomma}}</td>
+</tr>
+<tr style='font-weight:bold;color:blue'>
+<td > Minimum Repayment:</td>
+<td>N {{ thrift|intcomma}}</td>
+</tr>
+
+       </table> 
+          
+<form action="/vts/threeb/staff/repay_loan/repay/" method="POST">
+    <table width="100%" class="table  table-bordered table-hover" id="dataTables-example">
+        <div class="card-body">
+            <div class="form-group">
+            <label for="email">Amount</label>
+            <input type="number" autofocus name="amount" class="form-control" id="email" placeholder="Enter Amount" required>
+            </div>
+        </div>
+
+        <div>
+          <td >
+          <input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Process">
+          </td>
+
+        </div>
+
+    </table>
+
+    <input type= "hidden" name="customer"  value={{wallet}}>
+</form>
+
+
+
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function() {
+            var pickerOpts = {
+                // appendText: "",
+                showOtherMonths: true,
+                changeMonth: true,
+                changeYear: true,
+                dateFormat:"dd/mm/yy"
+            };
+
+            $("#id_wallete").focus();
+        });
+    </script>
+{% endblock %}
+
+
+

@@ -1,0 +1,88 @@
+
+{% extends 'Ib/adminloansbase.html' %}
+{% block content %}
+
+
+<div style="text-align:center">Standard Loans Set Up </div>
+
+   <table style="margin-top:0%;margin-bottom:01%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+        <td  ><a href="/vts/threeb/loans/settings/" style="color:red">Loan Packages</a></td>
+
+        <td style="background:blue;font-size:0.9em" ><a href="/vts/threeb/loans/setgrace/" style="color:white">Grace Period </a></td>
+<td  ><a href="/vts/threeb/loans/packageslists/" style="color:red">manage settings</a></td>
+
+    </tr>
+</table>
+
+
+
+
+
+
+
+   <table style="margin-top:0%;margin-bottom:01%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+   <tr>
+     <td style='font-weight:bold'>Repayment Plan</td>
+     <td>
+       <select name="plan" id="id_plan">
+         <option value="-----">-----</option>
+         <option value="day(s)">Daily</option>
+         <option value="week(s)">Weekly</option>
+      </select>
+   </td>
+</tr>
+
+</table>
+
+
+<table width="100%" class="table  table-bordered" id="dataTables-example">
+   <tr>
+      <div class="boxplan"></div>
+   </tr>
+</table>
+
+
+
+
+
+  <script type="text/javascript" >
+        $(document).ready(function() {            
+            $("#id_plan").change(function () {
+                autopostplan();
+            });
+                      
+            autopostplan();
+        });
+    </script>
+
+
+    <script type="text/javascript" language="javascript">
+        function autopostplan(){
+            var state = "{{user}}"+ ":" + $("#id_plan").val();
+            // alert(state)
+            var url = "/vts/threeb/loans/setgrace/ajax/";
+            var i = 0;
+            var data='userid='+state;
+            $.ajax({
+                type:"POST",
+                url:url,
+                data:data,
+                success:function(html) {
+                    $(".boxplan").show();
+                    $(".boxplan").html(html);
+
+                }
+            });
+            return false;
+        }
+    </script>
+
+
+
+{% endblock %}
+
+
+

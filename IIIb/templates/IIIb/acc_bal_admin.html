@@ -1,0 +1,73 @@
+
+
+
+
+{% extends 'IIIb/walletbase_a.html' %}
+{% block content %}
+
+
+<div style="text-align:center">Wallet Balances Menu</div>
+   <table style="margin-top:0%;margin-bottom:01%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+<div>{{msg}}</div>
+    <tr style="text-align:center;">
+      <td  style="background:blue">
+          <a href="/IIIb/threeb/staff/mywallet/"  style="color:white">Balances</a>
+      </td>
+      <td>
+          <a href="/IIIb/threeb/staff/statement/"  style="color:red">Statement</a>
+      </td>
+      <td>
+          <a href="/IIIb/threeb/staff/withdraw/"  style="color:red">Withdraw</a>
+      </td>
+      <td>
+          <a href="/IIIb/threeb/staff/transfer/"  style="color:red">Transfer</a>
+      </td>
+    </tr>
+</table>
+
+
+
+
+
+ <form action="/vts/thrift/history/" method="POST">
+<div>{{msg}}</div>
+
+    <section class="content">
+      <div class="container-fluid">
+            
+            <!-- general form elements -->
+            <div class="card card-primary">
+
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="wallet">A/C No</label>
+                    <input type="number" autofocus name="wallet" class="form-control" placeholder="Account Number" required>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </section>
+
+
+
+
+         <table style="margin-top:0%;margin-bottom:01%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+          <tr>
+       <td ><input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Check Balance"></td>
+     </tr>
+   </table>
+       </form>
+
+
+   <script type="text/javascript" >
+        $(document).ready(function() {
+
+            $("#id_wallet").focus();
+  
+        });
+    </script>
+
+{% endblock %}
+
+
+

@@ -1,0 +1,40 @@
+
+
+
+
+<form action="/vts/threeb/loans/setgrace/addgrace/" method="POST">
+
+   <table style="margin-top:-1.7%;margin-bottom:01%" width="100%" class="table  table-bordered" id="dataTables-example">
+          <tr> 
+
+<td>    	<div>Grace Period</div></td>
+    <td> 
+
+                 <input type="number" name="grace" class="form-control" id="grace" required placeholder="Enter grace period here" autofocus>
+         
+      </td>
+      <td>{{plan}}</td>
+  </tr>
+</table>
+
+         <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+          <tr>
+       <td ><input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Save"></td>
+     </tr>
+   </table>
+
+
+
+
+<input type="hidden" name="plan"  readonly="readonly" value="{{ plan }}" class ="loginTxtbox">
+ 
+
+</form>
+
+
+
+    <script type="text/javascript" >
+         $(document).ready(function() {
+             $("#id_grace").focus();
+         });
+    </script>

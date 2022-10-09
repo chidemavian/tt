@@ -1,0 +1,46 @@
+
+{% load humanize %}
+
+     
+
+<table style="margin-top:0.2%;margin-bottom:0%;font-size:0.8em"  width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr>
+    <td> Name:</td>
+    <td>{{merchant.staff.surname}},  {{merchant.staff.firstname}}  {{merchant.staff.othername}}</td>
+  </tr>
+    <tr>
+      <td>Transaction Date: </td>
+     <td>{{date}}   </td>
+  </tr>
+  </table>
+
+<table style="margin-top:0.1%;margin-bottom:0%;font-size:0.8em"  width="100%" class="table  table-bordered" id="dataTables-example">
+
+
+        <thead >
+
+        <tr style="text-align:center;font-weight:bold">
+               <td >S/N</td> 
+               <td >Customer</td> 
+               <td >Amount</td>
+            </tr>
+    </thead>                          
+                            
+    {% for student in ttt %}
+        <tr style="font-weight:bod;text-align:center">
+          <td >{{ forloop.counter }}</td>
+          <td>{{ student.customer.customer.surname }},  {{ student.customer.customer.firstname }}  {{ student.customer.customer.othername }}</td>
+          <td>{{ student.amount|intcomma }}</td>
+        </tr>       
+    {% endfor %}
+
+    <tr style="text-align:center;font-weight:bold"> 
+      <td></td>
+      <td>Total</td>
+      <td>{{ total|intcomma }}</td>
+    </tr>
+
+    </table>
+ </form>
+

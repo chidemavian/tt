@@ -1,0 +1,61 @@
+
+
+{% extends 'Ia/credit_officerIa_base.html' %}
+{% block content %}
+
+
+<div style="text-align:center">Field Officers' Menu</div>
+
+   <table style="margin-top:0%;margin-bottom:01% ;font-size:0.9em;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr >
+        <td style="background:blue">
+          <a href="/fts/staff/merchant/" style="color:white">Register F/Os</a>
+        </td>
+        <td>
+          <a href="#" style="color:red">Manage F/Os</a>
+        </td>
+        <td>
+          <a href="/fts/staff/merchant/mycos/" style="color:red">My F/Os</a>
+        </td>
+    </tr>
+</table>
+
+
+
+<table style="margin-top:0%;margin-bottom:02%" width="100%" class="table  table-bordered" id="dataTables-example">
+<div>{{msg}}</div>
+
+</table>
+
+
+       <form action="" method="POST">
+          <table width="100%" style="margin-top:0%;margin-bottom:0.2%" class="table  table-bordered " id="dataTables-example">
+           <tr >
+               <td >{{ form.email.label_tag}}</td><td> {{ form.email }}</td>
+             </tr>   
+       </table>
+          <table width="100%" style="margin-top:0%;margin-bottom:02%" class="table  table-bordered " id="dataTables-example">
+
+            <tr>
+
+       <td ><input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Add"></td>
+       </tr>
+        </table>
+       </form>
+
+
+
+   <script type="text/javascript" >
+        $(document).ready(function() {
+
+            $("#id_email").focus();
+
+        });
+    </script>
+
+
+{% endblock %}
+
+
+

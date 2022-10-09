@@ -1,0 +1,64 @@
+
+
+{% extends 'thrift/adminbase.html' %}
+{% block content %}
+
+
+<div style="text-align:center">Miscellenous</div>
+
+   <table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+        <td  >
+            <a href="/thrift/thrift/misc/customers/" style="color:red">Customers' List</a>
+        </td>
+        
+        <td>
+            <!-- <a href="/thrift/thrift/misc/custmers/ " style="color:red;font-size:0.9em">Name Search</a> -->
+            <a href="#" style="color:red;font-size:0.9em">Name Search</a>
+        </td>
+
+         <td style="background:blue;font-size:0.9em">
+            <a href="/thrift/thrift/misc/switches/" style="color:white;font-size:0.9em">Merchant Switch</a>
+        </td>
+
+    </tr>
+</table>
+{{msg}}
+<tr >
+       <form action="" method="POST">
+          <table width="100%" class="table  table-bordered" id="dataTables-example">
+           <tr >
+               <td >{{ form.merchant.label_tag}}:</td><td> {{ form.merchant }}</td>
+             </tr>   
+       </table>
+
+       <table width="100%" class="table  table-bordered" id="dataTables-example"><tr>
+        <td ><input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Process"></td>
+        </tr>
+        </table>
+
+
+       </form>
+
+</tr>
+
+
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function() {
+            var pickerOpts = {
+                // appendText: "yy/mm/dd",
+                showOtherMonths: true,
+                changeMonth: true,
+                changeYear: true,
+                dateFormat:"dd/mm/yy"
+            };
+            $("#id_merchant").focus();
+        });
+    </script>
+
+
+{% endblock %}
+
+
+

@@ -1,0 +1,39 @@
+
+{% extends 'Ib/customerbase.html' %}
+
+{% block content %}
+
+
+<div class="card card-primary card-outline">
+	<div class="card-header">
+		<h5 class="m-0" style="text-align:center">CONGRATULATIONS!!! OPERATION SUCCESSFULL</h5>
+	</div>
+
+</div>
+
+<tr class="card-body">
+	<td >	
+		<!-- <h6 class="card-title" >Account Number: {{wallet}}</h6> -->
+		<p class="card-text">{{msg}} </p>
+</td>
+</tr>
+<tr>
+
+
+        <td ><a class="btn btn-lg btn-success btn-block" href="/vts/thrift/editwallet/" style="color:white">Continue</a></td>
+
+
+     
+ </tr>
+
+
+
+<script type="text/javascript" language="javascript">
+window.history.pushState(null, "", window.location.href);
+window.onpopstate = function () {
+    window.history.pushState(null, "", window.location.href);
+};
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+
+
+{% load humanize %}
+
+<table>
+<div>Hello {{Surname}} {{firstname}},</div>
+
+<div>I have just recieved your request for the sum of N{{amount|intcomma}} in loans </div>
+<div>Pls note that in line with organizatonal policy, your application will be reviewd and further actions taken. </div>
+<div>You may need to check your mail and/or dashboard for further instructions</div>
+<div>Thank you.</div>
+<div>{{coop_man}} </div>
+
+
+
+
+
+</table>
+
+</html>

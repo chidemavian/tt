@@ -1,0 +1,52 @@
+
+
+{% load humanize %}
+
+{% if msg %}
+
+
+
+
+
+
+<div style="text-align:center;font-weight:bold;margin-top:0%;margin-bottom:0%;">Deductions  for {{ month}}, {{year}}</div>
+   <table style="margin-top:0%;margin-bottom:0%;font-size:1em" width="100%" class="table  table-bordered" id="dataTables-example">   	
+          
+           <tr style='text-align:center;font-weight:bold'>
+               <td >S/N</td>               
+               <td >Description</td>
+               <td>Amount</td>
+       
+            </tr>
+             {% for k in msg %}
+
+          <tr style='text-align:center'>
+            <td >{{forloop.counter}}</td>
+            <td> {{k.scheme}}</td>
+            <td >{{k.amount|intcomma}}</td>
+
+          </tr>
+
+          {% endfor %}
+
+         <tr style='text-align:center;font-weight:bold'>
+            <td style="border:0px solid black"></td>
+           <td>Total</td> 
+           <td>{{total|intcomma}}</td>
+         </tr>
+
+</table>
+
+
+
+     
+
+{% else %}
+
+<div style="color:blue;text-align:center">no records found </div>
+
+
+
+
+
+{% endif %}

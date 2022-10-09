@@ -1,0 +1,64 @@
+
+
+{% load humanize %}
+
+{% if msg %}
+
+
+
+{{p}}
+
+
+<div style="text-align:center;font-weight:bold;margin-top:0%;margin-bottom:0%;font-size:0.8em">List of Loan Requests {{status}}  for {{ month}}</div>
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">   	
+          
+           <tr style='text-align:center;font-weight:bold'>
+               <td >S/N</td>               
+               <td >Staff</td>
+               <td>Amount</td>
+               <td>Destination</td>
+
+            </tr>
+             {% for k in msg %}
+
+          <tr style='text-align:center'>
+            <td >{{forloop.counter}}</td>
+            <td> {{k.staff.staffrec.staff.surname}}   {{k.staff.staffrec.staff.firstname}}   {{k.staff.staffrec.staff.othername}}</td>
+            
+            <td >{{k.staff.volume|intcomma}}</td>
+
+            <td >{{k.bank.account_number}}  [{{k.bank.bank_name}}]  </td>
+          </tr>
+
+          {% endfor %}
+
+         <tr style='text-align:center;font-weight:bold'>
+            <td style="border:0px solid black"></td>
+           <td>Total</td> 
+           <td>{{total|intcomma}}</td> 
+           <td></td>
+         </tr>
+
+</table>
+
+
+ <table style="margin-top:0.5%;margin-bottom:0%;font-size:1em" width="100%" class="table  table-bordered"> 
+      <tr>
+
+        <td style="color:blue;text-align:center">
+            <a href="#" style="color:blue;text-align:center" onClick= "approve()" title="EApprovve N {{ total|intcomma}} mandates">Approve All</a>
+        </td>
+</tr>
+
+       </table>
+     
+
+{% else %}
+
+<div style="color:blue;text-align:center">no records found </div>
+
+
+
+
+
+{% endif %}

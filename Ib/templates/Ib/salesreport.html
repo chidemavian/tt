@@ -1,0 +1,161 @@
+
+
+
+{% extends 'Ib/adminbase.html' %}
+{% block content %}
+
+
+<div style="text-align:center">Cash Sales Menu</div>
+
+   <table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;font-size:0.9em">
+
+        <td  >
+            <a href="/vts/thrift/sales/admin/daily/" style="color:red">Daily</a>
+        </td> 
+
+         <td >
+            <a href="/vts/thrift/sales/admin/weekly/" style="color:red">weekly</a>
+        </td>
+
+       <td  style="background:blue">
+        <a href="/vts/thrift/sales/admin/monthly/" style="color:white">Monthly</a></td>
+       <td  >
+        <a href="/vts/thrift/sales/admin/yearly/" style="color:red">Annually</a></td>
+    </tr>
+</table>
+
+<table style="margin-top:0%;margin-bottom:0%;font-size:0.7em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<form action="/vts/thrift/sales/admin/" method="POST">
+
+    <tr >
+      <td >{{ form.merchants.label_tag}}:</td><td> {{ form.merchants }}</td>
+    </tr>
+        <tr >
+      <td >{{ form.from_date.label_tag}}:</td><td> From: {{ form.from_date }} To: {{ form.to_date }}</td>
+    </tr>
+
+    <tr >
+      <td >{{ form.status.label_tag}}:</td><td> {{ form.status }}</td>
+    </tr>
+
+</form>
+
+</table>
+
+
+
+<table style="margin-top:0.3%;margin-bottom:02%;font-size:0.7em" width="100%" class="table  table-bordered" id="dataTables-example">
+            <tr>
+
+            <td colspan="25">
+                <div class="salesbox"></div>
+            </td>
+
+        </tr>
+</table>
+
+
+
+
+
+
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function() {
+            var pickerOpts = {
+                // appendText: "yy/mm/dd",
+                showOtherMonths: true,
+                changeMonth: true,
+                changeYear: true,
+                dateFormat:"yy-mm-dd"
+            };
+            $("#id_from_date").datepicker(pickerOpts);
+            $("#id_to_date").datepicker(pickerOpts);
+            //alert("welcome");
+            $("#id_merchants").focus();
+            getid();
+        });
+    </script>
+
+
+
+    <script type="text/javascript" >
+        $(document).ready(function() {
+
+            $("#id_merchants").change(function () {
+                autopost2();
+            });
+            $("#id_from_date").change(function () {
+                autopost2();
+            });
+            $("#id_to_date").change(function () {
+                autopost2();
+            });
+            $("#id_status").change(function () {
+                autopost2();
+            });
+        });
+    </script>
+
+
+
+
+
+    <script type="text/javascript" language="javascript">
+        function getid(){
+            var state = "{{user}}" ; // i need session to determine my class
+            // alert(state);
+            var url = "/vts/thrift/sales/getmerchantid/";
+            var i = 0;
+            var data='userid='+state;
+            $("#id_merchants").val('');  
+            $("#id_merchants").html('');
+            if (state != undefined){
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data:data,
+                    success: function(data){
+                        var options = '';
+                        for (i=0; i<data.length; i++){
+                            options += '<option value="' + data[i] +'">' + data[i] + '</option>'
+                        }
+                        $("#id_merchants").append(options);
+                        // autopost2p();
+
+                    }
+                })
+            }
+        }
+
+    </script>
+
+
+
+    <script type="text/javascript" language="javascript">
+        function autopost2p(){
+            var state = $("#id_merchants").val() + ':'+ $("#id_to_date").val() + ':'+ $("#id_from_date").val() + ':'+ $("#id_status").val();
+            // alert(state)
+            var url = "/vts/thrift/sales/month_ajax/";
+            var i = 0;
+            var data='userid='+state;
+            $.ajax({
+                type:"POST",
+                url:url,
+                data:data,
+                success:function(html) {
+                    $(".salesbox").show();
+                    $(".salesbox").html(html);
+
+                }
+            });
+            return false;
+        }
+    </script>
+
+{% endblock %}
+
+
+

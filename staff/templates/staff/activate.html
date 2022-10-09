@@ -1,0 +1,70 @@
+
+
+{% extends 'staff/staffbase.html' %}
+{% block content %}
+
+
+<div style="text-align:center">Manage Staff Menu</div>
+
+
+
+   <table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+<div>{{msg}}</div>
+    <tr style="text-align:center;font-size:0.7em">
+               <td style="background:blue">
+            <a href="/staff/staff/activate/" style="color:white">Activate</a>
+        </td>
+        <td >
+            <a href="/staff/staff/deactivate/" style="color:red">Deactivate</a>
+        </td>
+
+       <td  ><a href="/staff/staff/delete/" style="color:red">Delete </a></td>
+        <td>
+            <a href="/staff/staff/reset/" style="color:red">Reset password</a>
+        </td>
+
+
+    </tr>
+</table>
+
+   <table style="margin-top:0.2%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+   <form action="" method="POST" >
+    
+    <section class="content">
+
+
+      <div class="container-fluid">            
+            <div class="card card-primary">
+                <div class="card-body">
+                <div class="form-group">
+                  <label>Staff Email:</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                    </div>
+
+                   <input type="email" name="email" required autofocus  class="form-control" placeholder="E-mail">
+                  </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+           <div class="card-footer">
+            <!-- <td > -->
+              <input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Process Activation">
+            <!-- </td> -->
+          </div>
+
+      </section>
+      </form>
+
+</table>
+
+
+
+{% endblock %}
+
+
+

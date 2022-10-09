@@ -1,0 +1,48 @@
+
+
+{% extends 'IIIb/adminloansbase.html' %}
+{% block content %}
+
+
+<div style="text-align:center">Loan Repayment Menu</div>
+   <table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+<div>{{msg}}</div>
+    <tr style="text-align:center;">
+        <td  style="background:blue;font-size:0.9em">
+            <a href="/IIIb/threeb/staff/repay_loan/" style="color:white">Staff</a>
+        </td>
+        
+        <td>
+            <a href="/IIIb/threeb/staff/repay_loan/bulk/" style="color:red;font-size:0.9em">Bulk</a>
+        </td>
+
+    </tr>
+</table>
+
+<tr >
+       <form action="" method="POST">
+          <table width="100%" class="table  table-bordered table-hover" id="dataTables-example">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="text" autofocus name="email" class="form-control" id="email" placeholder="E-mail" required>
+                  </div>
+                </div>
+     
+        <div>
+            <td >
+              <input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Process">
+            </td>
+
+        </div>
+
+       </table>
+       </form>
+
+</tr>
+
+
+{% endblock %}
+
+
+

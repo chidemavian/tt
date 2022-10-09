@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+
+{% load humanize %}
+<html>
+    <body>
+<div>Hello {{ surname }},</div>
+
+	<div>Your account has been credited successfully</div>
+	<div>Below is a summary of the transaction</div>
+  
+  <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+  	<tr>
+
+  		<td>S/N</td>
+  		<td>Month</td>
+  		<td>Thrift</td>
+  		<td>Amount</td>
+
+  	</tr>
+  	
+  	<tr>
+
+  		<td>1.</td>
+  		<td>{{month}}</td>
+  		<td>{{thrift|intcomma}}</td>
+  		<td>{{amount|intcomma}}</td>
+
+
+  	</tr>
+</table>
+    </body>
+
+
+</html>

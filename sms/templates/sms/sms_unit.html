@@ -1,0 +1,45 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Selected Value</title>
+    <link href="css/selectbox.css" rel="stylesheet">
+</head>
+
+
+<body>
+<table style="margin-top:01%;margin-bottom:0.2%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<tr>
+    <td style='font-weight:bold'>Funding</td>
+      <td>
+      <select id="id_funding_type" Onchange="ShowHideDiv()">
+      <option value="-----">-----</option>
+      <option id ='Cash'>Cash</option>
+      <option id ="DC">Daily Contribution</option>
+      </select>
+    </td>
+</tr>
+
+<div id="dvPassport" style="display: none">
+  <table style="margin-top:0%;margin-bottom:0.5%" width="100%" class="table  table-bordered" id="dataTables-example">
+    <tr>
+       <td ><input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Process Request"></td>
+     </tr>
+  </table>
+</div> 
+
+</table>
+
+
+</body>
+
+<script type="text/javascript">
+    function ShowHideDiv() {
+        var dvPassport = document.getElementById("dvPassport");
+        dvPassport.style.display = Cash.selected ? "block" : "none";
+    }
+</script>
+

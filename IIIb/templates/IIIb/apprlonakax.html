@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+{% load humanize %}
+
+<body>
+
+
+<div> Do you really want to approve all <br>  <span style='color:red'> Loan</span> requests for {{month}}?</div>
+
+
+<form 
+action="/IIIb/threeb/staff/approvals/approveall/yes/"
+method="POST">
+
+<input type='hidden' name="month121"   value ={{month_index}}>
+         
+     <table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+        <tr>
+          <td >
+          <input class="btn btn-lg btn-success btn-block" name="submit" type= "submit"value="yes">
+        </td>
+      </tr>
+    </table>
+</form>
+</body>
+
+</html>

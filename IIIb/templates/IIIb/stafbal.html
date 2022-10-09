@@ -1,0 +1,43 @@
+
+
+
+{% extends 'IIIb/settings_base.html' %}
+{% block content %}
+
+{% load humanize %}
+<div style="text-align:center">Standard Loans Set Up </div>
+   <table style="margin-top:0%;margin-bottom:0.92%;font-size:0.9em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+        <td ><a href="/IIIb/threeb/loans/settings/" style="color:red">Set Up</a></td>
+        <td ><a href="/IIIb/threeb/manage/settings/" style="color:red">Manage Set Up</a></td>
+        <td  style="background:blue"><a href="/IIIb/threeb/openingbalances/settings/" style="color:white">Opening Balances</a></td>
+    </tr>
+</table>
+
+   <table style="margin-top:0%;margin-bottom:01%;font-size:0.9em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+         <td style="background:blue"><a href="/IIIb/threeb/openingbalances/settings/" style="color:white">Cooperators</a></td>
+      <td  ><a href="/IIIb/threeb/savings/settings/" style="color:red">Upload</a></td>
+
+    </tr>
+</table>
+
+
+   <table style="margin-top:0%;margin-bottom:01%;font-size:0.9em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr >
+         <td >E-mail</td>
+      <td  >{{staff.email}}</td>
+    </tr>
+    <tr>
+      <td  >Name</td>
+      <td  >{{staff.surname}} {{staff.firstname}} {{staff.othername}}</td>
+    </tr>
+</table>
+<div>Total Savings is N {{tot|intcomma}}  click <a href="">here</a> to change </div>
+{% endblock %}
+
+
+

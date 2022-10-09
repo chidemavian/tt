@@ -1,0 +1,112 @@
+
+
+
+{% extends 'Ib/adminloansbase.html' %}
+
+{% block content %}
+
+<div style="text-align:center;font-weight:bold">Customer Loan Booking Request</div>
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<div>{{msg}}</div>
+
+    <tr style="text-align:center;">
+      <td  >
+          <a href="/vts/threeb/staff/request_loan/" style="color:red">Apply</a>
+      </td>
+        <td>
+          <a href="/vts/threeb/loans/approve/" style="color:red">Approve</a>
+      </td>
+      <td style="background:blue">
+          <a href="/vts/threeb/staff/request_loan/history/" style="color:white">Log</a>
+      </td>
+    </tr>
+</table>
+
+
+<table style="margin-top:0%;margin-bottom:02%;font-size:0.8em" width="100%" class="table table-bordered" id="dataTables-example">
+
+
+
+
+  <tr>
+        <td style='font-weight:bold'>Loan Status</td>
+        <td>
+            <select name="scena" id="id_scena">
+             <option value="-----">-----</option>             
+             <option value="application">Applications</option>
+             <option value="Approval">Approvals</option>
+             <option value="decline">Declines</option>
+             </select>
+         </td>
+</tr>
+
+    <tr >
+            <td >{{ form.date.label_tag}}:</td><td> {{ form.date }}</td>
+    </tr> 
+</table>
+
+
+
+<table width="100%" class="table  table-bordered" id="dataTables-example">
+
+           <tr>
+                <div class="box6"></div>
+           </tr>
+</table>
+ 
+
+
+
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function() {
+            var pickerOpts = {
+                // appendText: "yy/mm/dd",
+                showOtherMonths: true,
+                changeMonth: true,
+                changeYear: true,
+                dateFormat:"dd/mm/yy"
+            };
+            $("#id_date").datepicker(pickerOpts);
+            //alert("welcome");
+            $("#id_scena").focus();
+
+            $("#id_scena").change(function () {
+                autopost20p1();
+            });
+            $("#id_date").change(function () {
+                autopost20p1();
+            });
+            autopost20p1();
+
+        });
+    </script>
+
+
+
+  <script type="text/javascript" language="javascript">
+        function autopost20p1(){
+            var state = '{{user}}' + ":" +$("#id_scena").val()+ ':'+ $("#id_date").val();
+            // alert(state)
+            var url = "/vts/threeb/loans/scena/loanlog/";
+            var i = 0;
+            var data='userid='+state;
+            $.ajax({
+                type:"POST",
+                url:url,
+                data:data,
+                success:function(html) {
+                    $(".box6").show();
+                    $(".box6").html(html);
+                }
+            });
+            return false;
+        }
+    </script>
+
+
+
+{% endblock %}
+
+
+

@@ -1,0 +1,191 @@
+
+{% extends 'Ib/adminbase.html' %}
+{% block content %}
+
+{% load humanize %}
+<div style="text-align:center">Miscellenous</div>
+
+   <table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+        <td  >
+            <a href="/vts/thrift/misc/customers/" style="color:red">Customers' List</a>
+        </td>
+        
+        <td>
+            <!-- <a href="/vts/thrift/misc/custmers/ " style="color:red;font-size:0.9em">Name Search</a> -->
+            <a href="#" style="color:red;font-size:0.9em">Name Search</a>
+        </td>
+
+         <td style="background:blue;font-size:0.9em">
+            <a href="/vts/thrift/misc/switches/" style="color:white;font-size:0.9em">Merchant Switch</a>
+        </td>
+
+    </tr>
+</table>
+
+
+  <table style="margin-top:1%;margin-bottom:03%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+   <tr>
+    <td style='font-weight:bold'>Merchant ID:</td>
+    <td>{{ merchant.id }}</td>
+  </tr>
+
+  <tr>
+      <td style='font-weight:bold'>Name:</td>
+    <td>
+       {{ merchant.staff.surname }}  {{ merchant.staff.firstname }}  {{ merchant.staff.othername }}
+    </td>
+  </tr>
+</table>
+
+
+  <div style='font-weight:bold'>Customers' List</div>
+   <table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <thead>
+        <tr style="text-align:center;font-weight:bold">
+           <td >S/N</td>
+           <td >Name</td>
+           <td >Wallet</td>
+          <td >Select</td>
+        </tr>
+    </thead>
+
+    {% for k in customer %}
+    <tr style="text-align:center">
+          <td >{{ forloop.counter }}.</td>
+
+          <td >{{ k.surname }},    {{ k.firstname }}   {{ k.otherame }}</td>
+          <td >{{ k.wallet}}</td>
+  <td >
+    <input type="checkbox" name="ggg" id="rrr"  class ="loginTxtbox" onClick= "selectauto({{k.id}})"
+>
+  </td>
+</tr>
+{% endfor %}
+</table>
+
+
+<div style='color:grey'>Tick the box for each customer whose merchant you want to switch</div>
+
+
+
+
+
+
+
+<table style="margin-top:03%;margin-bottom:-1.8%" width="100%" class="table  table-bordered" id="dataTables-example">
+   <tr >
+       <td >{{ form.merchant.label_tag}}:</td>
+       <td> {{ form.merchant }}</td>
+   </tr>
+
+</table>
+
+
+
+<table width="100%" class="table  table-bordered" id="dataTables-example">
+
+           <tr>
+                <div class="boxselect"></div>
+           </tr>
+</table>
+
+
+<table width="100%" class="table  table-bordered" id="dataTables-example">
+
+           <tr>
+                <div class="boxmerchant"></div>
+           </tr>
+</table>
+
+
+   <script type="text/javascript" >
+        $(document).ready(function() {            
+            $("#id_merchant").change(function () {
+                autop();
+            });
+            getstaff();
+        });
+    </script>
+
+<!-- 08128926330------blesss -->
+
+    <script type="text/javascript" language="javascript">
+        function getstaff(){
+            var state = "{{merchant.id}}";
+            // alert(state);
+            var url = "/vts/thrift/misc/getstaff/";
+            var i = 0;
+            var data='userid='+state;
+            $("#id_merchant").val('');   
+            $("#id_merchant").html('');
+            if (state != undefined){
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data:data,
+                    success: function(data){
+                        var options = '';
+                        for (i=0; i<data.length; i++){
+                            options += '<option value="' + data[i] +'">' + data[i] + '</option>'
+                        }
+                        $("#id_merchant").append(options);
+                        autop();
+
+                    }
+                })
+            }
+        }
+
+    </script>
+
+
+
+    <script type="text/javascript" language="javascript">
+        function selectauto0(vi){
+            var state = $("#id_ggg").val() ;
+            // + ':' + vi;
+            // alert(state)
+            var url = "/vts/thrift/misc/showselect/";
+            var i = 0;
+            var data='userid='+state;
+            $.ajax({
+                type:"POST",
+                url:url,
+                data:data,
+                success:function(html) {
+                    $(".boxmerchant").hide();
+                    $(".boxselect").show();
+                    $(".boxselect").html(html);
+                }
+            });
+            return false;
+        }
+    </script>
+
+    <script type="text/javascript" language="javascript">
+        function autop(){
+            var state = $("#id_merchant").val();
+            // alert(state)
+            var url = "/vts/thrift/misc/getswitch/";
+            var i = 0;
+            var data='userid='+state;
+            $.ajax({
+                type:"POST",
+                url:url,
+                data:data,
+                success:function(html) {
+                    $(".boxmerchant").show();
+                    $(".boxmerchant").html(html);
+                }
+            });
+            return false;
+        }
+    </script>
+{% endblock %}
+
+
+

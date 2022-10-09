@@ -1,0 +1,115 @@
+
+
+{% extends 'thrift/adminbase.html' %}
+{% block content %}
+
+
+{% load humanize %}
+<div style="text-align:center">Approvals Menu</div>
+   <table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+        <td  style="background:blue;font-size:0.9em">
+            <a href="/thrift/thrift/approvals/" style="color:white">Approval</a>
+        </td>
+        
+       <td  >
+        <a href="/thrift/thrift/approvals/approvereport/" style="color:red">Report</a></td>
+    </tr>
+</table>
+
+
+<form action="/thrift/thrift/approvalsmenu/approvefund/" method="POST">
+
+<table style="margin-top:0.5%;margin-bottom:0%;font-size:0.9em"  width="100%" class="table  table-bordered" id="dataTables-example">
+
+  <tr>
+    <td style="font-weight:bold"> Merchant:</td>
+    <td>{{merchant.id}}</td>
+</tr>
+
+    <tr>
+      <td style="font-weight:bold">Merchant Name: </td>
+      <td>{{merchant.staff.surname}}  {{merchant.staff.firstname}}  {{merchant.staff.othername}}</td>
+    </tr>
+
+  <tr>
+    <td style="font-weight:bold">Transaction Date: </td>
+    <td>{{date}}</td>
+  </tr>
+</table>
+
+
+{% if thriftrec %}    
+   <table style="margin-top:0.5%;margin-bottom:0%;font-size:0.9em"width="100%" class="table  table-bordered" id="dataTables-example">
+    <thead>
+
+        <tr style="text-align:center;font-weight:bold">
+           <td >S/N</td>
+           <td >Customer</td>
+           <td >Thrift</td>
+           <td >Paid</td>
+           <td >Status</td>
+        </tr>
+    </thead>
+    {% for k in thriftrec %}                      
+    <tr style="font-weight:bod;text-align:center">
+          <td >{{ forloop.counter }}.</td>
+          <td >{{ k.name }} {{ k.customer.firstname }}</td>
+          <td>{{k.thrift}}</td>
+          <td >{{ k.amount|intcomma}}</td>
+          <td>{{ k.status }}</td>
+    </tr>
+    {% endfor %}
+
+<table style="margin-top:0.5%;margin-bottom:0%;font-size:0.9em" width="100%" class="table  table-bordered" id="dataTables-example">
+    <tr style="font-weight:bold;text-align:center">
+      <td> Total Sales:</td> <td> {{total|intcomma}}</td>
+      <td> Total Cash Remitted:</td> <td> {{rem|intcomma}}</td>
+    </tr>
+</table>
+
+
+<table style="margin-top:0.5%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+   <td >
+      <input style="font-size:01em" class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Approve Funds">
+   </td>
+ </table>
+
+
+       <input type="hidden" name="merchant" id="merchant"  readonly="readonly" value="{{ merchant.id }}" class ="loginTxtbox">
+       <input type="hidden" name="date" id="date"  readonly="readonly" value="{{ cdate}}" class ="loginTxtbox">
+    
+     <input type="hidden" name="dates" id="dates" readonly="readonly" value="{{ date}}" class ="loginTxtbox">
+</form>
+    
+    {% else %}
+
+    <div>No remittal history found on your account for  {{date}}</div>
+       <table width="100%" class="table  table-bordered" id="dataTables-example">
+
+           <form action="/thrift/thrift/approvalsmenu/" method="POST">
+
+           <td ><input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Continue"></td>
+           </form>
+
+    </table>
+    {% endif %}
+
+
+    <script language="javascript" type="text/javascript">
+        function disable(f)
+        {
+            var button = f.elements['submit'];
+            button.value = 'Processing';
+            button.disabled = 'true';
+            return true;
+        }
+    </script>
+
+
+
+{% endblock %}
+
+
+

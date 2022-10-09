@@ -1,0 +1,109 @@
+<script type="text/javascript" src='/static/mato/JS/jquery-1.5.js'></script>
+
+
+
+{% extends 'Ib/accountbal_co.html' %}
+{% block content %}
+
+{% load humanize %}
+
+
+<div style="text-align:center">Account Balances Menu</div>
+   <table style="margin-top:0%;margin-bottom:01%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+<div>{{msg}}</div>
+    <tr style="text-align:center;">
+      <td  style="background:blue">
+          <a href="/vts/thrift/history/"  style="color:white">Account Balance</a>
+      </td>
+      <td>
+          <a href="/vts/thrift/statement/"  style="color:red">Account History</a>
+      </td>
+    </tr>
+</table>
+
+
+<form action="/vts/thrift/addthrift/putthrift/" method="POST">
+
+<table style="margin-top:01%;margin-bottom:0.2%" width="100%" class="table  table-bordered" id="dataTables-example">
+            <tr >
+              <td style='font-weight:bold'>Account No:</td>
+                <td> {{ customer.wallet }}</td>
+
+            </tr>
+            <tr >
+              <td style='font-weight:bold'>Account Name: </td>
+                <td> {{ customer.surname }} {{ customer.firstname }} {{ customer.othername }}</td>
+
+            </tr>
+
+       <tr >
+        <td style='font-weight:bold'>Balance:</td><td> {{ amount|intcomma}}</td>
+       </tr> 
+
+
+
+
+
+</table>
+
+<table  width="100%" class="table  table-bordered" id="dataTables-example">
+
+           <tr >
+                <div class="boxaccount_type"></div>
+           </tr>
+</table>
+ 
+<input type="hidden" name="wallet" id="wallet"  readonly="readonly" value="{{ wallet }}" class ="loginTxtbox">
+
+</form>
+
+
+  <script type="text/javascript" >
+        $(document).ready(function() {            
+            $("#id_account_type").change(function () {
+                autopostacc();
+            });
+
+            $("#id_month").change(function () {
+                autopostacc();
+            });                         
+            autopostacc();
+        });
+    </script>
+
+
+    <script type="text/javascript" language="javascript">
+        function autopostacc(){
+            var state = $("#id_account_type").val() + ":" + "{{wallet}}" + ":" + $("#id_month").val()+ ":" + "{{user}}";
+            // alert(state)
+            var url = "/vts/thrift/addthrift/account_history/";
+            var i = 0;
+            var data='userid='+state;
+            $.ajax({
+                type:"POST",
+                url:url,
+                data:data,
+                success:function(html) {
+                    $(".boxaccount_type").show();
+                    $(".boxaccount_type").html(html);
+
+                }
+            });
+            return false;
+        }
+    </script>
+
+
+
+
+<script type="text/javascript" language="javascript">
+window.history.pushState(null, "", window.location.href);
+window.onpopstate = function () {
+    window.history.pushState(null, "", window.location.href);
+};
+
+</script>
+{% endblock %}
+
+
+

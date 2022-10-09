@@ -1,0 +1,62 @@
+
+
+
+
+{% load humanize %}
+
+<table style="margin-top:0%;margin-bottom:0.5%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+
+<tr>
+  <td>Wallet Balance :</td>
+  <td><del style='color:gray;text-decoration-style:double'>N</del> {{bal|intcomma}}</td>
+  </tr>
+
+</table>  
+<table style="margin-top:0.2%;margin-bottom:0%;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+    {% if thriftrec %} 
+     <thead >
+        <tr style="font-weight:bold">
+           <td >S/N</td>
+           <td >Date</td>
+           <td >Amt(<del style='color:gray;text-decoration-style:double'>N</del>)</td>
+           <td >Desc</td>
+        </tr>
+    </thead>                   
+            {% for student in thriftrec %}
+                <tr >
+                  <td >{{ forloop.counter }}.</td>
+                  <td >{{ student.recdate }}</td>
+                  <td >{{ student.amount|intcomma }}</td>
+                  <td >{{ student.status }} </td>
+                </tr>
+            {% endfor %}
+
+
+{% endif %}
+</table>
+
+
+<table style="margin-top:0.2%;margin-bottom:0.6%;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<tr >
+
+  <td >
+<a href="/fts/thrift/addthrift/" >Thrift</a>
+</td>
+<td>
+
+  
+  <a href="/fts/thrift/payrequest/">Contribute</a>
+  
+  </td>
+    <td >
+    <a href="/fts/thrift/cashout">Withdraw</a>
+  </td>
+  <td>
+    <a href="/fts/thrift/home/" >Help</a>
+  
+  </td>
+</tr>
+</table>
+

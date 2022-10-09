@@ -1,0 +1,39 @@
+
+{% load humanize %}
+
+     
+<form action="/vts/thrift/interest/edit/changepop/" method="POST">
+
+<table style="margin-top:0%;margin-bottom:0%;font-size:0.5em"  width="100%" class="table  table-bordered table-hover" id="dataTables-example">
+
+    <tr>
+    <td> Interest Rate:</td>
+    <td><input type="text" name="interest" value="{{ttt.interest}}" > %</td>
+  </tr>
+    <tr>
+    <td> Duration:</td>
+     <td><input type="text" name="duration" value="{{ttt.duration}}" > Days</td>
+  
+  </tr>
+    <tr>
+      <td>Status: </td>
+     <td>{{ttt.status}}   </td>
+  </tr>
+  </table>
+
+
+ <table width="100%" class="table  table-bordered table-hover" id="dataTables-example">
+  <td >
+    <input class="btn btn-lg btn-success btn-block" name="submit" type= "submit"value="Update">
+
+  </td>    
+</table>
+
+ </form>
+
+   <script type="text/javascript" >
+        $(document).ready(function() {
+
+            $("#id_amount").focus();
+        });
+    </script>

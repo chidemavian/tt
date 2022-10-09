@@ -1,0 +1,80 @@
+<script type="text/javascript" src='/static/mato/JS/jquery-1.5.js'></script>
+
+
+
+{% extends 'IIIb/walletbase_c.html' %}
+{% block content %}
+
+{% load humanize %}
+
+<div style="text-align:center">Wallet Balances Menu</div>
+
+
+   <table style="margin-top:0%;margin-bottom:01%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+      <td  >
+          <a href="/IIIb/threeb/staff/mywallet/"  style="color:red">Balances</a>
+      </td>
+      <td style="background:blue">
+          <a href="/IIIb/threeb/staff/statement/"  style="color:white">Statement</a>
+      </td>
+      <td>
+          <a href="/IIIb/threeb/staff/withdraw/"  style="color:red">Withdraw</a>
+      </td>
+      <td>
+          <a href="/IIIb/threeb/staff/transfer/"  style="color:red">Transfer</a>
+      </td>
+    </tr>
+</table>
+
+
+
+ <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+  <tr> 
+    <td style="font-weight:bold">My E-mail</td>
+    <td>{{msg.staff.email}}</td>
+  </tr>
+
+  <tr> 
+    <td style="font-weight:bold">My Name</td>
+  <td>{{msg.staff.surname}}, {{msg.staff.firstname}}   {{msg.staff.othername}} </td>
+  </tr>
+
+
+ </table>
+
+
+  <table style="margin-top:0.2%;margin-bottom:02%;font-size:0.8em;text-align:center;" width="100%" class="table  table-bordered" id="dataTables-example">
+    
+    <tr style="font-weight:bold">
+      <td>S/N</td>
+      <td>Description</td> 
+      <td>Month</td>
+      <td>Amoun</td> 
+      </tr>
+
+{% for s in statement %}
+    <tr>  
+
+      <td>{{forloop.counter}}</td>
+      <td>{{s.account_type}}</td>
+      <td>{{s.month}}</td>
+      <td>{{s.amount|intcomma}}</td> 
+      </tr>
+{% endfor %}
+
+
+  <tr style="font-weight:bold"> 
+    <td ></td>
+    <td>Balance</td>
+    <td></td>
+    <td>{{amount|intcomma}}</td>
+  </tr>
+
+ </table>
+{% endblock %}
+
+
+

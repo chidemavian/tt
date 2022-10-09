@@ -1,0 +1,62 @@
+
+
+{% extends 'Ia/thriftbase_cash.html' %}
+{% block content %}
+
+
+<div style="text-align:center">Thrift Menu</div>
+
+
+
+
+<table style="margin-top:0%;margin-bottom:0%;font-size:0.9em" width="100%" class="table  table-bordered" >
+
+    <tr style="text-align:center;">
+        <td  style="background:blue">
+            <a href="/fts/thrift/addthrift/" style="color:white">Add</a>
+        </td>
+        
+        <td>
+            <a href="/fts/thrift/viewthrift/" style="color:red">View</a>
+        </td>
+       <td  ><a href="/fts/thrift/changethrift/" style="color:red">Change</a></td>
+        <td>
+            <a href="/fts/thrift/rolloverthrift/" style="color:red">Rollover</a>
+        </td>
+        <td >
+            <a href="/fts/thrift/thriftreport/" style="color:red">Log</a>
+        </td>
+    </tr>
+</table>
+
+<div>{{msg}}</div>
+
+
+
+<form action="" method="POST">
+<table style="margin-top:0.5%;margin-bottom:0.5%;font-size:0.7em" width="100%" class="table  table-bordered" >
+           <tr >
+               <td >{{ form.wallet.label_tag}}</td><td> {{ form.wallet }}</td>
+             </tr>   
+       </table>
+
+ <table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" >      
+       <td ><input style="font-size:1em"  class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Process"></td>
+      
+</table>
+
+ </form>
+
+   <script type="text/javascript" >
+        $(document).ready(function() {
+
+            $("#id_wallet").focus();
+
+        });
+    </script>
+
+
+{% endblock %}
+
+
+

@@ -1,0 +1,100 @@
+
+
+
+{% extends 'IIIb/adminsavingsbase_o.html' %}
+
+{% block content %}
+
+{% load humanize %}
+<div style="text-align:center">Cash Deposit Form</div>
+
+
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+
+    <tr style="text-align:center;">
+      <td >
+          <a href="/IIIb/threeb/savings/deposit/" style="color:red">Deposit</a>
+      </td>
+      <td  style="background:blue">
+          <a href="/IIIb/threeb/savings/save_packages/" style="color:white">Savings Scheme</a>
+      </td>
+      <td ><a href="/IIIb/threeb/savings/deposit/view_transactions/" style="color:red">Log</a></td>
+    </tr>
+</table>
+
+
+
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr> 
+      <td style="font-weight:bold">My E-mail</td>
+      <td>{{msg.staff.email}}</td>
+    </tr>
+
+    <tr> 
+      <td style="font-weight:bold">My Name</td>
+    <td>{{msg.staff.surname}}, {{msg.staff.firstname}}   {{msg.staff.othername}} </td>
+    </tr>
+
+   </table>
+
+
+  <form action="/IIIb/threeb/savings/deposit/packages/" method="POST">
+
+   <table style="margin-top:0.2%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+     
+
+        <tr> 
+          <td style="font-weight:bold">Package</td>
+          <td>{{package}}</td>
+        </tr>
+
+        <tr> 
+          <td style="font-weight:bold">Monthly deduction</td>
+          <td>N {{amount|intcomma}} </td>
+        </tr>  
+    
+    </table>
+
+
+
+
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+          <tr>
+          <td ><input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Apply">
+            </td >
+            <td ><a class="btn btn-lg btn-success btn-block" href="/IIIb/threeb/savings/save_packages/">Cancel</a></td>
+
+
+          </tr>
+   </table>
+
+
+
+<input type="hidden" name="package" readonly="readonly" value="{{ package}}" >
+
+<input type="hidden" name="amount" readonly="readonly" value="{{ amount }}">
+
+  </form>
+
+
+   <script type="text/javascript" >
+        $(document).ready(function() {
+
+            $("#id_email").focus();
+  
+        });
+    </script>
+<script type="text/javascript" language="javascript">
+window.history.pushState(null, "", window.location.href);
+window.onpopstate = function () {
+    window.history.pushState(null, "", window.location.href);
+};
+
+</script>
+{% endblock %}
+
+
+

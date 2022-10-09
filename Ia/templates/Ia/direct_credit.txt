@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <br>
+
+        <div>Hello {{ surname }},</h1>
+
+        <div>Your account has been credited successfully.</h3>
+
+
+        <div> Cash Details: </h3><br/>
+        Thrift: {{ thrift }} <br/>
+        Amount: {{ amount }} <br/>
+    </body>
+</html>

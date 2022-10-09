@@ -1,0 +1,102 @@
+
+
+
+list of tables
+tb
+
+
+
+
+					My savings
+1. Deposit  ( mandate and excute )
+Overview
+this provides a way to save one off into your wallet.
+
+list of tables
+A. 		tbliIIIbfieldagent
+B.		tblIIIbbsavingsaccount
+C.		tblIIIbapprovals
+
+I. mandate
+when you issue a mandate to deposit money into your  wallet, it stores directly in the tblIIIbfieldagent table, with a status ='Awaiting Execution' and scheme= "Wallet" [big W] for the month and year
+
+II. execution
+when this mandate is executed, a duplicate copy of the entry in tblIIIbfieldagent table is saved in the tblIIIbsavingsaccount table such that status ="CR" and account-type="Wallet" [ big W]. The corresponding status in tblIIIbfieldagent changes to 'Executed', while the transaction is recorded in the tblIIIbapprovals table such that description = "Wallet" and status ="Executed" for the month and year
+
+III. Notifications
+Email is sent out to the cooperator
+
+IV. Eligibility checks(/IIIb/threeb/savings/wallet/-----def checkdep)
+
+the system checks for eligibility at the point of mandate issue. These tests are necessary to ascertain whether the "amount box" shows up or not :) 
+
+These included;
+
+A. repeat request test: This test fails if its the second time you issuing mandate for the month and year, after a successful previous one,
+
+
+if this passes, 
+
+B. Execution test: This test fails if mandate execution has already been done for the same month and year for which your request is made.
+
+
+V. Error msg
+
+once all mandates are executed for the month, no new application arer accepted
+
+
+
+2. saving scheme ( mandate and excute )
+
+Overview
+
+every scheme has its start and end months parameters, howwever,you start at the month you turned up for the scheme and stop at the end month of the scheme. The scheme may include 
+a. subscription for the app [compulsory]
+b. savings into your wallet [compulsory]
+c. other savings scheme/programs which the organization involves in periodically or which the manager sets up based on prevailing need. eg Ileya, xmass, easter savings 
+
+list of tables
+A. 		tblIIIbstaffsavings_pack
+B.		tblIIIbfieldagent
+C.		tblIIIbsavingsaccount
+D.		tblIIIbapprovals
+
+
+I. Request
+ [lump record] your request to subscribe to a saving scheme is stored in the tblIIIbstaffsavings_pack such that status = "Running" and description = the Package you selected. 
+
+ [analysis record] the breakdown of the request is stored in the tblIIIbfieldagent table such that status="Awaiting Execution" and account-type ="package"
+
+
+NB.  the tblIIIbfieldagent table holds entries from multiple sources. To differentiae entry from one source to another, the account-type field was created. Accepted values for this field include "wallet", "package", "loan" and "commodity".
+
+furthermore, the scheme field of the tblIIIbfieldagent table is used to specify account_types. values for this field are;
+
+account-type  		   	scheme
+wallet: 				wallet, 
+pckage: 				package name, 
+loan: 					loan name, 
+commodity: 				commodity name
+
+
+II. Execution (/IIIb/threeb/savings/deposit/packages/ -------def save_pack)
+mandates are executed on a monthly bases. At execution, the entry in tblIIIbfieldagent is copied to the tblIIIbsavingsaccount table such that status = "CR", while the account-type field is filed with the package name. the value of status field changes to 'Executed', and finally, this is executtion is recorded in tblIIIbapprovals table. the entry in the tblIIIbstaffsavings_pack will remain as 'Running' until the last execution is made, which changes its value to "Completed" 
+
+
+III. Notifications
+Email is sent out to the cooperator
+
+IV. Eligibility (/IIIb/threeb/staff/deposit/apply/------------def applydep)
+the system checks for eligibility at the different spots. Point A, before you preview appliation and Point B, ar the point of application. Eligibility tests are first carried out to ascertain whether the amount box shows up or not. 
+
+These included;
+
+a number of eligibility tests are executed viz-aviz;
+1. to check if a cooperator can apply to a savings scheme
+
+it checks what month the application was made. if you made the application earlier than the start of the pack, it rejects it. if u come after the end of the pack, it throws u out. if you come during the life time of the pack, it checks if you have the pack running already, if not, it checkes if execution has been made for the last month of the pack. if no, the amount box shows up
+
+2. to know how the duration of their participation.
+it checks if the execution for the last month of the life of the pack has been made.
+
+

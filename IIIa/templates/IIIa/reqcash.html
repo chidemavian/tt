@@ -1,0 +1,108 @@
+
+{% extends 'thrift/creditofficerbase.html' %}
+{% block content %}
+
+{% load humanize %}
+
+
+<div style="text-align:center">Payments Menu</div>
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+    <tr style="text-align:center;">
+      <td  >
+          <a href="/thrift/thrift/payrequest/" style="color:red">Deposit</a>
+      </td>
+      <td   style="background:blue"><a href="/thrift/thrift/cashout/" style="color:white">Withdrawal</a></td>
+      <td>
+        <a href="/thrift/thrift/unremmitted/" style="color:red">Report</a>
+      </td>
+    </tr>
+</table>
+
+
+
+
+
+<form action="/thrift/thrift/requests/payout_request/" method="POST">
+
+<table style="margin-top:0%;margin-bottom:0.6%" width="100%" class="table  table-bordered" id="dataTables-example">
+            <tr >
+              <td >{{ form.wallet.label_tag}}:</td>
+                <td> {{ customer.wallet }}</td>
+
+            </tr>
+            <tr >
+              <td style='font-weight:bold'>Name: </td>
+                <td> {{ customer.surname }} {{ customer.firstname }} {{ customer.othername }}</td>
+
+            </tr>
+
+       <tr >
+        <td >{{ form.month.label_tag}}:</td><td> {{ form.month }}</td>
+       </tr> 
+
+
+
+            <tr>
+            <td style='font-weight:bold'>Account Type</td>
+            <td>
+                <select name="account_type" id="id_account_type">
+                 <option value="-----">-----</option>
+                 <option value="Main account">Main account</option>
+                 <option value="Sub account">Sub account</option>
+                 </select>
+             </td>
+</tr>
+</table>
+
+<table style="margin-top:0%;margin-bottom:0.3%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+           <tr >
+                <div class="boxcashabc"></div>
+           </tr>
+</table>
+ 
+<input type="hidden" name="wallet" id="wallet"  readonly="readonly" value="{{ wallet }}" class ="loginTxtbox">
+
+</form>
+
+
+  <script type="text/javascript" >
+        $(document).ready(function() {            
+            $("#id_account_type").change(function () {
+                autopostacc123e();
+            });
+
+            $("#id_month").change(function () {
+                autopostacc123e();
+            });                         
+            autopostacc123e();
+        });
+    </script>
+
+
+    <script type="text/javascript" language="javascript">
+        function autopostacc123e(){
+            var state = $("#id_account_type").val() + ":" + "{{wallet}}" + ":" + $("#id_month").val()+ ":" + "{{user}}";
+            // alert(state)
+            var url = "/thrift/thrift/withdraw/account_withdraw/";
+            var i = 0;
+            var data='userid='+state;
+            $.ajax({
+                type:"POST",
+                url:url,
+                data:data,
+                success:function(html) {
+                    $(".boxcashabc").show();
+                    $(".boxcashabc").html(html);
+
+                }
+            });
+            return false;
+        }
+    </script>
+
+
+{% endblock %}
+
+
+

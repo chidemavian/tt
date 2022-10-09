@@ -1,0 +1,58 @@
+
+
+
+{% extends 'Ib/adminloansbase.html' %}
+
+{% block content %}
+
+
+{% load humanize %}
+<div style="text-align:center;font-weight:bold">Customer Loan Booking Request</div>
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.7em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<div>{{msg}}</div>
+
+    <tr style="text-align:center;">
+      <td  >
+          <a href="/vts/threeb/staff/request_loan/" style="color:red">Apply</a>
+      </td>
+        <td>
+          <a href="/vts/threeb/loans/approve/" style="color:red">Approve</a>
+      </td>
+      <td style="background:blue">
+          <a href="/vts/threeb/staff/request_loan/history/" style="color:white">log</a>
+      </td>
+    </tr>
+</table>
+
+
+{% if list %}
+          
+   <table style="margin-top:0%;margin-bottom:02%;font-size:1em" width="100%" class="table  table-bordered" id="dataTables-example">    
+          
+           <tr style='text-align:center;font-weight:bold'>
+               <td >S/N</td>               
+               <td >Package</td>
+               <td>Amount</td>
+               <td>Status</td>
+             </tr>
+             {% for k in list %}
+          <tr style='text-align:center'>
+            <td style='font-weight:bold'>{{forloop.counter}}</td>
+            <td> {{k.package.description}} </td>
+            <td >{{k.volume|intcomma}}</td>
+            <td> {{k.status}}</td>
+
+          </tr>
+          {% endfor %}
+      
+
+{% else %}
+<div>no details found </div>
+{% endif %}
+ </table>
+
+{% endblock %}
+
+
+

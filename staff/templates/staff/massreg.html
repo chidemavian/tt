@@ -1,0 +1,67 @@
+
+
+{% extends 'staff/staffbase.html' %}
+{% block content %}
+
+
+
+<div style="text-align:center">Staff Menu</div>
+   <table style="margin-top:0%;margin-bottom:01%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+        <td  ><a href="/staff/staff/staffdet/" style="color:red"> Nzew</a></td>
+        <td style="background:blue;font-size:0.9em"><a href="/staff/staff/registeration/mass/" style="color:white;font-size:0.9em">Mass Registration</a></td>
+        
+
+    </tr>
+</table>
+{{msg}}
+<tr >
+
+  
+  <form action="" method="POST"  enctype="multipart/form-data" >
+    
+    <section class="content">
+      <div class="container-fluid">
+            
+            <!-- general form elements -->
+            <div class="card card-primary">
+
+                <div class="card-body">
+
+                  <div class="form-group">
+                    <label for="customFile">Select File:</label>
+                    <div class="custom-file">
+                      <input type="file" required name= "excel" class="custom-file-input" id="customFile">
+                      <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div> Excel file should carry workers' emails only</div>
+                <!-- /.card-body -->
+           <div class="card-footer">
+            <td >
+              <input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Upload">
+            </td>
+          </div>
+          
+      </section>
+
+      </form>
+
+            </div>
+            <!-- /.card -->
+</div>
+</section>
+
+
+</tr>
+
+
+{% endblock %}
+
+
+

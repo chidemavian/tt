@@ -1,0 +1,52 @@
+
+
+
+
+
+
+
+<table style="margin-top:0%;margin-bottom:02%;font-size:0.8em" width="100%" class="table table-bordered" id="dataTables-example">
+
+
+        <tr >
+            <td >{{ form.month.label_tag}}:</td><td> {{ form.month }}</td>
+        </tr> 
+
+ </table>
+
+
+
+
+
+    <script type="text/javascript" >
+        $(document).ready(function() {            
+
+            $("#id_month").change(function () {
+                autopostp21();
+            });
+            $("#id_funding").focus();
+            autopostp21();
+        });
+    </script>
+
+
+
+  <script type="text/javascript" language="javascript">
+        function autopostp21(){
+            var state = '{{user}}' + ":" +$("#id_month").val();
+            // alert(state)
+            var url = "/IIIb/threeb/loans/salary/";
+            var i = 0;
+            var data='userid='+state;
+            $.ajax({
+                type:"POST",
+                url:url,
+                data:data,
+                success:function(html) {
+                    $(".boxs").show();
+                    $(".boxs").html(html);
+                }
+            });
+            return false;
+        }
+    </script>

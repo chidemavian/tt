@@ -1,0 +1,185 @@
+
+
+
+
+{% extends 'Ib/adminloansbase.html' %}
+
+{% block content %}
+
+
+<div style="text-align:center;font-weight:bold">Customer Loan Booking Request</div>
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<div>{{msg}}</div>
+
+    <tr style="text-align:center;">
+      <td  style="background:blue">
+          <a href="/vts/threeb/staff/request_loan/" style="color:white">Apply</a>
+      </td>
+        <td>
+          <a href="/vts/threeb/loans/approve/" style="color:red">Approve</a>
+      </td>
+      <td >
+          <a href="/vts/threeb/staff/request_loan/history/" style="color:red">Log</a>
+      </td>
+    </tr>
+</table>
+
+
+<form action="/vts/threeb/staff/request_loan/apply/" method="POST">
+
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.7em" width="100%" class="table  table-bordered" id="dataTables-example">
+           
+          <tr >
+              <td >{{ form.customer.label_tag}}:</td>
+              <td> {{ form.customer }}</td>
+          </tr>
+                    <tr >
+              <td >{{ form.amount.label_tag}}:</td>
+              <td> {{ form.amount }}</td>
+          </tr>
+
+          <tr >
+               <td >{{ form.loans.label_tag}}:</td>
+               <td> {{ form.loans }}</td>
+             </tr>
+           <tr >
+               <td >{{ form.repay.label_tag}}:</td>
+               <td> {{ form.repay }}</td>
+
+             </tr>
+
+       </table>
+
+
+         <table style="margin-top:0%;margin-bottom:0%;font-size:0.7em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+               <tr>
+                    <div class="boxloan"></div>
+               </tr>
+
+        </table>
+
+
+  </form>
+
+
+   <script type="text/javascript" >
+        $(document).ready(function() {            
+
+            $("#id_customer").change(function () {
+                loan_packages();
+            });
+
+            $("#id_amount").change(function () {
+                loan_packages();
+            });
+
+            $("#id_loans").change(function () {
+                repay();
+            });
+
+            $("#id_repay").change(function () {
+                autopostloan();
+            });
+            $("#id_customer").focus();
+
+            loan_packages();
+        });
+    </script>
+
+
+
+<script type="text/javascript" language="javascript">
+       function loan_packages(){
+            var state = "{{user}}";
+            // alert(state);
+            var url = "/vts/threeb/staff/request_loan/loan_packages/";
+            var i = 0;
+            var data='userid='+state;
+            $("#id_loans").val('');   
+            $("#id_loans").html('');
+            if (state != undefined){
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data:data,
+                    success: function(data){
+                        var options = '';
+                        for (i=0; i<data.length; i++){
+                            options += '<option value="' + data[i] +'">' + data[i] + '</option>'
+                        }
+                        $("#id_loans").append(options);
+                        repay();
+
+                    }
+                })
+            }
+        }
+
+    </script>
+
+
+   <script type="text/javascript" language="javascript">
+        function repay(){
+            var state = "{{user}}";
+            // alert(state);
+            var url = "/vts/threeb/staff/request_loan/repay_packages/";
+            var i = 0;
+            var data='userid='+state;
+            $("#id_repay").val('');   
+            $("#id_repay").html('');
+            if (state != undefined){
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data:data,
+                    success: function(data){
+                        var options = '';
+                        for (i=0; i<data.length; i++){
+                            options += '<option value="' + data[i] +'">' + data[i] + '</option>'
+                        }
+                        $("#id_repay").append(options);
+                        autopostloan();
+
+                    }
+                })
+            }
+        }
+
+    </script>
+
+  <script type="text/javascript" language="javascript">
+        function autopostloan(){
+            var state = "{{user}}"+ ':'+$("#id_loans").val()+ ':'+$("#id_amount").val()+ ':'+$("#id_repay").val()+ ':'+$("#id_customer").val();
+            // alert(state)
+            var url = "/vts/threeb/staff/request_loan/individual/";
+            var i = 0;
+            var data='userid='+state;
+            $.ajax({
+                type:"POST",
+                url:url,
+                data:data,
+                success:function(html) {
+                    $(".boxloan").show();
+                    $(".boxloan").html(html);
+
+                }
+            });
+            return false;
+        }
+    </script>
+
+
+   <script type="text/javascript" >
+        $(document).ready(function() {
+
+            $("#id_amrount").focus();
+  
+        });
+    </script>
+
+{% endblock %}
+
+
+

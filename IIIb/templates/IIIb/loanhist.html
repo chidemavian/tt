@@ -1,0 +1,75 @@
+
+
+
+
+{% extends 'IIIb/myloanbase_o.html' %}
+
+{% block content %}
+{% load humanize %}
+
+<div style="text-align:center;font-weight:bold">Staff Loan History</div>
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+<div>{{msg}}</div>
+
+
+
+    <tr style="text-align:center;">
+
+      <td  >
+          <a href="/IIIb/threeb/staff/request_loan/" style="color:red">Apply</a>
+      </td>
+        <td>
+          <a href="/IIIb/threeb/staff/request_loan/performance/" style="color:red">Performance</a>
+      </td>
+
+      <td style="background:blue">
+          <a href="/IIIb/threeb/staff/request_loan/history/" style="color:white">Log</a>
+      </td>
+    </tr>
+</table>
+
+   <table style="margin-top:0.2%;margin-bottom:0%;font-size:1em" width="100%" class="table  table-bordered" id="dataTables-example">
+          
+           <tr >
+               <td style='font-weight:bold'>My E-Mail:</td>
+               <td>{{user}}</td>
+             </tr>
+
+          <tr>
+            <td style='font-weight:bold'>My Name:</td>
+            <td> {{name}}</td>
+          </tr>
+           
+       </table>
+
+
+{% if list %}
+          
+   <table style="margin-top:0%;margin-bottom:02%;font-size:1em" width="100%" class="table  table-bordered" id="dataTables-example">    
+          
+           <tr style='text-align:center'>
+               <td style='font-weight:bold'>S/N</td>               
+               <td style='font-weight:bold'>Package</td>
+               <td>Amount</td>
+               <td>Status</td>
+             </tr>
+             {% for k in list %}
+          <tr style='text-align:center'>
+            <td style='font-weight:bold'>{{forloop.counter}}</td>
+            <td> {{k.package.description}} </td>
+            <td style='font-weight:bold'>{{k.volume|intcomma}}</td>
+            <td> {{k.status}}</td>
+
+          </tr>
+          {% endfor %}
+      
+
+{% else %}
+<div>no details found </div>
+{% endif %}
+ </table>
+
+{% endblock %}
+
+
+

@@ -1,0 +1,197 @@
+
+
+
+{% extends 'Ib/adminbase.html' %}
+
+
+{% block content %}
+
+{% load humanize %}
+
+
+
+
+<div style="text-align:center">Approvals Menu</div>
+  
+   <table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+        <td  style="background:blue;font-size:0.9em">
+            <a href="/vts/thrift/approvalsmenu/" style="color:white">Approval</a>
+        </td>
+        <td >
+            <a href="/vts/thrift/payouts/" style="color:red">Pay Out</a>
+        </td>  
+       <td  >
+        <a href="/vts/thrift/approvals/approvereport/" style="color:red">Report</a></td>
+    </tr>
+</table>
+
+ <body>
+
+<div style="margin-top:0%;text-align:center"> Transaction Summary for Unapproved cash</div>
+
+ <table style="margin-top:0%;margin-bottom:0%;font-size:0.9em"  width="100%" class="table  table-bordered" id="dataTables-example">
+     
+    <tr>
+    <td style="font-weight:bold"> Merchant ID:</td>
+    <td>{{merchant.id}}</td>
+    </tr>
+
+    <tr>
+      <td style="font-weight:bold">Merchant Name: </td>
+      <td>{{merchant.staff.surname}}  {{merchant.staff.firstname}}  {{merchant.staff.othername}}</td>
+    </tr>
+
+    <tr>
+      <td style="font-weight:bold">Transaction Date: </td>
+      <td>{{cdate}}</td>
+  </tr>
+
+  </table>
+
+<table style="margin-top:0.5%;margin-bottom:0%;font-size:13px"  width="100%" class="table  table-bordered" id="dataTables-example">
+        <thead >
+    <tr style="text-align:center;font-weight:bold">
+           <td >S/N</td>
+           <td >Customer</td>
+           <td >Amount (N)</td>
+           <td >Action</td>
+      </tr>
+    </thead>                          
+                            
+    {% for student in thriftrec %}
+        <tr style="font-weight:bod;text-align:center">
+          <td >{{ forloop.counter }}.</td>
+          <td >{{ student.customer.customer.surname }}, {{ student.customer.customer.firstname }}  {{ student.customer.customer.othername }}</td>
+          <td >{{ student.amount|intcomma }}</td>
+
+
+          <td style="font-size:1em" class="btn btn-lg btn-success btn-block"><a href="#" style="color:white;font-size:0.9em" onClick= "rreem({{ student.id  }})" title="Approved {{ student.amount|intcomma}} ">Approve  #{{ student.amount|intcomma}}</a>
+          </td>
+        </tr>
+
+
+    {% endfor %}
+
+
+    <tr style="font-weight:bold;text-align:center">
+        <td></td>
+      <td style="color:blue"> Total Sales:</td> 
+      
+      <td style="color:blue"> #{{total|intcomma}}</td>
+      <td></td>
+      <td></td>
+    </tr>
+</table>
+
+   
+  </table> 
+
+
+
+ <table  style="margin-top:0%;margin-bottom:0%;font-size:0.9em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <td style="font-size:1em" class="btn btn-lg btn-success btn-block">
+        <a href="#" style="color:white" onClick= "rreemy({{ merchant.id }})" title="Approve all funds">Approve #{{total|intcomma}}</a>
+
+    </td>
+</table>
+
+
+<input type="hidden" name="date" id="date" readonly="readonly" value="{{ cdate}}" >
+<input type="hidden" name="merchant" id="merchant"  readonly="readonly" value="{{ merchant.id }}" class ="loginTxtbox">
+
+<input type="hidden" name="dates" id="dates"  readonly="readonly" value="{{ dates }}" >
+
+
+<div id="psy"></div>
+<div id="ind"></div>
+ 
+<script type="text/javascript" language="javascript">
+    function rreem(vid){
+        
+        var state = vid + ":" + $("#date").val()+ ":" + "{{user}}";
+        // alert(state)
+        var url = "/vts/thrift/seedit/";
+        var i = 0;
+        var data='userid='+state;
+        $.ajax({
+            type:"POST",
+            url:url,
+            data:data,
+            success:function(html) {
+                $("#ind").html(html);
+                getdind();
+            }
+        });
+        return false;
+    }
+
+</script>
+
+<script type="text/javascript" language="javascript">
+    function getdind(){
+        var diaOpts = {
+            autoOpen:true,
+            // appendTo:"body1",
+            // modal:true,
+            // position: ["center", "middle"],
+            height:'auto',
+            width:'auto',
+            title:'Touch the box to close' ,
+            closeOnEscape:true,
+            show: true,
+            hide: true,
+            bgiframe: true
+        };
+        $("#ind").dialog(diaOpts);
+    }
+
+</script>
+
+<script type="text/javascript" language="javascript">
+    function rreemy(vid){
+        var state = $("#merchant").val() + ":" + $("#date").val()+ ":" + "{{user}}";
+        // alert(state);
+        var url = "/vts/thrift/reedit/";
+        var i = 0;
+        var data='userid='+state;
+        $.ajax({
+            type:"POST",
+            url:url,
+            data:data,
+            success:function(html) {
+                $("#psy").html(html);
+                getdial();
+            }
+        });
+        return false;
+    }
+</script>
+<script type="text/javascript" language="javascript">
+    function getdial(){
+        var diaOpts = {
+            autoOpen:true,
+            // appendTo:"body1",
+            // modal:true,
+            // position: ["center", "middle"],
+            height:'auto',
+            width:'auto',
+            title:'Touch the box to close' ,
+            closeOnEscape:true,
+            show: true,
+            hide: true,
+            bgiframe: true
+        };
+        $("#psy").dialog(diaOpts);
+    }
+
+</script>
+
+</body>
+
+{% endblock %}
+
+
+

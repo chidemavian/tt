@@ -1,0 +1,60 @@
+
+
+{% load humanize %}
+
+<form action="/vts/threeb/staff/request_loan/apply/" method='POST'>
+
+   <table style="margin-top:0%;margin-bottom:0%;font-size:1em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+   	
+          
+           <tr >
+               <td style='font-weight:bold'> {{ repay }}  Repayment:</td>
+               <td>N {{thrift|intcomma}}</td>
+            </tr>
+
+          <tr>
+            <td style='font-weight:bold'>Duration:</td>
+            {% if repay = 'daily' %}
+            <td> {{duration}}  days</td>
+            {% else%}
+            <td> {{duration}}  weeks</td>
+            {% endif %}
+            <tr>
+            <td style='font-weight:bold'>Interest rate</td>
+            <td>{{interest}}%</td>
+          </tr>
+
+          <tr>
+            <td style='font-weight:bold'>Settlement</td>
+            <td> N {{output|intcomma}}</td>
+          </tr>
+
+          <tr style='color:red'>
+            <td style='font-weight:bold'>Total Savings</td>
+            <td> N {{balance|intcomma}}</td>
+          </tr>
+
+       </table>
+     
+
+ <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+    <tr>
+ 		<td ><input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Book">
+ 	    </td >
+
+      <td  >
+        <a class="btn btn-lg btn-success btn-block" href="/vts/threeb/staff/request_loan/">Cancel</a>
+      </td>
+    </tr>
+ </table>
+
+
+<input type='hidden' name="thrift" value ={{thrift}}>
+<input type='hidden' name="amount"  value ={{amount}}>
+<input type='hidden'  name="package" value ={{loan}}>
+<input type='hidden'  name="customer" value ={{customer.id}}>
+<input type='hidden'  name="repay" value ={{repay}}>
+<input type='hidden'  name="output" value ={{output}}>
+
+</form>

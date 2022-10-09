@@ -1,0 +1,53 @@
+
+
+
+{% extends 'IIIb/settings_base.html' %}
+{% block content %}
+
+
+<div style="text-align:center">Standard Loans Set Up </div>
+   <table style="margin-top:0%;margin-bottom:0.92%;font-size:0.9em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+        <td  ><a href="/IIIb/threeb/loans/settings/" style="color:red">Set Up</a></td>
+        <td style="background:blue"><a href="/IIIb/threeb/manage/settings/" style="color:white">Manage Set Up</a></td>
+    </tr>
+</table>
+
+
+
+
+<form action="" method="POST"  enctype="multipart/form-data" >
+    
+    <section class="content">
+      <div class="container-fluid">
+            
+            <!-- general form elements -->
+            <div class="card card-primary">
+  <table style="margin-top:0%;margin-bottom:01%;font-size:0.9em" width="100%" class="table  table-bordered" id="dataTables-example">
+       <tr>
+         <td style='font-weight:bold'>Package Category</td>
+         <td>
+             <select name="account_type" id="id_account_type">
+             <option value="-----">-----</option>
+              <option value="Savings">Savings</option>
+              <option value="loan">Loans </option>
+             </select>
+         </td>
+       </tr>
+</table>
+
+              </div>
+            </div>
+                <!-- /.card-body -->
+      </section>
+
+
+      </form>
+
+
+
+{% endblock %}
+
+
+

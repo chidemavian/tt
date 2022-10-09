@@ -1,0 +1,106 @@
+<!-- <script type="text/javascript" src='/static/mato/JS/jquery-1.5.js'></script> -->
+{% extends 'thrift/creditofficerbase.html' %}
+{% block content %}
+
+
+<div style="text-align:center">Payments Menu</div>
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+<div>{{msg}}</div>
+    <tr style="text-align:center;">
+      <td  style="background:blue">
+          <a href="/thrift/thrift/payrequest/" style="color:white">Deposit</a>
+      </td>
+      <td ><a href="/thrift/thrift/cashout/" style="color:red">Withdrawal</a></td>
+      <td>
+        <a href="/thrift/thrift/unremmitted/" style="color:red">Report</a>
+      </td>
+    </tr>
+</table>
+
+
+<form action="/thrift/thrift/requests/cashin/" method="POST">
+<table style="margin-top:01%;margin-bottom:0.2%" width="100%" class="table  table-bordered" id="dataTables-example">
+            <tr >
+              <td >{{ form.wallet.label_tag}}:</td>
+                <td> {{ customer.wallet }}</td>
+
+            </tr>
+            <tr >
+              <td style='font-weight:bold'>Name: </td>
+                <td> {{ customer.surname }} {{ customer.firstname }} {{ customer.othername }}</td>
+
+            </tr>
+
+  <tr>
+            <td style='font-weight:bold'>Account Type</td>
+            <td>
+                <select name="account_type" id="id_account_type">
+                 <option value="-----">-----</option>
+                 <option value="Main account">Main account</option>
+                 <option value="Sub account">Sub account</option>
+                 </select>
+             </td>
+</tr>
+</table>
+
+<table style="margin-top:01%;margin-bottom:0.2%" width="100%" class="table  table-bordered" id="dataTables-example">
+           <tr >
+                <div class="boxaccount_type"></div>
+           </tr>
+</table>
+ 
+
+<table style="margin-top:01%;margin-bottom:0.2%" width="100%" class="table  table-bordered" id="dataTables-example">
+           <tr >
+                <div class="boxfund"></div>
+           </tr>
+</table>
+
+
+<input type="hidden" name="month" id="month"  readonly="readonly" value="{{ month }}" class ="loginTxtbox">
+
+<input type="hidden" name="wallet" id="wallet"  readonly="readonly" value="{{ wallet }}" class ="loginTxtbox">
+
+</form>
+
+
+  <script type="text/javascript" >
+        $(document).ready(function() {            
+            $("#id_account_type").change(function () {
+                autoposdep2();
+            });
+                        
+            autoposdep2();
+        
+        });
+    </script>
+
+
+    <script type="text/javascript" language="javascript">
+        function autoposdep2(){
+            var state = $("#id_account_type").val() + ":" + "{{wallet}}" + ":" + "{{month}}"+ ":" + "{{user}}";
+            // alert(state)
+            var url = "/thrift/thrift/deposit/account_dep/";
+            var i = 0;
+            var data='userid='+state;
+            $.ajax({
+                type:"POST",
+                url:url,
+                data:data,
+                success:function(html) {
+                    $(".boxfund").hide();
+                    $(".boxaccount_type").show();
+                    $(".boxaccount_type").html(html);
+
+                }
+            });
+            return false;
+        }
+    </script>
+
+
+
+{% endblock %}
+
+
+

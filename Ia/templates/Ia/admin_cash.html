@@ -1,0 +1,52 @@
+
+
+
+       <form action="/fts/thrift/requests/cashin/cashier/" method="POST">
+
+           <input type="hidden" name="wallet" id="wallet"  readonly="readonly" value="{{ wallet }}" class ="loginTxtbox">
+
+           <input type="hidden" name="thrift" id="thrift"  readonly="readonly" value="{{ thrift }}" class ="loginTxtbox">
+        <input type="hidden" name="month" id="month"  readonly="readonly" value="{{ month }}" class ="loginTxtbox">
+         <input type="hidden" name="account_type" id="account_type"  readonly="readonly" value="{{ account_type }}" class ="loginTxtbox">
+
+</tr>
+   <table style="margin-top:-1.7%;margin-bottom:01%" width="100%" class="table  table-bordered" id="dataTables-example">
+          <tr> 
+
+        <td >{{ form.amount.label_tag}}:   </td>
+
+
+    <td> 
+
+        <div class="form-group">
+                 <input type="number" name="amount" class="form-control" id="amount" required placeholder="Enter amount here" autofocus>
+            </div>
+      </td>
+  </tr>
+</table>
+
+<table style="margin-top:02%;margin-bottom:01%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+       <input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Deposit Funds">
+
+</table>
+
+</form>
+
+        <script>
+        $(document).ready(function() {
+            var pickerOpts = {
+                //appendText: "mm/dd/yy",
+                //defaultDate: "+5",
+                showOtherMonths: true,
+                changeMonth: true,
+                changeYear: true,
+                dateFormat:"yy-mm-dd"
+                //showButtonPanel: true
+                // showOn: "button"
+            };
+
+            $( "#amount" ).focus();
+        });
+    </script>
+

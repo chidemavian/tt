@@ -1,0 +1,61 @@
+
+
+
+
+
+
+					My loans
+
+
+1. loan schemes (request, approve and excute )
+
+Overview
+
+every loan scheme has its duration parameter.  
+
+list of tables
+A. 		tblIIIbloandapplications
+B.		tblIIIbfieldagent
+C.		tblIIIbsavingsaccount
+D.		tblIIIbapprovals
+
+
+I. Request
+ [lump record] your request for loan is stored in the tblIIIbloandapplications  table such that status = "Awaiting Approval".
+
+
+ [analysis record] the breakdown of the request is stored in the tblIIIbfieldagent table such that status="Awaiting Execution" and account-type ="package"
+
+
+NB.  the tblIIIbfieldagent table holds entries from multiple sources. To differentiae entry from one source to another, the account-type field was created. Accepted values for this field include "wallet", "package", "loan" and "commodity".
+
+furthermore, the scheme field of the tblIIIbfieldagent table is used to specify account_types. values for this field are;
+
+account-type  		   	scheme
+wallet: 				wallet, 
+pckage: 				package name, 
+loan: 					loan name, 
+commodity: 				commodity name
+
+
+II. Execution (/IIIb/threeb/savings/deposit/packages/ -------def save_pack)
+mandates are executed on a monthly bases. At execution, the entry in tblIIIbfieldagent is copied to the tblIIIbsavingsaccount table such that status = "CR", while the account-type field is filed with the package name. the value of status field changes to 'Executed', and finally, this is executtion is recorded in tblIIIbapprovals table. the entry in the tblIIIbstaffsavings_pack will remain as 'Running' until the last execution is made, which changes its value to "Completed" 
+
+
+III. Notifications
+Email is sent out to the cooperator
+
+IV. Eligibility (/IIIb/threeb/staff/deposit/apply/------------def applydep)
+the system checks for eligibility at the different spots. Point A, before you preview appliation and Point B, ar the point of application. Eligibility tests are first carried out to ascertain whether the amount box shows up or not. 
+
+These included;
+
+a number of eligibility tests are executed viz-aviz;
+1. to check if a cooperator can apply to a savings scheme
+
+it checks what month the application was made. if you made the application earlier than the start of the pack, it rejects it. if u come after the end of the pack, it throws u out. if you come during the life time of the pack, it checks if you have the pack running already, if not, it checkes if execution has been made for the last month of the pack. if no, the amount box shows up
+
+2. to know how the duration of their participation.
+it checks if the execution for the last month of the life of the pack has been made.
+
+

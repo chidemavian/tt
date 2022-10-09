@@ -1,0 +1,67 @@
+
+
+
+
+{% extends 'Ib/accountbal_cash.html' %}
+
+{% block content %}
+
+
+<div style="text-align:center">Statement of account Menu</div>
+   <table style="margin-top:0%;margin-bottom:01%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+<div>{{msg}}</div>
+    <tr style="text-align:center;">
+      <td >
+          <a href="/vts/thrift/history/"  style="color:red">Account Balance</a>
+      </td>
+      <td  style="background:blue">
+          <a href="/vts/thrift/statement/"  style="color:white">Account History</a>
+      </td>
+    </tr>
+</table>
+
+
+
+ <form action="/vts/thrift/statement/" method="POST">
+<div>{{msg}}</div>
+
+    <section class="content">
+      <div class="container-fluid">
+            
+            <!-- general form elements -->
+            <div class="card card-primary">
+
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="wallet">A/C No</label>
+                    <input type="number" autofocus name="wallet" class="form-control" placeholder="Account Number" required>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </section>
+
+
+
+
+
+         <table style="margin-top:0%;margin-bottom:01%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+          <tr>
+       <td ><input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="View History"></td>
+     </tr>
+   </table>
+       </form>
+
+
+   <script type="text/javascript" >
+        $(document).ready(function() {
+
+            $("#id_wallet").focus();
+  
+        });
+    </script>
+
+{% endblock %}
+
+
+

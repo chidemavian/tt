@@ -1,0 +1,88 @@
+
+
+
+
+
+
+{% load humanize %}
+
+<!-- {{detli}} -->
+
+{% if detli %}
+
+
+<div style='margin-top:02%;margin-bottom:0.1%;font-weight:bold;text-align:center'> Profit Report </div>
+
+
+<table style="margin-top:0%;margin-bottom:0.2%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+
+  <td style='font-weight:bold' > From </td><td> {{ from }}</td>
+</tr>
+
+
+<tr>
+  <td style='font-weight:bold' > To </td><td> {{ to }}</td>
+</tr>
+
+</table>
+       <table style="margin-top:0.5%;margin-bottom:0%"width="100%" class="table  table-bordered" id="dataTables-example">
+
+
+         <thead >
+            <tr style="text-align:center;font-weight:bold">
+               <td >S/N</td>
+               <td >Date</td>
+               <td >Profit</td>
+
+            </tr>
+        </thead>                            
+ {% for student in detli %}
+            <tr style="font-weight:bod;text-align:center">
+              
+
+            {% if not student.total %}
+                  
+                  <td >{{ forloop.counter }}.</td>
+                  <td >{{ student.details }}  </td>
+                  <td >{{ student.sum|intcomma }}</td>
+                </tr>
+
+            {% else %}
+
+            <table style="margin-top:0.2%;margin-bottom:02%"width="100%" class="table  table-bordered" id="dataTables-example">
+              <tr>
+                    <td></td>
+                    <td style="font-weight:bold;text-align:center">Total:</td>
+                    <td style="font-weight:bold;text-align:center">{{student.total|intcomma}}</td>
+              </tr>
+            </table>
+
+            {% endif %}
+
+{% endfor %}
+
+</table>
+
+
+{% else %}
+<table style="margin-top:0.5%;margin-bottom:0.6%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+  <div style="color:grey;margin-top:0.5%;margin-bottom:0.6%;text-align:center">Either No record found or you limit search within same year </div>
+</table>
+
+{% endif %}
+
+
+
+
+
+
+<script type="text/javascript" language="javascript">
+window.history.pushState(null, "", window.location.href);
+window.onpopstate = function () {
+    window.history.pushState(null, "", window.location.href);
+};
+
+</script>
+

@@ -1,0 +1,43 @@
+
+
+
+
+{% extends 'IIIb/settings_base.html' %}
+{% block content %}
+
+
+<div style="text-align:center">Standard Loans Set Up </div>
+   <table style="margin-top:0%;margin-bottom:0.92%;font-size:0.9em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+        <td ><a href="/IIIb/threeb/loans/settings/" style="color:red">Set Up</a></td>
+        <td ><a href="/IIIb/threeb/manage/settings/" style="color:red">Manage Set Up</a></td>
+        <td  style="background:blue"><a href="/IIIb/threeb/openingbalances/settings/" style="color:white">Opening Balances</a></td>
+    </tr>
+</table>
+
+   <table style="margin-top:0%;margin-bottom:01%;font-size:0.9em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+         <td ><a href="/IIIb/threeb/openingbalances/settings/" style="color:red">Cooperators</a></td>
+      <td  style="background:blue"><a href="/IIIb/threeb/upload/settings/" style="color:white">Upload</a></td>
+
+    </tr>
+</table>
+
+<table width="100%" class="table  table-bordered table-hover" id="dataTables-example">
+    {{succ}}
+
+      <form action="" 
+      enctype="multipart/form-data" 
+      method="POST">
+            <tr>
+                <td> <div><input required type="file" name="input_excel" size="20"/> </div></td>
+                <td> <button type="submit">Upload File</button></td>      
+
+            </tr>
+     </form>
+             
+</table>
+    
+    {% endblock %}

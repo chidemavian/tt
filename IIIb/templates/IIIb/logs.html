@@ -1,0 +1,43 @@
+
+
+{% load humanize %}
+
+<!-- <form action="/IIIb/threeb/staff/request_loan/apply/" method='POST'> -->
+
+{% if req %}
+   <table style="margin-top:0%;margin-bottom:0%;font-size:1em;text-align:center" width="100%" class="table  table-bordered" >
+
+   	
+          
+           <tr style='font-weight:bold'>
+               <td >S/N</td>
+               <td>Month</td>
+               <td >DOA</td>
+               <td>Amount</td>
+               <td>Status</td>
+          </tr>             
+
+{% for k in req %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td> {{k.month}}</td>
+            <td>{{k.transdate}}</td>
+            <td> {{k.amount}}</td>
+            <td> {{k.status}}</td>
+          </tr>
+  {% endfor %}
+       </table>
+
+{% else %}
+
+<div style='text-align:center'>No records found</div>
+{% endif %}
+
+
+
+<input type='hidden' name="thrift" value ={{thrift}}>
+<input type='hidden' name="amount"  value ={{amount}}>
+<input type='hidden'  name="package" value ={{loan}}>
+
+
+</form>

@@ -1,0 +1,46 @@
+
+{% extends 'Ia/customerbaseIa_cash.html' %}
+
+{% block content %}
+
+
+<div class="card card-primary card-outline">
+	<div class="card-header">
+		<h5 class="m-0" style='text-align:center'>OPERATION SUCCESSFUL</h5>
+	</div>
+
+</div>
+
+<tr class="card-body">
+	<td >	
+		<p class="card-text"  style='text-align:center'> {{wallet}}  is now active for daily contributions </p>
+</td>
+</tr>
+
+
+
+
+
+<table style="margin-top:0.5%;margin-bottom:0.6%;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<tr >
+    <td ><a href="/fts/thrift/newsub/">Continue</a></td>
+
+
+</tr>
+</table>
+
+
+
+<script type="text/javascript" language="javascript">
+window.history.pushState(null, "", window.location.href);
+window.onpopstate = function () {
+    window.history.pushState(null, "", window.location.href);
+};
+
+</script>
+
+
+
+
+{% endblock %}

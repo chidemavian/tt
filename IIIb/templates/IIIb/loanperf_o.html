@@ -1,0 +1,65 @@
+
+
+
+
+{% extends 'IIIb/myloanbase_o.html' %}
+
+{% block content %}
+
+
+<div style="text-align:center;font-weight:bold">Loan Performance History</div>
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+<div>{{msg}}</div>
+    <tr style="text-align:center;">
+
+      <td  >
+          <a href="/IIIb/threeb/staff/request_loan/" style="color:red">Apply</a>
+      </td>
+        <td style="background:blue">
+          <a href="/IIIb/threeb/staff/request_loan/performance/" style="color:white">Performance</a>
+      </td>
+
+      <td >
+          <a href="/IIIb/threeb/staff/request_loan/history/" style="color:red">Log</a>
+      </td>
+    </tr>
+</table>
+
+
+{% if p %}
+          
+   <table style="margin-top:01%;margin-bottom:02%;font-size:1em" width="100%" class="table  table-bordered" id="dataTables-example">    
+          
+           <tr style='text-align:center'>
+               <td style='font-weight:bold'>S/N</td>               
+               <td style='font-weight:bold'>Month</td>
+               <td>Amount</td>
+               <td>Status</td>
+             </tr>
+             {% for k in p %}
+          <tr style='text-align:center'>
+            <td style='font-weight:bold'>{{forloop.counter}}</td>
+            <td> {{k.month}} ,  {{k.year }} </td>
+            <td style='font-weight:bold'>{{k.amount}}</td>
+            {% if k.status = 'CR' %}
+            <td style= 'color:green'> Paid</td>
+            {% else %}
+            <td style= 'color:red'> Unpaid</td>
+            {% endif %}
+          </tr>
+          {% endfor %}
+      
+
+{% else %}
+<div style='color:red'>You do not have any running or pending loan Application </div>
+{% endif %}
+ </table>
+
+
+
+
+
+{% endblock %}
+
+
+

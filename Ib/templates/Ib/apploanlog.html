@@ -1,0 +1,54 @@
+
+
+{% load humanize %}
+
+
+
+
+
+{% if msg %}
+
+
+
+
+
+
+<div style="text-align:center;font-weight:bold;margin-top:0%;margin-bottom:0%;">List of {{ status}} Loan for  {{ date}}   </div>
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">   	
+          
+           <tr style='text-align:center;font-weight:bold'>
+               <td >S/N</td>               
+               <td >Customer</td>
+               <td>Loan</td>
+               <td>Tenure</td>
+               <td>Plan</td>
+
+
+             </tr>
+             {% for k in msg %}
+          <tr style='text-align:center'>
+            <td >{{forloop.counter}}</td>
+            <td> {{k.customer.customer.surname}}   {{k.customer.customer.firstname}}   {{k.customer.customer.othername}}</td>
+            <td >{{k.volume|intcomma}}</td>
+            <td>{{k.package.duration}} weeks</td>
+            <td>{{k.thrift|intcomma}}  {{k.repay}}</td>
+
+
+
+
+          </tr>
+          {% endfor %}
+       </table>
+     
+
+
+
+{% else %}
+
+<div  style='text-align:center'>No Records Found </div>
+
+
+
+
+
+{% endif %}

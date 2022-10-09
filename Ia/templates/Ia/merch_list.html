@@ -1,0 +1,76 @@
+
+
+{% extends 'Ia/credit_officerIa_base.html' %}
+{% block content %}
+
+
+<div style="text-align:center">Credit Officers' Menu</div>
+
+   <table style="margin-top:0%;margin-bottom:01% ;font-size:0.9em;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr >
+        <td >
+          <a href="/fts/staff/merchant/" style="color:red">Register C/Os</a>
+        </td>
+        <td>
+          <a href="#" style="color:red">Manage C/Os</a>
+        </td>
+        <td style="background:blue">
+          <a href="/fts/staff/merchant/mycos/" style="color:white">My C/Os</a>
+        </td>
+    </tr>
+</table>
+
+
+{% if merchant %}
+
+             
+   <table style="margin-top:0%;margin-bottom:0%"  width="100%" class="table  table-bordered table-hover" id="dataTables-example">
+     
+  <thead >
+   <div style="text-align:center;font-size:0.9em">List of Credit Officers</div>
+  </thead>
+</table>
+
+    
+  <table style="margin-top:01%;margin-bottom:03%"  width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;font-weight:bold">
+           <td >S/N</td>
+           <td >Name</td>
+           <td >E-mail</td>
+           <td >Active</td>
+        </tr>
+{% for k in merchant %}
+
+              <tr style="font-weight:bod;text-align:center">
+                <td >{{ forloop.counter }}.</td>
+                <td >{{ k.staff.surname}}  {{ k.staff.firstname }} {{ k.staff.othername }} ({{ k.id}})</td>
+                <td >{{ k.staff.email }}</td>
+                <td >{{ k.status }}</td>                
+              </tr>
+
+               {% endfor %}
+
+</table>
+  
+  {% else %}
+
+<div style="color:red">There are no credit officers in this branch</div>
+{% endif %}
+
+
+
+   <script type="text/javascript" >
+        $(document).ready(function() {
+
+            $("#id_email").focus();
+
+        });
+    </script>
+
+
+{% endblock %}
+
+
+

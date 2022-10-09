@@ -1,0 +1,84 @@
+
+
+{% extends 'thrift/adminbase.html' %}
+{% block content %}
+
+
+<div style="text-align:center">Miscellenous</div>
+
+   <table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+        <td  style="background:blue;font-size:0.9em">
+            <a href="/thrift/thrift/misc/customers/" style="color:white">Customers' List</a>
+        </td>
+        
+        <td>
+            <!-- <a href="/thrift/thrift/misc/custmers/ " style="color:red;font-size:0.9em">Name Search</a> -->
+            <a href="#" style="color:red;font-size:0.9em">Name Search</a>
+        </td>
+
+         <td>
+            <a href="/thrift/thrift/misc/switches/" style="color:red;font-size:0.9em">Merchant Switch</a>
+        </td>
+
+    </tr>
+</table>
+
+
+
+
+
+
+
+
+
+<div style="text-align:center;margin-top:02%;margin-bottom:0%">Customers' List</div>
+
+
+
+{% if client_list %}
+<tr>
+   <table style="font-size:0.9em" width="100%" class="table  table-bordered table-hover" id="dataTables-example">
+    <thead>
+
+        <tr style="text-align:center;font-weight:bold">
+           <td >S/N</td>
+            <td >Name</td>
+           <td >Wallet</td>
+           <td >Merchant</td>
+           <td >Status</td>
+
+        </tr>
+    </thead>
+    {% for k in client_list %}
+
+    <tr style="text-align:center">
+          <td >{{ forloop.counter }}.</td>
+          <td >{{ k.surname }},    {{ k.firstname }}   {{ k.otherame }}</td>
+          <td >{{ k.wallet}}</td>
+
+
+<td >{{ k.merchant.staff.surname }}   {{ k.merchant.staff.firstname }} ({{k.merchant.id}})</td>
+
+      {% if k.status = True %}
+        <td >Active</td>
+        {% else %}
+        <td >Inactive</td>
+        {% endif %}
+      </tr>
+
+    {% endfor %}
+
+</table>
+</tr>
+
+{% else %}
+<div>you have not opened accounts for any of your customers yet </div>
+
+{% endif %}
+
+{% endblock %}
+
+
+

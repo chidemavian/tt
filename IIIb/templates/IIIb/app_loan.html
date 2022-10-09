@@ -1,0 +1,184 @@
+
+
+{% extends 'IIIb/applicationbase.html' %}
+{% block content %}
+
+
+<div style="text-align:center;font-weight:bold">Staff Statutory Deductions</div>
+
+   <table style="margin-top:0%;margin-bottom:0.1%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+      <td  >
+          <a href="/IIIb/threeb/loans/approve/"  style="color:red">Savings</a>
+      </td>
+      <td style="background:blue">
+          <a href="/IIIb/threeb/loans/lr/"  style="color:white">Loans</a>
+      </td>
+      <td>
+          <a href="/IIIb/threeb/loans/purchases/"  style="color:red">Commodities</a>
+      </td>
+      <td>
+          <a href="/IIIb/threeb/loans/log/"  style="color:red">Log</a>
+      </td>
+    </tr>
+</table>
+
+
+
+   <table style="margin-top:0%;margin-bottom:0.2%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+          <tr>
+                <td style='font-weight:bold'>Funding</td>
+                <td>
+                    <select  id="id_funding">
+                     <option value="-----">-----</option>             
+                     <option value="salary">Salary</option>
+                     <option value="myself">Self</option>
+                     </select>
+                 </td>
+        </tr>
+
+</table>
+
+
+
+<table width="100%" class="table  table-bordered" id="dataTables-example">
+
+           <tr>
+                <div class="boxl"></div>
+           </tr>
+</table>
+ 
+ <table width="100%" class="table  table-bordered" id="dataTables-example">
+
+           <tr>
+                <div class="boxs"></div>
+           </tr>
+</table>
+
+
+
+
+    <div id="cancel"></div>
+<div id="pay"></div>
+
+   <script type="text/javascript" >
+        $(document).ready(function() {            
+            $("#id_funding").change(function () {
+                autopostp1();
+            });
+
+            $("#id_funding").focus();
+            autopostp1();
+        });
+    </script>
+
+
+  <script type="text/javascript" language="javascript">
+        function autopostp1(){
+            var state = '{{user}}' + ":" +$("#id_funding").val();
+            // alert(state)
+            var url = "/IIIb/threeb/loans/approves/";
+            var i = 0;
+            var data='userid='+state;
+            $.ajax({
+                type:"POST",
+                url:url,
+                data:data,
+                success:function(html) {
+                    $(".boxl").show();
+                    $(".boxl").html(html);
+                }
+            });
+            return false;
+        }
+    </script>
+
+
+<script type="text/javascript" language="javascript">
+    function decline(vid){        
+        var state = vid + ":" + $("#date").val();
+        // alert(state)
+        var url = "/IIIb/threeb/loans/canceloptions/";
+        var i = 0;
+        var data='userid='+state;
+        $.ajax({
+            type:"POST",
+            url:url,
+            data:data,
+            success:function(html) {
+                $("#cancel").html(html);
+                getcancel();
+            }
+        });
+        return false;
+    }
+
+</script>
+
+<script type="text/javascript" language="javascript">
+    function getcancel(){
+        var diaOpts = {
+            autoOpen:true,
+            // appendTo:"body1",
+            // modal:true,
+            // position: ["center", "middle"],
+            height:'auto',
+            width:'auto',
+            title:' Touch this box to close' ,
+            closeOnEscape:true,
+            show: true,
+            hide: true,
+            bgiframe: true
+        };
+        $("#cancel").dialog(diaOpts);
+    }
+
+</script>
+
+
+<script type="text/javascript" language="javascript">
+    function approve(vid){
+        var state = vid + ":" + $("#date").val();
+        // alert(state);
+        var url = "/IIIb/threeb/loans/withdraw/";
+        var i = 0;
+        var data='userid='+state;
+        $.ajax({
+            type:"POST",
+            url:url,
+            data:data,
+            success:function(html) {
+                $("#pay").html(html);
+                getdial();
+            }
+        });
+        return false;
+    }
+
+</script>
+<script type="text/javascript" language="javascript">
+    function getdial(){
+        var diaOpts = {
+            autoOpen:true,
+            // appendTo:"body1",
+            // modal:true,
+            // position: ["center", "middle"],
+            height:'auto',
+            width:'auto',
+            title:' Touch this box to close' ,
+            closeOnEscape:true,
+            show: true,
+            hide: true,
+            bgiframe: true
+        };
+        $("#pay").dialog(diaOpts);
+    }
+
+</script>
+
+{% endblock %}
+
+
+

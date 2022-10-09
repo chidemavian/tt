@@ -1,0 +1,42 @@
+
+
+
+{% extends 'IIIb/myloanbase_o.html' %}
+
+{% block content %}
+
+
+
+<div class="card card-primary card-outline">
+  <div class="card-header">
+    <h5 class="m-0" style = 'text-align:center'>CONGRATULATIONS!!!</h5>
+    </div>
+      <div class="card-body" style = 'text-align:center'>
+      <h6 class="card-title"  > Your applicaton for loan is succcessful. You will be notified via email when it is approved or declined </h6>
+      <p class="card-text"></p>
+  </div>
+</div>
+
+
+
+<table style="margin-top:0.5%;margin-bottom:0.6%;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<tr>
+    <td ><a href="/IIIb/threeb/staff/request_loan/">My Loans</a></td>
+
+<td ><a href="/IIIb/threeb/staff/request_loan/performance//">Performance</a></td>
+
+</tr>
+</table>
+
+
+
+<script type="text/javascript" language="javascript">
+window.history.pushState(null, "", window.location.href);
+window.onpopstate = function () {
+    window.history.pushState(null, "", window.location.href);
+};
+
+</script>
+
+{% endblock %}

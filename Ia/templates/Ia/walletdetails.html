@@ -1,0 +1,63 @@
+
+{% extends 'Ia/customerbaseIa.html' %}
+
+{% block content %}
+
+
+
+
+<div style="text-align:center">Customers' Wallets Menu </div>
+   <table style="margin-top:0%;margin-bottom:01%" width="100%" class="table  table-bordered" id="dataTables-example">
+<div style="color:red">{{msg}}</div>
+    <tr style="text-align:center;">
+        <td  style="background:blue;font-size:0.9em"><a href="/fts/thrift/newsub/" style="color:white"> Existing</a></td>
+        <td><a href="#" style="color:red;font-size:0.9em">Mass</a></td>
+    </tr>
+</table>
+
+
+
+
+          <table width="100%" class="table  table-bordered table-hover" id="dataTables-example">
+           <tr >
+            <td style='font-weight:bold' >Full Name: </td><td>{{ details.customer.surname}}  {{ details.customer.firstname}}   {{ details.customer.othername}}</td>
+           </tr>
+           <tr >
+            <td style='font-weight:bold' >Customer ID: </td><td>{{ details.customer.id}} </td>
+           </tr>
+            <tr>
+              <td style='font-weight:bold'>Wallect Address:</td> <td>{{ details.customer.wallet }}</td>
+            </tr>
+              <tr>
+                <td style='font-weight:bold'>Email:</td><td >{{ details.customer.email}}</td></tr>
+
+          <tr>
+            <td style='font-weight:bold'>Can log in</td><td>{{ details.UX}}</td>
+          </tr>
+            <tr><td style='font-weight:bold'>Active:</td><td>{{details.status}}</td></tr>
+               <tr>
+                <td style='font-weight:bold'>Sms Alert:</td><td>{{details.sms}}</td></tr>
+               <tr>
+                <td style='font-weight:bold'>Email Notification:</td><td>{{details.get_email}}</td>
+              </tr>
+              <tr>
+            <td style='font-weight:bold'>Merchant:</td> <td> {{ details.merchant.staff.surname}}  {{ details.merchant.staff.firstname}}   {{ details.merchant.staff.othername}}  </td></tr>
+            <tr>
+            <td style='font-weight:bold'>Merchant ID:</td><td> {{ details.merchant.id}}</td>
+          </tr>
+
+       </table>
+
+
+
+
+<div class="card-body">
+  <td >
+    <a href="/fts/thrift/newsub/" class="btn btn-lg btn-success btn-block">Continue</a>
+</td>
+</div>
+
+{% endblock %}
+
+
+

@@ -1,0 +1,56 @@
+
+
+
+{% extends 'sms/base.html' %}
+{% block content %}
+
+
+<div style="text-align:center">SMS Menu</div>
+   <table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+<div>{{msg}}</div>
+    <tr style="text-align:center;">
+      <td  style="background:blue">
+          <a href="/sms/daily_contribution/sms/"  style="color:white">Schedule SMS</a>
+      </td>
+        <td >
+          <a href="/sms/daily_contribution/balance/"  style="color:red">Purchase SMS</a>
+      </td>
+            <td >
+          <a href="/sms/daily_contribution/history/"  style="color:red">SMS History</a>
+      </td>
+    </tr>
+</table>
+
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+        <form action="" method="POST">
+          
+           <tr >
+               <td >{{ form.wallet.label_tag}}:</td><td> {{ form.wallet }}</td>
+             </tr>   
+       </table>
+
+
+
+<table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+  <tr>
+       <td >
+        <input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Check Balance">
+      </td>
+  </tr>
+   </table>
+       </form>
+
+
+   <script type="text/javascript" >
+        $(document).ready(function() {
+
+            $("#id_wallet").focus();
+  
+        });
+    </script>
+
+{% endblock %}
+
+
+

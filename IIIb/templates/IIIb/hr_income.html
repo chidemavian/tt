@@ -1,0 +1,107 @@
+<script type="text/javascript" src='/static/mato/JS/jquery-1.5.js'></script>
+
+
+
+{% extends 'IIIb/hrbase.html' %}
+{% block content %}
+
+{% load humanize %}
+
+<div style="text-align:center">Wallet Balances Menu</div>
+
+
+   <table style="margin-top:0%;margin-bottom:01%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+      <td  style="background:blue">
+          <a href="/IIIb/threeb/staff/myh-r/"  style="color:white">Income</a>
+      </td>
+      <td>
+          <a href="/IIIb/threeb/staff/mydeductions/"  style="color:red">Deductions</a>
+      </td>
+      <td>
+          <a href="/IIIb/threeb/staff/myadditions/"  style="color:red">Additions</a>
+      </td>
+      <td>
+          <a href="/IIIb/threeb/staff/mynets/"  style="color:red">Net</a>
+      </td>
+    </tr>
+</table>
+
+
+
+ <table style="margin-top:0%;margin-bottom:02%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+  <tr> 
+    <td style="font-weight:bold">My E-mail</td>
+    <td>{{msg.staff.email}}</td>
+  </tr>
+
+  <tr> 
+    <td style="font-weight:bold">My Name</td>
+  <td>{{msg.staff.surname}}, {{msg.staff.firstname}}   {{msg.staff.othername}} </td>
+  </tr>
+
+ </table>
+
+
+
+ <table style="margin-top:0%;margin-bottom:02%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+  <tr> 
+    <td style="font-weight:bold">Month</td>
+    <td>{{form.month}}</td>
+  </tr>
+
+ </table>
+
+<table width="100%" class="table  table-bordered" id="dataTables-example">
+
+           <tr>
+                <div class="boxscenaros"></div>
+           </tr>
+</table>
+ 
+
+
+
+
+    <div id="cancel"></div>
+<div id="pay"></div>
+
+   <script type="text/javascript" >
+        $(document).ready(function() {            
+            $("#id_month").change(function () {
+                autopost20p1();
+            });
+
+            $("#id_month").focus();
+            autopost20p1();
+        });
+    </script>
+
+
+  <script type="text/javascript" language="javascript">
+        function autopost20p1(){
+            var state = '{{user}}' + ':'+ $("#id_month").val();
+            // alert(state)
+            var url = "/IIIb/threeb/loans/approves/";
+            var i = 0;
+            var data='userid='+state;
+            $.ajax({
+                type:"POST",
+                url:url,
+                data:data,
+                success:function(html) {
+                    $(".boxscenaros").show();
+                    $(".boxscenaros").html(html);
+                }
+            });
+            return false;
+        }
+    </script>
+    
+{% endblock %}
+
+
+

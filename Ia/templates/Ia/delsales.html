@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+{% load humanize %}
+
+<body>
+
+
+<div style = 'font-size:0.7em'> Do you really want to delete <br>  <span style='color:red'>{{hhh.customer.customer.surname}},  {{hhh.customer.customer.firstname}} {{hhh.customer.customer.othername}}'s </span>  <br >deposit request of {{hhh.amount|intcomma}}?</div>
+
+
+<form action="/fts/thrift/approvalsmenu/delete/yes/" method="POST">
+
+
+<input type="hidden" size='3' name="trans_id" readonly="readonly" value="{{ trans_id}}" >
+<input type="hidden" size='3' name="merchant" readonly="readonly" value="{{ merchant }}" >
+<input type="hidden"  size='3' name="date1" readonly="readonly" value="{{ date1 }}" >
+         
+     <table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">    
+
+        <tr>
+          <td style = 'font-size:0.7em'>
+          <input class="btn btn-lg btn-success btn-block" name="submit" type= "submit"value="yes">
+        </td>
+
+      </tr>
+    </table>
+</form>
+
+</body>
+
+</html>

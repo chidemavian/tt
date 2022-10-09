@@ -1,0 +1,108 @@
+
+
+
+{% extends 'IIIb/settings_base.html' %}
+{% block content %}
+
+
+<div style="text-align:center">Standard Loans Set Up </div>
+   <table style="margin-top:0%;margin-bottom:0.92%;font-size:0.9em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+        <td style="background:blue" ><a href="/IIIb/threeb/loans/settings/" style="color:white">Set Up</a></td>
+        <td ><a href="/IIIb/threeb/manage/settings/" style="color:red">Manage Set Up</a></td>
+        <td ><a href="/IIIb/threeb/openingbalances/settings/" style="color:red">Opening Balances</a></td>
+    </tr>
+</table>
+
+   <table style="margin-top:0%;margin-bottom:01%;font-size:0.9em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+         <td ><a href="/IIIb/threeb/loans/settings/" style="color:red">Loans</a></td>
+      <td style="background:blue"><a href="/IIIb/threeb/savings/settings/" style="color:white">Savings</a></td>
+        <td><a href="#" style="color:red">Items</a></td>
+        <td><a href="#" style="color:red">Log</a></td>
+    </tr>
+</table>
+
+
+
+<form action="" method="POST"  enctype="multipart/form-data" >
+    
+    <section class="content">
+      <div class="container-fluid">
+            
+            <!-- general form elements -->
+            <div class="card card-primary">
+
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="package">Savings Package</label>
+                    <input type="text" autofocus name="package" class="form-control" id="package" placeholder="Decription" required>
+                  </div>
+
+   <table style="margin-top:0%;margin-bottom:01%;font-size:0.9em" width="100%" class="table  table-bordered" id="dataTables-example">
+                  <tr >
+                    <td >From</td>
+                    <td >{{form.month_from}}</td>
+                  </tr>
+
+                  <tr>
+                    <td >To</td>
+                    <td >{{form.month_to}}</td>
+                  </tr>
+                  </table>
+
+<div>Savings duration must be months of same year</div>
+
+
+                </div>
+              </div>
+            </div>
+                <!-- /.card-body -->
+           <div class="card-footer">
+            <td >
+              <input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Save">
+            </td>
+          </div>
+      </section>
+
+
+      </form>
+
+
+{% if loans %}
+
+<div>Existing Savings packages</div>
+<table style="margin-top:0%;margin-bottom:03%;font-size:0.9em" width="100%" class="table table-bordered" id="dataTables-example">
+            <thead style=";text-align:center;font-weight:bold">
+            <tr >
+                <td >S/N</td>
+                <td >Package</td>
+                <td >From</td>
+               <td >To</td>
+               <td >Status</td>
+            </tr>
+            </thead>
+            <tbody style=";text-align:center">
+            {% for student in loans %}
+                <tr >
+                    <td >{{ forloop.counter }}.</td>
+                    <td>{{ student.description }}</td>
+                    <td>{{ student.from_month}} </td>
+            <td >{{ student.to_month}}</td>
+            <td >{{ student.status}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+<div>Click <a href= "/IIIb/threeb/loans/settings/limit/">here</a> to set loan limit</div>
+{% else %}
+<div>No Savings package entered yet</div>
+{% endif %}
+
+{% endblock %}
+
+
+

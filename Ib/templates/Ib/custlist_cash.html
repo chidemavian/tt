@@ -1,0 +1,118 @@
+
+
+{% extends 'Ib/customerbaseIb_cash.html' %}
+
+
+{% block content %}
+
+
+<div style="text-align:center">Customers' Accounts Menu </div>
+   <table style="margin-top:0%;margin-bottom:01% ;font-size:0.9em;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr >
+        <td >
+          <a href="/vts/thrift/newsub/" style="color:red"> Subscribe</a>
+        </td>
+        <td>
+          <a href="#" style="color:red;font-size:0.9em">Assign</a>
+        </td>
+        <td>
+          <a href="#" style="color:red;font-size:0.9em">Switch</a>
+        </td>
+        <td style="background:blue">
+          <a href="/vts/customer1b/list/" style="color:white"> My Customers</a>
+        </td>
+    </tr>
+</table>
+
+
+
+{% if client_list %}
+<tr>
+   <table style="font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+    <thead>
+
+        <tr style="text-align:center;font-weight:bold">
+           <td >S/N</td>
+            <td >Name</td>
+           <td >Wallet</td>
+           <td >Deposit</td>
+           <td >Withdraw</td>
+
+        </tr>
+    </thead>
+    {% for k in client_list %}
+
+    <tr style="text-align:center">
+          <td >{{ forloop.counter }}.</td>
+          <td >{{ k.customer.surname }},    {{ k.customer.firstname }}   {{ k.customer.otherame }}</td>
+          <td >{{ k.customer.wallet}}</td>
+
+          <td > <a href="#" style="color:red" onClick= "deposit({{k.id}})" title="Click here to make deposit">Deposit</a></td>
+
+          <td > <a href="#"  style="color:blue" onClick= "withdraw({{k.id}})" title="Click here to  withdraw">Withdraw</a></td>
+    </tr>
+   
+    {% endfor %}
+
+</table>
+</tr>
+{% else %}
+<div>you have not subscribed any of your customers for this service yet </div>
+
+{% endif %}
+
+
+
+
+<div id="depo"></div>
+
+ <div id="thriftchanged"></div>
+
+
+<script type="text/javascript" language="javascript">
+    function deposit(vid){
+        
+        var state = vid + ":" +"{{user}}";
+        // alert(state);
+        var url = "/vts/customer/deposit/";
+        var i = 0;
+        var data='userid='+state;
+        $.ajax({
+            type:"POST",
+            url:url,
+            data:data,
+            success:function(html) {
+                $("#depo").html(html);
+                getchan();
+            }
+        });
+        return false;
+    }
+
+</script>
+
+<script type="text/javascript" language="javascript">
+    function getchan(){
+        var diachange = {
+            autoOpen:true,
+            // appendTo:"body1",
+            // modal:true,
+            // position: ["center", "middle"],
+            height:'auto',
+            width:'auto',
+            title:'Touch this box to close --->' ,
+            closeOnEscape:true,
+            show: true,
+            // hide: true,
+            bgiframe: true
+        };
+        $("#depo").dialog(diachange);
+    }
+
+</script>
+
+{% endblock %}
+
+
+

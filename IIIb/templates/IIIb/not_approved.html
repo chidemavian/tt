@@ -1,0 +1,58 @@
+
+
+
+
+{% extends 'IIIb/coop_officer_base.html' %}
+
+{% block content %}
+
+
+<div style="text-align:center;font-weight:bold">Staff Loan Performance Detail</div>
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+<div>{{msg}}</div>
+    <tr style="text-align:center;">
+
+      <td  >
+          <a href="/IIIb/threeb/staff/request_loan/" style="color:red">Apply</a>
+      </td>
+        <td style="background:blue">
+          <a href="/IIIb/threeb/staff/request_loan/performance/" style="color:white">Performance</a>
+      </td>
+
+      <td >
+          <a href="/IIIb/threeb/staff/request_loan/history/" style="color:red">Log</a>
+      </td>
+    </tr>
+</table>
+
+
+          
+   <table style="margin-top:01%;margin-bottom:02%;font-size:1em" width="100%" class="table  table-bordered" id="dataTables-example">    
+          
+           <tr style='text-align:center'>
+               <td style='font-weight:bold'>S/N</td>               
+               <td style='font-weight:bold'>Application Date</td>
+               <td>Amount</td>
+               <td>Status</td>
+             </tr>
+          
+          <tr style='text-align:center'>
+            <td style='font-weight:bold'>{{ 1}}</td>
+            <td> {{ month}} ,  {{ year }} </td>
+            <td style='font-weight:bold'>{{k.volume}}</td>
+            <td style='font-weight:bold'>{{k.status}}</td>
+
+          
+          </tr>
+    
+      
+ </table>
+
+
+
+
+
+{% endblock %}
+
+
+

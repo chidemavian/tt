@@ -1,0 +1,49 @@
+
+
+
+{% extends 'Ia/accountbal.html' %}
+{% block content %}
+
+
+<div style="text-align:center">Accounts statement Menu</div>
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+<div>{{msg}}</div>
+    <tr style="text-align:center;">
+      <td >
+          <a href="/fts/thrift/history/"  style="color:red">Wallet Balance</a>
+      </td>
+
+      <td  style="background:blue">
+          <a href="/fts/thrift/mystatement/"  style="color:white">E-card</a>
+      </td>      
+    </tr>
+</table>
+
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+
+        <form action="" method="POST">
+          
+           <tr >
+               <td >{{ form.wallet.label_tag}}:</td><td> {{ form.wallet }}</td>
+             </tr>   
+       </table>
+         <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em" width="100%" class="table  table-bordered" id="dataTables-example">
+          <tr>
+       <td ><input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="View Statement"></td>
+     </tr>
+   </table>
+       </form>
+
+
+   <script type="text/javascript" >
+        $(document).ready(function() {
+
+            $("#id_wallet").focus();
+  
+        });
+    </script>
+
+{% endblock %}
+
+
+

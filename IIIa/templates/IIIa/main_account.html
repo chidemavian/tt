@@ -1,0 +1,71 @@
+
+
+
+<form action="/thrift/thrift/addthrift/putthrift/" method="POST">
+
+
+<table width="100%" class="table  table-bordered" id="dataTables-example">
+<tr>
+   <td style='font-weight:bold'>Thrift</td>
+   <td> 
+ <input type="number" name="thrift" class="form-control" id="id_thrift" required placeholder="Enter thrift here" >
+ </td>
+</tr>
+
+  </table>
+
+
+<table style="margin-top:-1.5%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+   <td ><input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Save Thrift"></td>
+</table>
+
+<input type="hidden" name="month" id="month"  readonly="readonly" value="{{ month }}" class ="loginTxtbox">
+    <input type="hidden" name="wallet" id="wallet"  readonly="readonly" value="{{ wallet }}" class ="loginTxtbox">
+      <input type="hidden" name="account_type" id="account_type"  readonly="readonly" value="{{ account_type }}" class ="loginTxtbox">
+</form>
+
+
+
+    <script>
+        $(document).ready(function() {
+            var pickerOpts = {
+                //appendText: "mm/dd/yy",
+                //defaultDate: "+5",
+                showOtherMonths: true,
+                changeMonth: true,
+                changeYear: true,
+                dateFormat:"yy-mm-dd"
+                //showButtonPanel: true
+                // showOn: "button"
+            };
+            // getmonth();
+            $("#id_thrift").focus();
+            });
+    </script>
+
+    <script type="text/javascript" language="javascript">
+        function getmonth(){
+            var state = $("#id_wallet").val();
+            // alert(state);
+            var url = "/thrift/thrift/addthrift/addajax/";
+            var i = 0;
+            var data='userid='+state;
+            $("#id_month ").val('');
+            $("#id_month").html('');
+            if (state != undefined){
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data:data,
+                    success: function(data){
+                        var options = '';
+                        for (i=0; i<data.length; i++){
+                            options += '<option value="' + data[i] +'">' + data[i] + '</option>'
+                        }
+                        $("#id_month").append(options);
+                    }
+                })
+            }
+        }
+
+    </script>

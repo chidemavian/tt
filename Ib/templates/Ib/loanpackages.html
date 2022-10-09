@@ -1,0 +1,57 @@
+
+{% extends 'Ib/adminloansbase.html' %}
+{% block content %}
+
+
+<div style="text-align:center">Standard Loans Set Up </div>
+
+   <table style="margin-top:0%;margin-bottom:01%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+        <td  ><a href="/vts/threeb/loans/settings/" style="color:red">Loan Packages</a></td>
+
+        <td  ><a href="/vts/threeb/loans/setgrace/" style="color:red">Grace Period</a></td>
+<td  style="background:blue"><a href="/vts/threeb/loans/packageslists/" style="color:white">manage settings</a></td>
+
+    </tr>
+</table>
+
+
+
+
+
+{% if loans %}
+
+<div  style="text-align:center">Existing loan packages</div>
+<table style="margin-top:0%;margin-bottom:03%;font-size:0.9em" width="100%" class="table table-bordered" id="dataTables-example">
+            <thead style=";text-align:center;font-weight:bold">
+            <tr >
+                <td >S/N</td>
+                <td >Package</td>
+                <td >Duration</td>
+               <td >Rate</td>
+               <td >Status</td>
+            </tr>
+            </thead>
+            <tbody style=";text-align:center">
+            {% for student in loans %}
+                <tr >
+                    <td >{{ forloop.counter }}.</td>
+                    <td>{{ student.description }}</td>
+                    <td>{{ student.duration }}   weeks</td>
+            <td >{{ student.rate}}%</td>
+            <td >{{ student.status}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    
+{% else %}
+<div>No package entered yet</div>
+{% endif %}
+
+{% endblock %}
+
+
+

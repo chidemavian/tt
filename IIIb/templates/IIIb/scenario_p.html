@@ -1,0 +1,63 @@
+
+
+{% load humanize %}
+
+{% if msg %}
+
+
+<div style="text-align:center;font-weight:bold;margin-top:0%;margin-bottom:0%;">List of Savings Scheme Requests {{status}}  for {{ month}}  {{ year }}</div>
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.8em;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">   	
+          
+           <tr style='font-weight:bold'>
+               <td >S/N</td>               
+               <td >Name</td>
+               <td>Scheme</td>
+               <td>Amount</td>
+               <!-- <td>Decline</td> -->
+            </tr>
+             {% for k in lk %}
+
+          <tr >
+            <td >{{forloop.counter}}</td>
+            <td> {{k.name}} </td>
+            <td>{{k.package}}</td>
+            <td >{{k.amount|intcomma}}</td>
+
+            <!-- <td > -->
+              <!-- <a href="#" style="color:red" onClick= "decline({{ k.id  }})" title="Decline  N{{ k.amount|intcomma}} savings request">Decline</a> -->
+            <!-- </td> -->
+          </tr>
+
+          {% endfor %}
+
+         <tr style='text-align:center;font-weight:bold'>
+            <td style="border:0px solid black"></td>
+           <td>Total</td> 
+           <td></td>
+           <td>{{total|intcomma}}</td> 
+           <!-- <td></td> -->
+         </tr>
+
+</table>
+
+
+ <table style="margin-top:0.5%;margin-bottom:0%;font-size:1em" width="100%" class="table  table-bordered"> 
+      <tr>
+
+        <td style="color:blue;text-align:center">
+            <a href="#" style="color:blue;text-align:center" onClick= "approve()" title="Execute N {{ total|intcomma}} mandates">Execute </a>
+        </td>
+</tr>
+
+       </table>
+     
+
+{% else %}
+
+<div style="color:blue;text-align:center">no records found </div>
+
+
+
+
+
+{% endif %}

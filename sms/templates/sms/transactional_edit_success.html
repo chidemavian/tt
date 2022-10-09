@@ -1,0 +1,58 @@
+
+
+
+
+{% extends 'sms/base.html' %}
+
+
+{% load humanize %}
+{% block content %}
+
+
+<div class="card card-primary card-outline">
+	<div class="card-header">
+		<h5 class="m-0" style = 'text-align:center'>CONGRATULATIONS!!!</h5>
+		</div>
+			<div class="card-body">
+			<h6 class="card-title" >SMS Schedule Changed Successfully  </h6>
+			<p class="card-text"></p>
+			<h6 class="card-title" >  from   {{old }}  to  {{new}} </h6>
+			<p class="card-text"></p>
+			<p class="card-text">wallet Address: {{wallet}}</p>
+			<p class="card-text">Click here to <a href="/sms/daily_contribution/balance/"> Purchase SMS</a> </p>
+	</div>
+</div>
+
+
+
+
+<table style="margin-top:0.5%;margin-bottom:0.6%;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<tr >
+
+		<td >
+		<a href="/sms/daily_contribution/sms/">Subscribe sms</a>
+	</td>
+
+	<td >
+<a href="/sms/daily_contribution/balance/" >Purchase SMS</a>
+</td>
+
+
+  <td>
+    <a href="/thrift/thrift/home/" >Read guide</a>
+  
+  </td>
+</tr>
+</table>
+
+
+<script type="text/javascript" language="javascript">
+window.history.pushState(null, "", window.location.href);
+window.onpopstate = function () {
+    window.history.pushState(null, "", window.location.href);
+};
+
+</script>
+
+{% endblock %}

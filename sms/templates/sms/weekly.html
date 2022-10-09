@@ -1,0 +1,57 @@
+
+
+
+
+
+
+
+<form action = "/sms/daily_contribution/weeklysms/" method = 'post'>
+    
+
+<table style="margin-top:0%;margin-bottom:0.5%  " width="100%" class="table  table-bordered" id="dataTables-example">
+<div style='text-align:center'>Select Day Of Week</div>
+
+<tr>
+  <td style='font-weight:bold'>Day Of Week</td>
+  <td>
+      <select name="dayofweek" id="day_of_week" Onchange="ShowHideDiv()">
+       <option value="-----">-----</option>
+       <option id ='Monday'>Monday</option>
+       <option >Tuesday</option>
+        <option >Wednessday</option>
+       <option  >Thursday</option>
+       <option  >Friday</option>
+       <option >Saturday</option>
+       <option >Sunday</option>
+       </select>
+   </td>
+</tr>
+
+<tr>
+  <td style='font-weight:bold'> Alert type:</td>
+  <td>Account Balance</td>
+</tr>
+</table> 
+<div style='color:grey'> {{msg}} </div>
+
+<div id="dvPassport" style="display: none">
+  <table style="margin-top:0%;margin-bottom:0.5%" width="100%" class="table  table-bordered" id="dataTables-example">
+    <tr>
+       <td ><input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Process Request"></td>
+     </tr>
+  </table>
+</div>
+
+<input type="hidden" name="wallet" id="wallet"  readonly="readonly" value="{{ wallet }}" class ="loginTxtbox">
+
+<input type="hidden" name="app" id="app"  readonly="readonly" value="{{ app }}" class ="loginTxtbox">
+
+
+</form>
+
+<script type="text/javascript">
+    function ShowHideDiv() {
+        var weekly = document.getElementById("dvPassport");
+        weekly.style.display = Monday.selected ? "block" : "none";
+    }
+</script>

@@ -1,0 +1,68 @@
+
+{% extends 'Ib/adminbase.html' %}
+
+{% block content %}
+{% load humanize %}
+
+
+
+
+<div class="card card-primary card-outline">
+  <div class="card-header">
+    <h5 class="m-0" style='text-align:center'>CONGRATULATIONS!!!</h5>
+    </div>
+      <div class="card-body">
+      <h6 class="card-title" ><del style='color:gray;text-decoration-style:double'>N</del> {{ total|intcomma }} REMITTED SUCCESSFULLY</h6>
+  </div>
+</div>
+
+
+
+<form action="/vts/thrift/approvalforindv/"  method="POST">
+
+
+
+<table style="margin-top:0.5%;margin-bottom:0.6%;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<tr >
+    <td ><a href="/vts/thrift/remittals/">Remittals</a></td>
+
+<td><a href="/vts/thrift/payouts/">Payments</a></td>
+
+  <td><a href="/vts/thrift/admin/home/" >Read guide</a></td>
+</tr>
+</table>
+
+
+  <tr>   
+
+    <input type="hidden" name="account_type" id="account_type"  readonly="readonly" value="{{ account_type}}" class ="loginTxtbox">
+
+  
+       <input type="hidden" name="cid" id="cid"  readonly="readonly" value="{{ cid}}" class ="loginTxtbox">
+
+
+       <input type="hidden" name="cdate" id="cdate"  readonly="readonly" value="{{ cdate}}" class ="loginTxtbox">
+
+
+
+       <input type="hidden" name="total" id="total"  readonly="readonly" value="{{ total}}" class ="loginTxtbox">
+
+       <input type="hidden" name="transid" id="transid"  readonly="readonly" value="{{ transid}}" class ="loginTxtbox">
+
+       <input type="hidden" name="merchant" id="merchant"  readonly="readonly" value="{{ merchant}}" class ="loginTxtbox">
+   
+  </tr>
+
+</form>
+
+
+
+<script type="text/javascript" language="javascript">
+window.history.pushState(null, "", window.location.href);
+window.onpopstate = function () {
+    window.history.pushState(null, "", window.location.href);
+};
+
+</script>
+{% endblock %}

@@ -1,0 +1,93 @@
+
+
+{% extends 'Ia/contributionIabase.html' %}
+{% block content %}
+
+{% load humanize %}
+
+<div style="text-align:center">Payments Menu</div>
+
+
+   <table style="margin-top:0%;margin-bottom:0%;font-size:0.7em" width="100%" class="table  table-bordered">
+
+    <tr style="text-align:center;">
+        <td  >
+            <a href="/fts/thrift/payrequest/"  style="color:red">Contribution</a>
+         <td  ><a href="/fts/thrift/cashout/" style="color:red">Withdrawal</a></td>
+        <td style="background:blue;font-size:0.9em">
+            <a href="/fts/thrift/unremmitted/" style="color:white">Log</a>
+        </td>
+      
+    </tr>
+</table>
+
+{% if thriftrec %}
+             
+             
+   <table style="margin-top:0%;margin-bottom:0.2%;font-size:0.7em;text-align:center" width="100%" class="table  table-bordered">
+     <thead >
+
+      {% if status = 'All' %}
+
+      <div style="text-align:center;margin-top:02%">   Summary of <span style='color:blue'>{{status}}</span> Transactions for   {{date}},  {{date2}}</div>
+
+      {% else %}
+
+
+      <div style="text-align:center;margin-top:02%"> Summary of <span style='color:blue'>{{status}}</span>  Transactions  for {{date}},  {{date2}}</div>
+
+      {% endif %}
+
+        <tr style="text-align:center;font-weight:bold">
+           <td >S/N</td>
+           <td > Customer</td>
+           <td > Month</td>
+             <td >Amount</td>
+             <td >Description</td>
+        </tr>
+    </thead>                          
+                            
+    {% for student in thriftrec %}
+        <tr style="ftext-align:center">
+          <td >{{ forloop.counter }}.</td>
+          <td >{{ student.customer }}</td>
+          <td >{{ student.month }}</td>
+          <td >{{ student.amount|intcomma }}</td>
+
+          {% if student.status = 'CR'%}
+              <td style='color:blue;text-align:center'>{{student.status}}</td>
+          {% else %}
+               <td style='color:red;text-align:center'>{{student.status}}</td>
+          {% endif %}
+        </tr>
+    {% endfor %}
+</table>
+
+  <table style="margin-top:0%;margin-bottom:02%;font-size:0.7em" width="100%" class="table  table-bordered">
+
+        <tr style="text-align:center">
+           <td style="font-weight:bold">Total sales</td>
+           <td > {{s|intcomma}}</td>
+             <td style="font-weight:bold">Total Withdrawal</td>
+             <td >{{w|intcomma}}</td>
+        </tr>
+</table>
+
+  {% else %}
+
+
+  <div style='color:blue;text-align:center'>No transction record found </div>
+  
+
+
+
+
+
+{% endif %}
+
+
+
+{% endblock %}
+
+
+

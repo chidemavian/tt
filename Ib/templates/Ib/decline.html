@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+
+
+
+
+{% load humanize %}
+
+<body>
+
+
+<div style="margin-top:0%;margin-bottom:0%;font-size:0.8em"> Do you really want to approve <br>  <span style='color:red'>{{hhh.customer.surname}},  {{hhh.customer.firstname}} {{hhh.customer.othername}}'s </span>  <br >loan request?</div>
+
+
+<form 
+action="/vts/threeb/staff/request_loan/declines/"
+method="POST">
+
+       <input type="hidden" name="staff" id=""  readonly="readonly" value="{{ customer }}">
+
+
+
+        <input type="hidden" name="date1" id="date1"  readonly="readonly" value="{{ date1 }}" class ="loginTxtbox">
+
+         
+     <table style="margin-top:0%;margin-bottom:0%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+      <tr>
+          <td >
+          <input  style="font-size:0.5em" class="btn btn-lg btn-success btn-block" name="submit" type= "submit"value="yes">
+        </td>
+        
+        <td>
+          <a style="font-size:0.5em" href="/vts/threeb/loans/approve/" class="btn btn-lg btn-success btn-block">No
+          </a>
+        </td>
+      </tr>
+
+    </table>
+    
+</form>
+
+
+
+</body>
+
+
+    <script language="javascript" type="text/javascript">
+        function disable(f)
+        {
+            var button = f.elements['submit'];
+            button.value = 'Processing';
+            button.disabled = 'true';
+            return true;
+        }
+    </script>
+</html>

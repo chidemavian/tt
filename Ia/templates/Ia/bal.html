@@ -1,0 +1,49 @@
+
+
+
+
+{% load humanize %}
+
+
+<table style="margin-top:0%;margin-bottom:0.5%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+
+<tr>
+  <td>Wallet Balance :</td>
+  <td><del style='color:gray;text-decoration-style:double'>N</del> {{bal|intcomma}} </td>
+  </tr>
+{% if uu != '' %}
+  
+<tr>
+  
+  <td><del style='color:gray;text-decoration-style:double'>N</del> {{comm|intcomma}} {{uu}}</td>
+  </tr>
+
+ {% endif %}
+</table>  
+
+
+
+<table style="margin-top:0.2%;margin-bottom:0.6%;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<tr >
+
+  <td >
+<a href="/fts/thrift/addthrift/" >Thrift</a>
+</td>
+<td>
+
+  
+  <a href="/fts/thrift/payrequest/">Contribute</a>
+  
+  </td>
+    <td >
+    <a href="/fts/thrift/cashout">Withdraw</a>
+  </td>
+  <td>
+    <a href="/fts/thrift/home/" >Help</a>
+  
+  </td>
+</tr>
+</table>
+

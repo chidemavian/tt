@@ -1,0 +1,39 @@
+
+{% extends 'Ia/reportsbase.html' %}
+
+{% block content %}
+
+     <div style = "font-size:0.9em">welcome to ThriftPlus
+     <hr>
+     These are the major steps you should follow, if you want to make the most of the report section
+
+     <hr>
+        <div>1. Use the <a href="/fts/thrift/reports/sales/cashier/">End Of Day</a> menu to verify the accrued amount, in terms of sales for each credit officers. </div>
+
+    <hr>
+
+
+
+    <div>2. The <a href="/fts/thrift/reports/sales/merchant/">Vaults </a> menu gives you the total current deposits at any particular time </div>
+
+    <hr>
+
+        <div>3. If you wish to know your profit level at any time, use the <a href="/fts/thrift/reports/sales/admn/">Profit </a> link </div>
+
+    <hr>
+
+</div>
+
+
+
+
+
+
+<script type="text/javascript" language="javascript">
+window.history.pushState(null, "", window.location.href);
+window.onpopstate = function () {
+    window.history.pushState(null, "", window.location.href);
+};
+
+</script>
+{% endblock %}

@@ -1,0 +1,57 @@
+
+
+
+{% extends 'Ib/adminloansbase.html' %}
+
+{% block content %}
+
+<div style="text-align:center;font-weight:bold">Customer Loan Booking Request</div>
+
+
+
+<table style="margin-top:0.5%;margin-bottom:0.6%;text-align:center" width="100%" class="table  table-bordered" id="dataTables-example">
+
+<tr>
+
+      <td ><a href="/vts/threeb/staff/repay_loan/" >Repay</a></td>
+
+    <td  style="background:blue" >
+          <a href="/vts/threeb/staff/request_loan/performance/" style='color:white'>Perfromance</a>
+      </td>
+
+
+<td ><a href="/vts/threeb/loans/approve/log/">Log</a></td>
+
+</tr>
+</table>
+
+
+ <form action="" method="POST">
+
+  <table width="100%" class="table  table-bordered table-hover" id="dataTables-example">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="email">Acc. No</label>
+                    <input type="number" autofocus name="wallet" class="form-control" id="email" placeholder="Account Number" required>
+                  </div>
+                </div>
+     
+        <div>
+            <td >
+              <input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="Process">
+            </td>
+
+        </div>
+
+       </table>
+
+</form>
+
+
+
+
+
+{% endblock %}
+
+
+

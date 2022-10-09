@@ -1,0 +1,56 @@
+
+
+{% extends 'partner/basepartner.html' %}
+{% block content %}
+
+
+<div style="text-align:center">Back Office Subscription Package</div>
+   <table style="margin-top:0%;margin-bottom:01%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+         <td ><a href="/partner/partner/business/subscription/" style="color:red">Subscription</a></td>
+         <td  style="background:blue"><a href="/partner/partner/business/renew/" style="color:white">Renewal</a></td>
+
+    </tr>
+</table>
+
+
+{{msg}}
+<tr >
+  <form action="" method="POST"  enctype="multipart/form-data" >    
+    <section class="content">
+      <div class="container-fluid">          
+            <div class="card card-primary">
+                <div class="card-body">
+          <table style="margin-top:0%;margin-bottom:04%" width="100%" class="table  table-bordered" id="dataTables-example">
+           <tr >
+               <td >{{ form.company.label_tag}}:</td><td> {{ form.company }}</td>
+             </tr>   
+       </table>
+          <div class="card-footer">
+            <td >
+              <input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value="View Details">
+            </td>
+          </div>
+                </div>
+              </div>
+            </div>
+      </section>
+    
+  </form>
+</tr>
+
+
+
+   <script type="text/javascript" >
+        $(document).ready(function() {
+
+            $("#id_company").focus();
+
+        });
+    </script>
+
+{% endblock %}
+
+
+

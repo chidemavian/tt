@@ -1,0 +1,31 @@
+
+{% extends 'customer/adminbase.html' %}
+
+{% block content %}
+
+
+<div style="text-align:center">Account Details </div>
+
+
+          <table width="100%" class="table  table-bordered" id="dataTables-example">
+           <tr >
+            <td style='font-weight:bold' >Name: </td><td>{{ details.surname}}  {{ details.firstname}}   {{ details.othername}}</td>
+           </tr>
+           <tr >
+            <td style='font-weight:bold' >Customer ID: </td><td>{{ details.id}} </td>
+           </tr>
+            <tr>
+              <td style='font-weight:bold'>Account No:</td> <td>{{ details.wallet }}</td>
+            </tr>
+              <tr>
+                <td style='font-weight:bold'>Email:</td><td >{{ details.email}}</td></tr>
+
+            <tr><td style='font-weight:bold'>Active:</td><td>{{details.status}}</td></tr>
+
+
+       </table>
+
+{% endblock %}
+
+
+

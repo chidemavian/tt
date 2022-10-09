@@ -1,0 +1,100 @@
+
+
+
+{% extends 'Ib/cashierbase.html' %}
+{% block content %}
+
+
+<div style="text-align:center">Remittals Menu</div>
+
+
+   <table style="margin-top:0%;margin-bottom:01%" width="100%" class="table  table-bordered" id="dataTables-example">
+
+    <tr style="text-align:center;">
+        <td  style="background:blue;font-size:0.9em">
+            <a href="/vts/thrift/remittals/" style="color:white">Remit</a>
+        </td>
+       <td  >
+        <a href="/vts/thrift/report/" style="color:red">Report</a></td>
+    </tr>
+</table>
+
+
+
+
+{{msg}}
+ <form action="/vts/thrift/remittals/" method="POST">
+
+
+    <section class="content">
+      <div class="container-fluid">
+            
+            <!-- general form elements -->
+            <div class="card card-primary">
+
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="surname">Merchant Code</label>
+                    <input type="number" autofocus name="mercode" class="form-control" id="merchant" placeholder="Merchant Code" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="firstname">Date</label>
+                    <input type="date" readonlpy name="date" class="form-control" id="date" placeholder="Date" required>
+                    <!-- <input type='text' id='datepicker' /> -->
+                  </div>
+
+
+                  <div class="form-group">
+                    <input class="btn btn-lg btn-success btn-block" name="submit" type= "submit" value=" View Transactions">
+                  </div>
+                </div>
+              </div>
+            </div>
+      </section>
+
+
+
+</form>
+
+
+        <div id="myDialog" title="Edit Account"></div>
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function() {
+            var pickerOpts = {
+                // appendText: "yy/mm/dd",
+                showOtherMonths: true,
+                changeMonth: true,
+                changeYear: true,
+                dateFormat:"dd/mm/yy"
+            };
+
+            $("#daten").datepicker(pickerOpts);
+            //alert("welcome");
+            $("#id_merchanti").focus();
+            autocomplete();
+        });
+    </script>
+
+
+<script type="text/javascript">
+    $(function () {
+        $('#date').datepicker({ dateFormat: 'dd-mm-yy' });
+    });
+</script>
+
+
+
+<!-- cant refresh page -->
+<script type="text/javascript" language="javascript">
+window.history.pushState(null, "", window.location.href);
+window.onpopstate = function () {
+    window.history.pushState(null, "", window.location.href);
+};
+
+</script>
+
+{% endblock %}
+
+
+
